@@ -177,8 +177,27 @@ uv run python scripts/check_environment.py
 - train/validation/test count가 기대 비율과 맞는지
 - W&B run이나 adapter artifact에 raw dataset이 업로드되지 않는지
 
+# 2026-07-28 Post-Run Data Policy
+
+`hf-full-v1` 332,807건으로 수행한 Qwen3-Coder-Next 80B LoRA 학습은 loss가 약 `1.5e-6`까지 감소했지만 500건 label-blind 절대평가를 통과하지 못했다. 기존 full export는 실패 재현 artifact로 동결하고 다음 학습 입력으로 재사용하지 않는다.
+
+다음 dataset revision은 다음을 필수로 한다.
+
+- train 규모를 우선 `10,000–20,000`건으로 제한
+- DiverseVul input에서 dataset명, label, target 제거
+- BigVul의 vulnerable `before`와 fixed `after`를 positive/negative pair로 사용
+- Cybersecurity QA를 코드 취약점 판별 SFT에서 분리
+- code hash와 유사도 기반 중복 제거
+- class/source/template별 quota와 상관관계 검사
+- 고정 seed와 code hash로 3–5개 입력 prompt variant를 재현 가능하게 배정
+- label, risk, JSON schema는 무작위화하지 않음
+- 100-step 학습 후 label-blind diagnostic을 통과하기 전 full epoch 금지
+
+세부 근거와 허용·금지 무작위화 규칙은 [AegisLM 데이터 축소와 통제된 무작위화 결정](../training/aegislm_dataset_reduction_randomization_decision_20260728.md)을 따른다.
+
 # Related Concepts
 
 - [B200 기반 대형 언어 모델 로컬 서빙 및 파인튜닝 실험 제안](../b200/B200_server.md)
 - [LLaMA-Factory + W&B 기반 AegisLM 보안 파인튜닝 연동](../training/llamafactory_wandb_finetuning.md)
+- [AegisLM 데이터 축소와 통제된 무작위화 결정](../training/aegislm_dataset_reduction_randomization_decision_20260728.md)
 - [AegisLM LLaMA-Factory B200 W&B guide](../repos/AegisLM/docs/LLAMA_FACTORY_B200_WANDB.md)

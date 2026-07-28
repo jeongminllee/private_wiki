@@ -13,10 +13,13 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 
 ## High-Signal Docs
 
+- [LLM 생명주기 환경 설계](../../infra/llm-lifecycle-environment-design.md) - 개발·학습·서빙·평가의 end-to-end preflight와 환경 통합·분리 기준
+- [AegisLM-B200 2-GPU 재구축](b200/aegislm_b200_2gpu_rebuild.md) - 새 private 저장소와 B200 2장·400GiB 환경의 80B full-training 준비 및 검증 기록
 - [B200 Full-Size Training Queue](b200/b200_full_size_training_queue.md) - Qwen3-Coder-Next 80B부터 full dataset real training으로 전환하는 실행 큐
 - [B200 Model Limit Load-Only Probes](b200/b200_model_limit_load_only_probes.md) - B200 800GiB container profile에서 GLM, Qwen3-Coder Next, DeepSeek V4 Flash 후보의 load-only 한계 측정
 - [B200 Fine-Tuning Troubleshooting Report](b200/b200_finetuning_troubleshooting_report_20260703.md) - 데이터셋, dependency, DeepSpeed, memory/cgroup 문제와 해결 내역 종합 보고서
 - [MalwareAnalysisLLM LLM Candidate Matrix](b200/llm_candidate_matrix_20260703.md) - Qwen3-Coder, GLM, DeepSeek, gpt-oss 후보를 serving/fine-tuning 관점으로 정리
 - [Security Datasets](data/security_datasets.md) - AegisLM 보안 fine-tuning 데이터셋 추출, 전처리, split, LLaMA-Factory export 가이드
 - [LLaMA-Factory + W&B Fine-Tuning Integration](training/llamafactory_wandb_finetuning.md) - B200 서버에서 LLaMA-Factory, DeepSpeed, W&B로 Qwen3-Coder SFT를 실행하는 가이드
+- [AegisLM 데이터 축소와 통제된 무작위화 결정](training/aegislm_dataset_reduction_randomization_decision_20260728.md) - 33만 건·7일 학습 실패에서 1–2만 건 고품질 데이터 전략으로 전환한 연구 결정
 - [MalwareAnalysisLLM Library Stack Map](libraries/malwareanalysisllm_library_stack_map.md) - data, schema, model loading, training runtime, logging, security analysis 계층별 라이브러리 지도

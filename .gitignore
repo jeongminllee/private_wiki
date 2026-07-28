@@ -16,3 +16,5 @@ raw/
 # Temporary and Log files
 *.log
 *.tmp
+.vscode/
+tmp/
