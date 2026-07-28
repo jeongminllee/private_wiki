@@ -22,4 +22,6 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 - [Security Datasets](data/security_datasets.md) - AegisLM 보안 fine-tuning 데이터셋 추출, 전처리, split, LLaMA-Factory export 가이드
 - [LLaMA-Factory + W&B Fine-Tuning Integration](training/llamafactory_wandb_finetuning.md) - B200 서버에서 LLaMA-Factory, DeepSpeed, W&B로 Qwen3-Coder SFT를 실행하는 가이드
 - [AegisLM 데이터 축소와 통제된 무작위화 결정](training/aegislm_dataset_reduction_randomization_decision_20260728.md) - 33만 건·7일 학습 실패에서 1–2만 건 고품질 데이터 전략으로 전환한 연구 결정
+- [AegisLM Phase F 실행 계획](repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md) - catalog·manifest·JSONL 3계층과 source/binary 별도 adapter 절대평가 계획
+- [AegisLM Phase F 연구 계획](training/aegislm_phase_f_experiment_plan_20260728.md) - F0–F4 상태, 모델 실험 사다리, 중단 기준과 다음 실행을 추적하는 Wiki Project Note
 - [MalwareAnalysisLLM Library Stack Map](libraries/malwareanalysisllm_library_stack_map.md) - data, schema, model loading, training runtime, logging, security analysis 계층별 라이브러리 지도

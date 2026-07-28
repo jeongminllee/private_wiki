@@ -144,6 +144,29 @@ dataset audit
 
 100건 평가는 빠른 중단을 위한 진단이며 최종 채택 근거가 아니다. 최종 판정은 독립 500건 절대평가로 수행한다.
 
+# Phase F implementation
+
+이 결정은 AegisLM-B200의 Phase F로 구체화했다.
+
+- Phase E는 `infrastructure PASS / model quality FAIL`로 종료한다.
+- Phase F source profile은 5,000 positive + 5,000 benchmark-negative,
+  validation 1,000, blind test 500으로 고정한다.
+- 데이터는 raw catalog Parquet, eligible manifest Parquet, materialized
+  JSONL의 세 계층으로 분리한다.
+- 기존 model-visible source, metadata, target, label은 prompt formatter에서
+  제거한다.
+- `openai/gpt-oss-20b` 100-step canary가 진단 gate를 통과한 뒤에만
+  Qwen3-Coder-Next 80B 재학습을 허용한다.
+- source와 binary-derived adapter를 별도로 평가하고 둘 다 통과한 뒤에만
+  NuriLab/RAG/MCP 연결을 검증한다.
+- binary는 raw byte가 아니라 pseudo-C, 정적 특징, 제한된 assembly
+  evidence를 사용한다.
+
+BigVul의 현재 canonical record에는 fixed code body와 충분한 CWE·수정
+위치가 없으므로 자동 보강하지 않고 `quarantine`으로 둔다. B0에서
+build 가능한 before/after 100 pair를 확보하고 compile/decompile/pair
+보존 gate를 통과한 뒤에만 binary adapter dataset을 만든다.
+
 # Research story
 
 1. **가설**: 33만 건 보안 데이터로 SFT하면 코드 보안 분석 능력이 향상될 것이다.
@@ -156,8 +179,10 @@ dataset audit
 # Related Concepts
 
 - [Qwen3-Coder-Next 80B B200 2-GPU 실행 기록](qwen3_coder_next_80b_2gpu_run_20260720.md)
+- [AegisLM Phase F 연구 계획](aegislm_phase_f_experiment_plan_20260728.md)
 - [Security Datasets](../data/security_datasets.md)
 - [AegisLM 수동 파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/FINETUNING_TEST_WORKBOOK.md)
+- [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](../repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
 - [LLM 생명주기 환경 설계](../../../infra/llm-lifecycle-environment-design.md)
 
 # Citations
