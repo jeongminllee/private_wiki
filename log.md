@@ -1,5 +1,61 @@
 # Change Log
 
+## 2026-07-29
+
+- **Phase F F1 Complete**: `phase-f-source-v2-r2` group-first pool을
+  동결했다. train/validation/blind를 `10,000/1,000/500`으로, BigVul과
+  PrimeVul cross-dataset test를 각 `200`건으로 구성하고 남은 eligible
+  `272,904`건은 reserve로 분리했다. group leakage, selected/reserve
+  overlap, incomplete pair는 모두 `0`이며 동일 seed artifact 19개의
+  SHA-256 재현성도 통과했다.
+- **Data Acquisition**: PrimeVul v0.1 공식 paired dataset과 NIST
+  SARD/Juliet C/C++ 1.3 원본을 GPU 서버 `data/raw_data/{dataset}`에
+  확보하고 별도 SHA-256 manifest로 고정했다. SARD는 function-level
+  extractor가 없으므로 학습·테스트에 억지로 혼합하지 않고 raw-only로
+  보류했다.
+- **Decision**: `phase-f-source-v2-r2`는 범주화·분할 완료본이지 학습
+  승인본이 아니다. 기존 target 반복과 tokenizer cutoff 초과를 F2에서
+  고친 뒤 `phase-f-source-v3`을 별도 생성하며, 남은 eligible을 test로
+  부풀리지 않고 reserve에서 향후 seed·난이도·오류 유형별로 승격한다.
+- **Decision**: AegisLM Phase F의 `language`를 taxonomy, sampling quota,
+  model-visible prompt와 품질 gate에서 제외했다. 원본이 제공한 값만 감사
+  metadata로 보존하고 누락 언어는 추정하지 않는다. 연구 질문은 언어
+  식별이 아니라 언어 정보 없이 위험 연산·데이터 흐름·API·악성 행위
+  패턴을 근거로 판단할 수 있는지로 고정했다.
+- **Plan Correction**: raw catalog 생성과 학습용 범주화를 분리해 F1을
+  다시 `Running`으로 열었다. weakness family, evidence level,
+  representation, before/after pair, length, label confidence의 category
+  quota가 실제 sampler에 적용되기 전에는 F2/F3와 신규 Qwen 학습으로
+  진행하지 않는다.
+- **Dataset Research**: 새 데이터를 무작정 혼합하지 않고 현재 BigVul
+  patch evidence 복구 → PrimeVul → NIST SARD/Juliet → 소규모
+  Assemblage·Decompile-Bench → BinKit 강건성 subset → EMBER2024
+  static-feature 독립 benchmark 순서로 조사하기로 했다. 전체 binary
+  corpus와 raw malware payload download는 B0 이전에 시작하지 않는다.
+- **Audit**: Phase F 계획과 서버 상태를 전체 재감사했다. 현재 주 실험은
+  Qwen3-Coder-Next 80B인데 GPT-OSS-20B가 선행 gate로 잘못 들어간 문서와
+  config, Phase E dataset·checkpoint root를 고정한 학습 runner를 확인했다.
+  GPT-OSS는 Qwen 결론 이후 보조 이식성 실험으로 이동하고 Qwen은 base에서
+  신규 100→250→선택적 313 step으로 학습하도록 결정했다.
+- **Data Quality**: `phase-f-source-v2`는 구조·누출·group split 검사는
+  통과했지만 target 10,000건 중 exact unique 939개, summary 8종,
+  generic positive evidence 반복과 Qwen 2,048-token 초과
+  train/validation/challenge 927/121/46건이 확인됐다. 따라서 현재 v2를
+  학습 승인본에서 제외하고 source vulnerability 전용 contract와
+  code-grounded target을 적용한 `phase-f-source-v2-r1`을 만들기로 했다.
+- **Plan**: [AegisLM Phase F 계획](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md)과
+  저장소 SSOT를 F0~F9로 다시 구성했다. 현재 위치는
+  `F0 Complete / F1 Complete / F2 Running(current design Fail) /
+  F3~F5 Blocked`이며, 다음 작업은 신규 학습이 아니라 F2 contract·target
+  수정이다.
+- **Data Processing**: immutable raw snapshot 519,128행을 직접 감사하는 Phase F normalizer를 구현했다. DiverseVul 330,492행은 source core 후보로, BigVul 188,636행은 catalog quarantine으로 처리하고 Cybersecurity QA는 provenance-only inventory로 유지했다.
+- **Sampling**: project+commit group을 고정 hash로 80/10/10 split한 뒤 label 균형, primary CWE·repository tempered sampling, repository별 class quota 10% cap을 적용했다. train 10,000, validation 1,000, blind challenge/gold 500을 생성했으며 149 CWE·705 repository·4,147 group을 포함한다.
+- **Quality Gate**: exact/near duplicate reject 71,427/11,118건, label 충돌 duplicate quarantine 2,358/4,491건, cross-split group·content 누출 0, model-visible label/provenance 누출 0을 확인했다. secret-like assignment 134개를 redaction했고 LLaMA-Factory export 10,000/10,000 및 1,000/1,000을 통과했다.
+- **Reproducibility**: 동일 raw와 seed `20260728`에서 profile을 두 번 생성해 train, validation, challenge, gold, manifest, summary가 일치하고 현재 JSONL SHA-256과 동일함을 확인했다. 산출물은 `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/Data/processed/phase-f-source-v2`와 `SHA256SUMS`에 동결했다.
+- **Data Acquisition**: B200 공유 저장소의 `data/raw_data/{dataset}`에 DiverseVul, BigVul, Cybersecurity QA의 고정 Hugging Face revision을 변환 없이 확보했다. 원본 디렉터리와 다운로드 로그·SHA-256 manifest를 분리했으며 세 snapshot 모두 checksum 재검증을 통과했다.
+- **Path Audit**: `data`가 `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/Data`를 가리키는 것을 확인하고 잘못된 `/approved/...` 예시를 실제 repository-relative 경로로 수정했다. 기존 `DATASET_OUTPUT_DIR`은 Phase E 호환용으로 유지하고 `RAW_DATA_ROOT`, `PHASE_F_SOURCE_OUTPUT_DIR`, `PHASE_F_BINARY_OUTPUT_DIR`을 별도 변수로 정의했다.
+- **Update**: [AegisLM Phase F 실행 계획](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md)에 F0-A raw snapshot 완료 상태와 F0-B raw 형식 감사·normalizer 설계를 다음 단계로 기록했다. Cybersecurity QA는 provenance 보존용이며 Phase F source vulnerability SFT quota에서 제외한다.
+
 ## 2026-07-28
 
 - **Project Note**: [AegisLM Phase F 데이터 재설계와 바이너리 분석 실험](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md)을 추가했다. 구현 SSOT와 별도로 Phase E 판정, F0–F4 상태, source·binary 모델 실험 사다리, 절대 gate, NuriLab 연결 순서와 다음 실행을 Wiki에서 추적하도록 구성했다.
