@@ -42,7 +42,7 @@ status: active
         with open(checklist_path, 'w', encoding='utf-8') as f:
             f.write(template)
 
-    print(f"[✓] {today} 루틴 폴더 4개와 체크리스트 작성이 완료되었습니다!")
+    print(f"[OK] {today} 루틴 폴더 4개와 체크리스트 작성이 완료되었습니다!")
     print(f"    - 체크리스트: {checklist_path}")
 
 if __name__ == '__main__':
