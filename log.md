@@ -1,5 +1,115 @@
 # Change Log
 
+## 2026-07-31
+
+- **Decision**: [AegisLM CVEfixes Patch-label 공급 Gate](wiki/projects/Fine_Tuned/training/aegislm_cvefixes_supply_gate_decision_20260731.md)를 추가했다. official archive·gzip·SQL·SQLite lifecycle과 C/C++ exact pair 6,248건 공급량은 통과했지만, actionable CWE 200쌍의 patch↔CWE 수동 판단과 repository code license 검토 전에는 bulk materialization·training을 금지했다.
+- **Implementation**: CVEfixes metadata preflight, ranged archive assembly, 비추출 ZIP inventory, 선택적 SQL gzip 추출·CRC, 정적 SQL 감사, 방어적 SQLite import, read-only 공급 감사, deterministic 200쌍 catalog와 batch review materializer를 AegisLM-B200에 추가했다. 첫 catalog의 `NVD-CWE-Other/noinfo` 22건과 비인덱스 개별 조회 성능 결함을 진단본으로 보존하고 수정했다.
+- **Binary ARVO Patch Gate**: 공개 GitHub 개발자 패치만 허용해 family별 50건·총 200건을 동결했다. Git binary patch 13건과 C/C++ source hunk가 없는 패치 5건은 자동 제외했으며, 수동 검토에서 오류 `11/200`으로 예산 10건을 초과해 `FAIL EARLY`했다. ARVO crash family→CWE 변환과 binary adapter 학습을 불승인하고 MegaVul/CVEfixes label 공급과 Assemblage/Decompile-Bench alignment 감사를 분리하기로 했다.
+- **Binary ARVO Feasibility**: ARVO v3 metadata DB 6,138건을 확보하고 heap/stack buffer read·write 각 50건, 총 200건의 quarantine set을 동결했다. crash type은 CWE gold로 사용하지 않으며 patch↔CWE 수동 검토 전 compile·Docker pull·reproducer/object 실행과 학습을 금지했다.
+- **Binary F7 Strict Supply Final**: strict v4–v6에서 CWE-121/122/126을 순차 격리했다. strict v7은 CWE-134/190/191/194/195의 644 pair와 고정 100건 오류 `1/100`으로 target 품질 gate를 통과했지만 공급 목표 `2,450`에 미달했다. 644 pair를 `quality-approved / supply-blocked` seed로 동결하고 binary adapter 학습은 시작하지 않기로 결정했다.
+- **Decision**: [AegisLM Binary Model-Ready Target Gate](wiki/projects/Fine_Tuned/training/aegislm_binary_model_ready_target_gate_decision_20260731.md)를 추가했다. 자동 gate와 수동 target 근거 gate를 분리해 v1–v5의 실패를 보존하고, fixed remediation과 constrained sink를 함께 요구하는 정책으로 전환했다.
+- **Binary F7 Target Audit**: strict v5는 recovery r4·r5 뒤 자동 공급 `2,450/2,477`을 확보했지만 수동 evidence 오류 6건으로 실패했다. v6는 `2,123/2,450`으로 공급 실패했고, 탈락 pseudo-C를 감사해 Ghidra 이름·최적화·buffer-capacity 표현을 정규화한 v7을 추가했다.
+- **Binary F7 Recovery**: v7 기존 공급은 `2,329/2,450`이다. 마지막 frozen queue 260쌍을 recovery r6로 동결하고 compile·symbol link `1,040/1,040`, object 실행 0을 확인했으며 Ghidra 4-shard decompile을 시작했다.
+- **Binary F7 Target Decision**: recovery r6 compile·decompile·function link `1,040/1,040`과 relation-qualified 176쌍을 추가했다. v7은 자동 공급 PASS 뒤 수동 연결 오류, v8은 공급 `2,326/2,450` FAIL, v9은 공급 `2,450/2,498`·자동 PASS 뒤 수동 evidence 오류 `6/100`으로 FAIL했다. flat evidence line 선택을 role-structured evidence contract로 교체하기 전에는 binary adapter를 학습하지 않기로 결정했다.
+- **Binary F7 Contract v2**: `aegislm.binary-role-assessment-output.v2` schema와 semantic validator를 추가했다. exact evidence span, source/control/sink/bound/remediation role, sink-directed relation을 검증하며 기존 v1 실패 artifact는 그대로 보존한다.
+- **Binary F7 Role Target v2**: r1·r2 실제 Qwen tokenizer 공급은 각각 `2,450/2,479`, `2,450/2,485`로 PASS했지만 고정 100건 수동 evidence gate는 모두 6건에서 `FAIL EARLY`했다. generic identifier-overlap fallback을 폐기하고 CWE별 strict role extractor가 있는 범주만 eligible로 재산정하며, 새 수동 gate 전 materialization·GPU 학습을 금지했다.
+- **Binary F7 Strict Supply v3**: generic fallback을 제거한 공급은 `1,301/2,924` pair로 original quota에 미달했지만 review 가능 조건은 통과했다. 새 100건은 CWE-124/127/457/690 extractor 오류 6건에서 `FAIL EARLY`했으며 네 범주를 quarantine하기로 했다.
+
+## 2026-07-30
+
+- **Binary F7 Scale**: 네 번째 500-pair 확대에서 compile `2,000/2,000`,
+  decompile·function link `1,996/2,000`, strict target-preservation
+  `419/500`을 기록했다. 누적 `1,940/2,395`, Wilson 하한 `0.79382`,
+  공급 margin 1,605쌍으로 다섯 번째 500-pair batch를 승인했다.
+- **Binary F7 Scale**: 세 번째 500-pair 확대에서 compile `2,000/2,000`,
+  decompile·function link `1,996/2,000`, strict target-preservation
+  `410/500`을 기록했다. 누적 `1,521/1,895`, Wilson 95% 하한
+  `0.78411`, 공급 margin 1,563쌍으로 네 번째 500-pair batch를
+  승인했다.
+- **Binary F7 Scale**: 두 번째 500-pair 확대에서 compile `2,000/2,000`,
+  decompile·function link `1,997/2,000`, strict target-preservation
+  `394/500`을 기록했다. batch 90% gate는 실패했지만 누적
+  `1,111/1,395`, Wilson 95% 하한 `0.77448`, 공급 margin 1,519쌍으로
+  세 번째 500-pair batch를 승인했다.
+- **Decision**: [AegisLM Binary 엄격 Target Evidence 재감사](wiki/projects/Fine_Tuned/training/aegislm_binary_strict_target_evidence_decision_20260730.md)를 추가했다. O2에서 target operation이 사라진 CWE-476·CWE-563 과거 PASS 9쌍을 격리해 과거 누적을 `306/395`에서 `297/395`로 정정했다.
+- **Binary F7 Scale**: 첫 500-pair 확대에서 compile `2,000/2,000`, decompile·function link `1,997/2,000`, strict target-preservation `420/500`을 기록했다. batch 90% gate는 실패했지만 누적 `717/895`, Wilson 95% 하한 `0.77370`, 공급 margin 1,508쌍으로 다음 500-pair batch를 승인했다.
+- **Binary F7 Pilot**: 구조 적격 4,643 pair queue에서 별도 250 pair를
+  GCC·Clang × `O0/O2`로 compile·decompile하고 전부 명시 검토했다.
+  `206/250`을 승인하고 44 pair를 제외했다. 과거 B0를 합친 누적
+  승인/검토는 `306/395`, Wilson 95% 하한 기준 추가 검토 예상은
+  2,934 pair이며 남은 공급 대비 margin은 1,314 pair다. 개별 batch의
+  90% 보존 gate는 실패했지만 저신뢰 후보를 버리고도 최종 목표를 채우는
+  supply gate는 통과해 다음 500-pair queue를 승인했다.
+- **Binary B0 PASS**: SARD/Juliet 후보 145 pair를 GCC·Clang × `O0/O2`로
+  compile·decompile하고 target-preservation을 명시 검토해 45 pair를
+  탈락시켰다. 최종 100 pair·400 variant와 normalized record 800건이
+  schema·pseudo-C·assembly·static-feature linkage `1.00`, prompt 누출 0,
+  payload·object 실행 0으로 F6-B gate를 통과했다. Gate summary SHA-256은
+  `73ade0fb…b8dd`이며 F7 공급량 감사와 split 설계를 `Ready`로 전환했다.
+- **Binary Tooling**: compact explicit review decision 형식, shard merge,
+  replacement lifecycle, 최종 B0 gate aggregator와 normalized-record
+  materializer를 추가했다. Linux 비이식 `wchar_t + POSIX open/fopen`
+  후보는 catalog 단계에서 제외한다.
+- **Binary Toolchain**: F6-B용 사용자 영역 Clang 18.1.3·Ghidra 12.1.2
+  toolchain을 동결하고 manifest SHA-256 `0de66fb5…e502`를 기록했다.
+- **Binary Smoke**: 첫 CWE-690 후보는 `O2` target-preservation 실패로
+  탈락시켰다. 두 번째 CWE-122 1-pair는 GCC·Clang × `O0/O2`의 compile
+  4/4, target decompile·function link 8/8, prompt 누출 0을 통과했다.
+  F6-B를 `Running`으로 전환했으며 이는 B0 100-pair PASS가 아니다.
+- **Binary Candidate Gate**: Linux 비호환 309 pair를 제외하고 seed
+  `20260728`로 primary 100·reserve 50 queue를 동결했다. 37개 CWE, 최대
+  비중 3%이며 앞 10 pair compile·target-symbol link `40/40`, 실행 0회로
+  Ghidra decompile canary 진행 조건을 통과했다.
+- **Lifecycle**: Q1R10 decision과 Q1R11 evidence를 각각 약 149G BF16
+  checkpoint로 merge하고 vLLM 0.26.0 TP2에서 500건 lifecycle을
+  검증했다. Decision은 HF raw output과 500/500 동일했고, evidence는
+  자유 생성 1건의 9-range 오류를 guided JSON Schema와 semantic
+  validator로 차단해 전체 gate를 통과했다.
+- **Decision**: F5-M1을 constrained decoding 필수 조건부 PASS로
+  종료했다. Evidence endpoint를 자유 JSON 생성만으로 배포하지 않으며,
+  평가 후 port 8000 종료와 두 GPU 0 MiB를 확인했다.
+- **Binary Preflight**: F6-A 후보·license·local source·toolchain
+  inventory를 생성했다. SARD/Juliet CC0 원천은 준비됐지만 Clang과
+  decompiler가 없어 F6-B B0는 blocked로 기록했다. 외부 binary payload
+  다운로드와 샘플 실행은 하지 않았다.
+- **Training**: Q1R11 evidence-only Qwen3-Coder-Next 80B adapter를 base에서
+  100-step 학습했다. runtime `2,969.24초`, train loss `0.1035507`,
+  aggregate GPU peak `209,624 MiB`이며 저장·mirror·재로드를 통과했다.
+- **Evaluation**: 기존 group/code와 overlap이 0인 신규 blind 500건에서
+  Q1R10→Q1R11 two-stage가 decision P/R/FPR
+  `0.9881/1.0000/0.0120`, evidence P/R/F1
+  `0.9001/0.9229/0.9114`, parse/schema/renderer `1.00`으로 전체 절대
+  gate를 통과했다.
+- **Review**: 고정 seed TP 10/TN 10의 label 판단과 evidence overlap은
+  `20/20`이었지만 exact line set은 `9/20`, confidence는 전부 `high`였다.
+  일반적인 deterministic recommendation 때문에 calibration과 구체적
+  remediation은 미검증 한계로 남겼다.
+- **Decision**: [Q1R11 신규 Blind 500 PASS와 Source 후보 동결](wiki/projects/Fine_Tuned/training/aegislm_q1r11_fresh_blind_pass_decision_20260730.md)을
+  추가했다. Q1R10 decision과 Q1R11 evidence를 채택 후보로 동결하고
+  추가 step 대신 각각 BF16 merge·vLLM TP2를 검증한 뒤 F6 binary B0로
+  이동하기로 했다.
+- **Experiment**: Qwen3-Coder-Next 80B Q1R10 decision-only 100-step adapter가
+  미노출 480건에서 precision `0.9835`, recall `0.9958`, FPR `0.0167`,
+  parse/schema `1.00`으로 절대 gate를 통과했다.
+- **Evaluation**: Q1R10→Q1R9 two-stage blind에서 evidence precision/recall
+  `0.7855/0.8056`, schema `0.9938`을 기록했지만 renderer가 `477/480`으로
+  strict `1.00` gate에 실패해 source 전체를 `FAIL`로 판정했다.
+- **Fix**: 서로 다른 유효 line range가 같은 코드 문자열을 가리킬 때
+  resolver가 중복 exact span을 생성하던 2건을 결정적으로 중복 제거했다.
+  역순·중복 range 3건은 모델 계약 오류로 그대로 실패 처리했다.
+- **Decision**: [Q1R10 Blind 평가와 Evidence 보정 결정](wiki/projects/Fine_Tuned/training/aegislm_q1r10_blind_evaluation_decision_20260730.md)을
+  추가했다. Decision 250-step은 건너뛰고, 사용한 blind 480은 재사용하지
+  않으며 미사용 SARD pair로 새 blind를 동결한 뒤 evidence-only Q1R11
+  100-step을 수행하기로 했다.
+- **Dataset**: 현재 extractor에서 기존 5,750 group과 11,500 code hash를
+  모두 제외하고 새 SARD pair 250쌍으로
+  `phase-f-source-fresh-blind-500-v1`을 동결했다. 500건은 label
+  `250/250`, group/code overlap `0/0`, label 누출 `0`, 최대 `1,442`
+  tokens이며 source·contract 독립 재빌드 hash가 일치했다.
+- **Training**: Q1R11 evidence-only base-start 100-step preflight가
+  dataset `9,975/996`, global batch `32`, no-resume, save step `100`으로
+  통과해 학습을 시작했다. 새 blind는 dev100 gate 전까지 열지 않는다.
+
 ## 2026-07-29
 
 - **Phase F F1 Complete**: `phase-f-source-v2-r2` group-first pool을
