@@ -24,7 +24,12 @@
     - [AegisLM Q1R11 신규 Blind 500 PASS](wiki/projects/Fine_Tuned/training/aegislm_q1r11_fresh_blind_pass_decision_20260730.md) - source two-stage·F5-M1 PASS와 F6 binary 최초 판정 기록
     - [AegisLM Binary 엄격 Target Evidence 재감사](wiki/projects/Fine_Tuned/training/aegislm_binary_strict_target_evidence_decision_20260730.md) - F7 500-pair 확대, 과거 판정 정정과 보수적 공급 gate
     - [AegisLM Binary Model-Ready Target Gate](wiki/projects/Fine_Tuned/training/aegislm_binary_model_ready_target_gate_decision_20260731.md) - strict v7 공급 차단과 ARVO 200건 patch gate `FAIL EARLY` 결정
-    - [AegisLM CVEfixes Patch-label 공급 Gate](wiki/projects/Fine_Tuned/training/aegislm_cvefixes_supply_gate_decision_20260731.md) - 검증된 archive·SQLite·6,248쌍 공급 PASS와 200쌍 수동 gate 대기 결정
+    - [AegisLM CVEfixes Patch-label 공급 Gate](wiki/projects/Fine_Tuned/training/aegislm_cvefixes_supply_gate_decision_20260731.md) - 6,248쌍 공급량 PASS 뒤 수동 `11/28 FAIL EARLY`, direct-label 학습 거부 결정
+    - [AegisLM Decompile-Bench Alignment·Provenance Gate](wiki/projects/Fine_Tuned/training/aegislm_decompile_bench_alignment_decision_20260731.md) - source–assembly 96/100 PASS와 provenance 부족에 따른 reference-only 결정
+    - [AegisLM Assemblage LinuxELF Metadata Gate](wiki/projects/Fine_Tuned/training/aegislm_assemblage_metadata_decision_20260731.md) - artifact·schema PASS 뒤 strict metadata 0건으로 raw ELF·학습 거부 결정
+    - [AegisLM BinKit 2.0 Metadata Gate](wiki/projects/Fine_Tuned/training/aegislm_binkit_metadata_decision_20260731.md) - compiler matrix 확인 뒤 고정 artifact·license·schema 부재로 binary·pickle 보류 결정
+    - [AegisLM EMBER2024 ELF Static-Feature Benchmark Gate](wiki/projects/Fine_Tuned/training/aegislm_ember2024_benchmark_decision_20260731.md) - raw 12,000행을 6,000관측치로 중복 제거한 독립 malware benchmark 결정
+    - [AegisLM EMBER2024 ELF Classifier 절대평가](wiki/projects/Fine_Tuned/training/aegislm_ember2024_classifier_baseline_decision_20260731.md) - 자체 temporal LightGBM·공식 모델의 시간 분리 절대 gate 실패와 NuriLab 연결 보류
     - [AegisLM ARVO Patch Gate](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md) - 공개 개발자 패치 200건 수동 오류 11건과 학습 불승인
 - [Papers](wiki/papers/index.md) - Academic papers summary
   - [Artificial Image Data for Visual Defect Detection SLR](wiki/papers/artificial-image-data-visual-defect-detection-slr.md) - 결함 검출용 합성·증강 이미지 연구의 방법, 성과와 한계를 분석한 2025년 체계적 문헌고찰

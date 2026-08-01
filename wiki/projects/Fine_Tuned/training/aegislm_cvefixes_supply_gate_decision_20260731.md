@@ -1,7 +1,7 @@
 ---
 type: Decision Note
 title: AegisLM CVEfixes Patch-label 공급 Gate 결정
-description: CVEfixes v1.0.8 무결성·SQLite·6,248쌍 공급 감사와 200쌍 수동 gate 대기 기록
+description: CVEfixes v1.0.8 공급량 PASS 뒤 patch↔CWE 수동 11/28 FAIL EARLY와 direct-label 학습 거부 기록
 tags: [aegislm, phase-f, cvefixes, dataset-quality, manual-review]
 timestamp: 2026-07-31
 status: active
@@ -12,8 +12,9 @@ status: active
 CVEfixes v1.0.8 official archive를 검증해 방어적으로 SQLite DB로
 가져왔고, read-only 감사에서 C/C++ exact before/after 후보 6,248쌍을
 확인했다. 숫자형 CWE만 허용한 200쌍 catalog와 함수 전·후 review queue의
-자동 구조 gate는 통과했다. 그러나 patch↔CWE 수동 판단 200건과 원
-repository code license 검토가 남아 있어 학습은 승인하지 않는다.
+자동 구조 gate는 통과했다. 그러나 patch↔CWE 수동 검토는 28건에서
+오류·불확실 11건으로 예산 10건을 초과해 `FAIL EARLY`했다. 남은
+172건은 미검토이며 학습은 승인하지 않는다.
 
 # Why it matters
 
@@ -47,21 +48,28 @@ commit-level CVE/CWE가 붙어 있다는 사실만으로 특정 함수 변경이
 
 # Decision
 
-현재 상태는 `manual_review_ready / training=false`다. 각 pair에서 같은
-기능 단위인지, 수정 operation과 target CWE가 직접 연결되는지,
-구체적인 다른 CWE가 맞는지, 문맥 부족으로 불확실한지를 검토한다.
-오류·불확실이 `10/200`을 초과하면 `FAIL EARLY`로 종료한다.
+현재 상태는 `manual_review_fail_early / training=false`다.
+
+- reviewed / passed / error / unfinished: `28 / 17 / 11 / 172`
+- CWE mismatch: 7
+- CWE too broad: 6
+- insufficient context: 5
+- patch unrelated: 1
+- operator decisions SHA-256:
+  `08aed98de897f8081cd8871d795d6f8480f6e810b4f97b263b71259496a969a1`
+- final result SHA-256:
+  `ed099b23b6cf619b5ea717ff4b52119c7149b87165a8c57b26ee11a4bb6172be`
 
 CVEfixes database의 CC BY 4.0을 원 repository source code license로
-간주하지 않는다. 수동 품질 gate를 통과하더라도 repository code license
-검토가 끝나기 전에는 bulk materialization과 training을 허용하지 않는다.
+간주하지 않는다. 이번에는 품질 gate가 먼저 실패했으므로 repository
+license gate에도 착수하지 않는다.
 
 # Next Actions
 
-1. 200쌍 수동 patch↔CWE review를 완료한다.
-2. 오류 유형과 CWE별 실패 분포를 기록한다.
-3. 품질 PASS일 때만 repository license를 감사한다.
-4. 두 gate가 모두 통과해야 binary-derived build feasibility로 이동한다.
+1. CVEfixes commit-level CWE를 direct training label로 사용하지 않는다.
+2. 재사용하려면 code-local operation 기반 label contract를 새로 만든다.
+3. 새 contract는 새로운 고정 sample로 자동·수동 gate를 다시 시작한다.
+4. vulnerability label 공급과 source–binary alignment 공급을 계속 분리한다.
 
 # Related Concepts
 

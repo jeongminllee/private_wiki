@@ -24,6 +24,11 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 - [AegisLM 데이터 축소와 통제된 무작위화 결정](training/aegislm_dataset_reduction_randomization_decision_20260728.md) - 33만 건·7일 학습 실패에서 1–2만 건 고품질 데이터 전략으로 전환한 연구 결정
 - [AegisLM Binary 엄격 Target Evidence 재감사 결정](training/aegislm_binary_strict_target_evidence_decision_20260730.md) - F7 500-pair 확대와 과거 B0·pilot 재감사, Wilson 공급 gate 결정
 - [AegisLM Binary Model-Ready Target Gate 결정](training/aegislm_binary_model_ready_target_gate_decision_20260731.md) - target v1–v4 수동 실패와 strict v5 공급 복구 결정
+- [AegisLM Decompile-Bench Alignment·Provenance Gate 결정](training/aegislm_decompile_bench_alignment_decision_20260731.md) - source–assembly 정렬 PASS와 provenance·build metadata 부족에 따른 reference-only 판정
+- [AegisLM Assemblage LinuxELF Metadata Gate 결정](training/aegislm_assemblage_metadata_decision_20260731.md) - artifact·schema PASS 뒤 strict complete metadata 0건으로 raw ELF·학습 불승인
+- [AegisLM BinKit 2.0 Metadata Gate 결정](training/aegislm_binkit_metadata_decision_20260731.md) - matrix 확인 뒤 versioned dataset artifact·license·schema 부재로 binary·pickle 보류
+- [AegisLM EMBER2024 ELF Static-Feature Benchmark Gate 결정](training/aegislm_ember2024_benchmark_decision_20260731.md) - raw 12,000행을 6,000 temporal observation으로 중복 제거한 독립 malware benchmark 승인
+- [AegisLM EMBER2024 ELF Classifier 절대평가 결정](training/aegislm_ember2024_classifier_baseline_decision_20260731.md) - train 26,000·test 6,000건의 자체·공식 모델 temporal FPR gate 실패와 NuriLab 연결 보류
 - [AegisLM Phase F 실행 계획](repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md) - F0–F9 데이터 감사, Qwen 80B 신규 학습, source/binary 절대평가 계획
 - [AegisLM Phase F 연구 계획](training/aegislm_phase_f_experiment_plan_20260728.md) - F0–F9 상태, 모델 실험 사다리, 중단 기준과 다음 실행을 추적하는 Wiki Project Note
 - [MalwareAnalysisLLM Library Stack Map](libraries/malwareanalysisllm_library_stack_map.md) - data, schema, model loading, training runtime, logging, security analysis 계층별 라이브러리 지도
