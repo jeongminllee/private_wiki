@@ -232,17 +232,17 @@ heap/stack read/write와 다른 patch, 국소화되지 않은 WIP 변경이 포�
 
 alignment dataset에 vulnerability gold label이 있다고 가정하지 않는다.
 세부 artifact hash와 안전 경계는
-[ARVO Patch Gate 결정문](../repos/AegisLM-B200/docs/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md)에
+[ARVO Patch Gate 결정문](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md)에
 보존한다.
 
 # Related Concepts
 
 - [AegisLM Binary 엄격 Target Evidence 재감사](aegislm_binary_strict_target_evidence_decision_20260730.md)
 - [AegisLM Phase F 연구 계획](aegislm_phase_f_experiment_plan_20260728.md)
-- [Phase F 데이터셋 및 바이너리 실험 계획](../repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [파인튜닝 테스트 워크북](../repos/AegisLM-B200/docs/FINETUNING_TEST_WORKBOOK.md)
-- [Binary Role Target v2 결정](../repos/AegisLM-B200/docs/PHASE_F_BINARY_ROLE_TARGET_DECISION_20260731.md)
-- [ARVO Patch Gate 결정](../repos/AegisLM-B200/docs/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md)
+- [Phase F 데이터셋 및 바이너리 실험 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
+- [파인튜닝 테스트 워크북](../repos/AegisLM-B200/docs/operations/b200/FINETUNING_TEST_WORKBOOK.md)
+- [Binary Role Target v2 결정](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_BINARY_ROLE_TARGET_DECISION_20260731.md)
+- [ARVO Patch Gate 결정](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md)
 
 # Citations
 

@@ -59,8 +59,8 @@ metadata preflight SHA-256:
 
 # Related Concepts
 
-- [Phase F 구현 계획](../repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [BinKit 결정 원문](../repos/AegisLM-B200/docs/PHASE_F_BINKIT_METADATA_DECISION_20260731.md)
+- [Phase F 구현 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
+- [BinKit 결정 원문](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_BINKIT_METADATA_DECISION_20260731.md)
 - [Assemblage Metadata Gate](aegislm_assemblage_metadata_decision_20260731.md)
 
 # Citations

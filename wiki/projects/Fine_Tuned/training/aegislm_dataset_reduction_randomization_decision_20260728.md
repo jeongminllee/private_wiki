@@ -181,8 +181,8 @@ build 가능한 before/after 100 pair를 확보하고 compile/decompile/pair
 - [Qwen3-Coder-Next 80B B200 2-GPU 실행 기록](qwen3_coder_next_80b_2gpu_run_20260720.md)
 - [AegisLM Phase F 연구 계획](aegislm_phase_f_experiment_plan_20260728.md)
 - [Security Datasets](../data/security_datasets.md)
-- [AegisLM 수동 파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/FINETUNING_TEST_WORKBOOK.md)
-- [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](../repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
+- [AegisLM 수동 파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/operations/b200/FINETUNING_TEST_WORKBOOK.md)
+- [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
 - [LLM 생명주기 환경 설계](../../../infra/llm-lifecycle-environment-design.md)
 
 # Citations

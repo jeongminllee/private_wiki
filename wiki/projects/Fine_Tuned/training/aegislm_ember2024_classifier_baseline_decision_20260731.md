@@ -58,7 +58,7 @@ oracle threshold는 배포나 승인에 사용할 수 없다.
 
 - [EMBER2024 benchmark 공급 결정](aegislm_ember2024_benchmark_decision_20260731.md)
 - [Phase F 연구 계획](aegislm_phase_f_experiment_plan_20260728.md)
-- [프로젝트 정본 결정문](../repos/AegisLM-B200/docs/PHASE_F_EMBER2024_CLASSIFIER_BASELINE_DECISION_20260731.md)
+- [프로젝트 정본 결정문](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_EMBER2024_CLASSIFIER_BASELINE_DECISION_20260731.md)
 - [LLM 생명주기 환경 설계](../../../infra/llm-lifecycle-environment-design.md)
 
 # Citations

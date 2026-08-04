@@ -137,8 +137,8 @@ decompile·function link `1,996/2,000`, target-preservation
 
 # Related Concepts
 
-- [Phase F 실행 계획](../repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [수동 파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/FINETUNING_TEST_WORKBOOK.md)
+- [Phase F 실행 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
+- [수동 파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/operations/b200/FINETUNING_TEST_WORKBOOK.md)
 - [Q1R11 신규 Blind 500 PASS 결정](aegislm_q1r11_fresh_blind_pass_decision_20260730.md)
 - [데이터 축소와 통제된 무작위화 결정](aegislm_dataset_reduction_randomization_decision_20260728.md)
 

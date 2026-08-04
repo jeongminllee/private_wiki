@@ -1,5 +1,12 @@
 # Change Log
 
+## 2026-08-03
+
+- **Migration**: AegisLM-B200 문서 35개를 governance, design, evaluation, experiments, operations, templates, onboarding, review 구조로 이동하고 프로젝트 및 상위 wiki의 경로 참조를 갱신함.
+
+- **Decision**: AegisLM의 다중 모델 협업에서 사용자가 목적·불변 조건·gate와 파일 범위를 승인하고, Sol은 읽기 전용 독립 감사, Terra는 읽기 전용 계획과 별도 컨텍스트의 diff 검토, implementation agent는 승인 파일 구현만 담당하도록 권한을 분리했다.
+- **Documentation**: [AegisLM 다중 모델 작업 운영 가이드](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/governance/AGENT_WORKFLOW.md)를 추가하고 프로젝트 `AGENTS.md`, `README.md`, `docs/README.md`와 wiki index를 연결했다. 설치·다운로드·GPU·Git 작업은 각각 사용자 별도 승인 대상으로 고정했다.
+
 ## 2026-07-31
 
 - **EMBER2024 Classifier Gate**: train 26,000건을 weeks 0–43 fit·44–51 calibration으로 나누고 test weeks 52–63의 6,000건을 평가했다. 자체 temporal LightGBM은 precision/recall `0.9793/0.9293`이지만 FPR `0.0197`, 주별 최대 FPR `0.056`으로 실패했다. 공식 공개 모델도 같은 calibration 계약에서 FPR `0.1097`, 주별 최대 FPR `0.208`로 실패했다.
@@ -183,7 +190,7 @@
 - **Implementation**: AegisLM-B200를 `Phase E infrastructure PASS / model quality FAIL`로 종료하고 Phase F를 활성화했다. label·source·metadata를 모델 prompt에서 제외하고, source catalog/eligible manifest Parquet와 10,000 train·1,000 validation·500 blind challenge를 고정 seed로 만드는 `phase-f-source-v2` 파이프라인을 구현했다.
 - **Schema**: raw executable 대신 pseudo-C, 제한된 assembly, imports·sections·strings·symbols를 받는 `aegislm.binary-analysis-record.v1`과 `present / not_observed / uncertain` 출력 계약을 추가했다. dataset·label·split·artifact path/hash는 binary prompt에서 제외하며 raw byte/payload key를 거부한다.
 - **Evaluation**: source 절대 gate와 별개로 binary precision·recall·FPR·abstention·schema·evidence 및 compiler consistency를 계산하는 evaluator를 추가했다. Source와 binary adapter가 독립 gate를 통과하기 전에는 multitask, NuriLab, RAG/MCP로 진행하지 않는 중단 순서를 확정했다.
-- **Docs**: [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)을 SSOT로 추가하고 기존 데이터 축소 Decision Note, workbook, 데이터·평가 문서와 index를 연결했다.
+- **Docs**: [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)을 SSOT로 추가하고 기존 데이터 축소 Decision Note, workbook, 데이터·평가 문서와 index를 연결했다.
 - **Decision Note**: [AegisLM 데이터 축소와 통제된 무작위화 결정](wiki/projects/Fine_Tuned/training/aegislm_dataset_reduction_randomization_decision_20260728.md)을 추가했다. 33만 건·7일 학습과 빠른 loss 수렴이 실제 500건 보안 품질로 이어지지 않은 연구 흐름을 가설–관측–검증–원인–다음 가설 구조로 기록하고, 다음 train을 1–2만 건으로 축소하기로 했다.
 - **Data Policy**: DiverseVul label/target 제거, BigVul before/after pair, Cybersecurity QA 분리, 중복 제거를 다음 dataset revision의 필수 조건으로 정했다. 무작위화는 고정 seed와 code hash를 사용한 표본·입력 표현 다양화로 제한하고 label, risk, JSON schema는 무작위화하지 않도록 규칙을 명시했다.
 - **Experiment**: merged Qwen3-Coder-Next adapter를 vLLM `0.26.0` TP2로 서빙해 250개 취약·250개 정상 label-blind challenge를 완주했다. 누락·서버 오류·OOM은 없었지만 TP/FP/TN/FN `84/116/0/166`, precision `0.42`, recall `0.336`, FPR `0.464`, abstention `0.598`, parse `0.556`, schema `0.53`으로 모든 품질 gate를 통과하지 못했다. 222개 JSON parse 실패 중 대부분은 1,024-token 상한까지 이어진 반복 루프였고 정상 사례를 유효한 `low`로 판정한 경우는 0건이었다.

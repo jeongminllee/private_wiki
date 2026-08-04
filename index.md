@@ -18,7 +18,8 @@
 - [Algorithms](wiki/algorithms/index.md) - Data Structure & Algorithm study dashboard
 - [Projects](wiki/projects/index.md) - Side projects and active project notes
   - [Fine-Tuned Project](wiki/projects/Fine_Tuned/index.md) - B200 서버 기반 LLM 서빙, 보안 데이터셋, AegisLM 파인튜닝 실행 기록
-    - [AegisLM Phase F](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md) - F0–F9 데이터 감사, Qwen 80B 신규 학습, binary/NuriLab 실험 SSOT
+    - [AegisLM Phase F](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md) - F0–F9 데이터 감사, Qwen 80B 신규 학습, binary/NuriLab 실험 SSOT
+    - [AegisLM 다중 모델 작업 운영](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/governance/AGENT_WORKFLOW.md) - 사용자 중심 Sol·Terra·implementation agent 역할, 승인과 독립 검토 규칙
     - [AegisLM Phase F 연구 기록](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md) - F0–F9 진행 상태와 다음 실험을 추적하는 Project Note
     - [AegisLM Q1R10 Blind 평가 결정](wiki/projects/Fine_Tuned/training/aegislm_q1r10_blind_evaluation_decision_20260730.md) - Decision PASS, evidence FAIL과 새 blind·Q1R11 결정 기록
     - [AegisLM Q1R11 신규 Blind 500 PASS](wiki/projects/Fine_Tuned/training/aegislm_q1r11_fresh_blind_pass_decision_20260730.md) - source two-stage·F5-M1 PASS와 F6 binary 최초 판정 기록
@@ -30,7 +31,7 @@
     - [AegisLM BinKit 2.0 Metadata Gate](wiki/projects/Fine_Tuned/training/aegislm_binkit_metadata_decision_20260731.md) - compiler matrix 확인 뒤 고정 artifact·license·schema 부재로 binary·pickle 보류 결정
     - [AegisLM EMBER2024 ELF Static-Feature Benchmark Gate](wiki/projects/Fine_Tuned/training/aegislm_ember2024_benchmark_decision_20260731.md) - raw 12,000행을 6,000관측치로 중복 제거한 독립 malware benchmark 결정
     - [AegisLM EMBER2024 ELF Classifier 절대평가](wiki/projects/Fine_Tuned/training/aegislm_ember2024_classifier_baseline_decision_20260731.md) - 자체 temporal LightGBM·공식 모델의 시간 분리 절대 gate 실패와 NuriLab 연결 보류
-    - [AegisLM ARVO Patch Gate](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md) - 공개 개발자 패치 200건 수동 오류 11건과 학습 불승인
+    - [AegisLM ARVO Patch Gate](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_ARVO_PATCH_GATE_DECISION_20260731.md) - 공개 개발자 패치 200건 수동 오류 11건과 학습 불승인
 - [Papers](wiki/papers/index.md) - Academic papers summary
   - [Artificial Image Data for Visual Defect Detection SLR](wiki/papers/artificial-image-data-visual-defect-detection-slr.md) - 결함 검출용 합성·증강 이미지 연구의 방법, 성과와 한계를 분석한 2025년 체계적 문헌고찰
   - [AI 에이전트 & 하니스 링크 요약](wiki/papers/aifrenz-links-summary.md) - aifrenz 채널에서 수집된 AI 에이전트, 하니스 엔지니어링, 벤치마크 관련 링크 요약본
