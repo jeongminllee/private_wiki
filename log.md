@@ -1,6 +1,9 @@
 # Change Log
 
 ## 2026-08-04
+
+- **Decision**: AegisLM의 모델별 수동 작업에서 서브에이전트 생성, 자동 handoff와 다른 모델로의 재위임을 기본 금지했다. 사용자가 Terra·Luna·Sol에 배정한 작업은 해당 모델이 직접 수행하며, 다른 모델이 필요하면 현재 작업을 `BLOCK`하고 사용자가 별도 작업을 직접 열어야 한다.
+- **Update**: 프로젝트 `AGENTS.md`와 [AegisLM 다중 모델 작업 운영 가이드](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/governance/AGENT_WORKFLOW.md)의 역할 계약, Work Order, 구현 증거와 복사 가능한 지시문에 `delegation: forbidden` 및 `delegation_used: false` 규칙을 반영했다.
 - **Refactor**: ChatGPT 대화 내역을 17개 세부 기술 카테고리로 재구성하여 663개 지식 노트 배치 완료.
 
 - **Ingest**: `raw/notes/Chatgpt_2026-08-02-23-14-23` 대화 내역 중 유의미한 663개 대화를 분석하여 OKF 형식 지식 노트(`wiki/*/chatgpt-archive/`)로 추출 및 인덱스 갱신을 완료함.
