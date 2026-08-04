@@ -39,9 +39,24 @@
 - [Routine](wiki/routine/) - 데일리 루틴 (AI Paper, Economy, Eng, Job_LLM_ML) 및 체크리스트
 
 
+
+### ChatGPT Archive (세분화 지식 아카이브)
+- [Algorithms (알고리즘 & 자료구조)](wiki/algorithms/chatgpt/) - 356개 지식 노트
+- [CS - Software Architecture](wiki/cs/architecture/chatgpt/) - 17개 지식 노트
+- [CS - 정보처리기사](wiki/cs/engineer_info_processing/chatgpt/) - 5개 지식 노트
+- [CS - Java 프로그래밍](wiki/cs/java/chatgpt/) - 23개 지식 노트
+- [CS - Python 프로그래밍](wiki/cs/python/chatgpt/) - 75개 지식 노트
+- [Errors - CUDA & GPU](wiki/errors/cuda_gpu/chatgpt/) - 4개 지식 노트
+- [Errors - General Troubleshooting](wiki/errors/general/chatgpt/) - 11개 지식 노트
+- [Errors - Linux & System](wiki/errors/linux_sys/chatgpt/) - 2개 지식 노트
+- [Errors - Python & Conda](wiki/errors/python_conda/chatgpt/) - 50개 지식 노트
+- [Infra - Cloud & DevOps](wiki/infra/cloud_devops/chatgpt/) - 3개 지식 노트
+- [Infra - Linux & Remote](wiki/infra/linux_ssh/chatgpt/) - 3개 지식 노트
+- [ML - GPU & CUDA 가속](wiki/ml/gpu_cuda/chatgpt/) - 11개 지식 노트
+- [ML - LLM Serving & Inference](wiki/ml/llm_serving/chatgpt/) - 5개 지식 노트
+- [ML - Models & Theory](wiki/ml/models_theory/chatgpt/) - 20개 지식 노트
+- [Projects - Career & Job](wiki/projects/career_job/chatgpt/) - 15개 지식 노트
+- [Reading - Personal & Misc](wiki/reading/personal_misc/chatgpt/) - 61개 지식 노트
+- [Reading - Tech Articles & Guides](wiki/reading/tech_articles/chatgpt/) - 2개 지식 노트
+
 ### References
-- [LLM Wiki Guide](references/llm-wiki.md) - Guide for running LLM Wiki
-- [OKF Specification](references/okf-spec.md) - Open Knowledge Format Spec
-- [Instructor Prompt](references/instructor-prompt.md) - 정보처리기사 실기 강사 페르소나 및 템플릿 명세
-- [ML Engineer Prompt](references/ml-engineer-prompt.md) - 머신러닝 엔지니어 에이전트 명세 (Nuri-Engine)
-- [ML Researcher Prompt](references/ml-researcher-prompt.md) - 머신러닝 리서처 에이전트 명세 (Nuri-Research)

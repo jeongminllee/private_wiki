@@ -1,5 +1,15 @@
 # Change Log
 
+## 2026-08-04
+- **Refactor**: ChatGPT 대화 내역을 17개 세부 기술 카테고리로 재구성하여 663개 지식 노트 배치 완료.
+
+- **Ingest**: `raw/notes/Chatgpt_2026-08-02-23-14-23` 대화 내역 중 유의미한 663개 대화를 분석하여 OKF 형식 지식 노트(`wiki/*/chatgpt-archive/`)로 추출 및 인덱스 갱신을 완료함.
+
+## 2026-08-04
+- **Refactor**: ChatGPT 대화 내역을 17개 세부 기술 카테고리로 재구성하여 663개 지식 노트 배치 완료.
+
+- **Migration Update**: `DATA_STRATEGY.md` and `DATASET_CANDIDATES.md` paths were corrected from `docs/design/data/` to `docs/design/datasets/`.
+
 ## 2026-08-03
 
 - **Migration**: AegisLM-B200 문서 35개를 governance, design, evaluation, experiments, operations, templates, onboarding, review 구조로 이동하고 프로젝트 및 상위 wiki의 경로 참조를 갱신함.
