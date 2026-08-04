@@ -105,10 +105,10 @@ train 데이터를 감사한 결과 DiverseVul 211,333건 전부의 model-visibl
 # Monitoring Paths
 
 ```text
-/NHNHOME/WORKSPACE/26moel002_ex07/LLM/TrainingArtifacts/runs/qwen3-coder-next/lora/full/training-stable.log
-/NHNHOME/WORKSPACE/26moel002_ex07/LLM/TrainingArtifacts/runs/qwen3-coder-next/lora/full/memory/*.jsonl
-/NHNHOME/WORKSPACE/26moel002_ex07/LLM/TrainingArtifacts/runs/qwen3-coder-next/lora/full/memory/*.csv
-/NHNHOME/WORKSPACE/26moel002_ex07/LLM/TrainingArtifacts/wandb/
+${TRAINING_ARTIFACTS_ROOT}/runs/qwen3-coder-next/lora/full/training-stable.log
+${TRAINING_ARTIFACTS_ROOT}/runs/qwen3-coder-next/lora/full/memory/*.jsonl
+${TRAINING_ARTIFACTS_ROOT}/runs/qwen3-coder-next/lora/full/memory/*.csv
+${TRAINING_ARTIFACTS_ROOT}/wandb/
 ```
 
 # Related Concepts

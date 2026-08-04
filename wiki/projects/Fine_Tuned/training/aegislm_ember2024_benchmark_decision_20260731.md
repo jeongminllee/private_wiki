@@ -63,8 +63,8 @@ static feature와 primary malware label은 같았다.
 # Related Concepts
 
 - [EMBER2024 Classifier 절대평가](aegislm_ember2024_classifier_baseline_decision_20260731.md)
-- [Phase F 구현 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [EMBER2024 결정 원문](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_EMBER2024_BENCHMARK_DECISION_20260731.md)
+- [Phase F 구현 계획](aegislm_phase_f_experiment_plan_20260728.md)
+- [EMBER2024 결정 원문](aegislm_ember2024_benchmark_decision_20260731.md)
 - [BinKit Metadata Gate](aegislm_binkit_metadata_decision_20260731.md)
 - [Assemblage Metadata Gate](aegislm_assemblage_metadata_decision_20260731.md)
 

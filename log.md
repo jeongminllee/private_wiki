@@ -3,7 +3,12 @@
 ## 2026-08-04
 
 - **Decision**: AegisLM의 모델별 수동 작업에서 서브에이전트 생성, 자동 handoff와 다른 모델로의 재위임을 기본 금지했다. 사용자가 Terra·Luna·Sol에 배정한 작업은 해당 모델이 직접 수행하며, 다른 모델이 필요하면 현재 작업을 `BLOCK`하고 사용자가 별도 작업을 직접 열어야 한다.
-- **Update**: 프로젝트 `AGENTS.md`와 [AegisLM 다중 모델 작업 운영 가이드](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/governance/AGENT_WORKFLOW.md)의 역할 계약, Work Order, 구현 증거와 복사 가능한 지시문에 `delegation: forbidden` 및 `delegation_used: false` 규칙을 반영했다.
+- **Update**: AegisLM 프로젝트 내부의 다중 모델 작업 운영 가이드에 `delegation: forbidden` 및 `delegation_used: false` 규칙을 반영했다. 이 내부 정책 문서는 Wiki 런타임 링크로 노출하지 않는다.
+- **Update**: AegisLM B200 운영 문서의 서버 절대경로를 환경변수와 `<REDACTED_SERVER_PATH>` 표기로 마스킹했다.
+- **Migration**: AegisLM-B200 문서 링크 테스트를 project-only로 전환하고 로컬 commit `fbc729e`를 생성했다. AegisLM-B200 commit은 push하지 않는다.
+- **Migration**: Wiki의 AegisLM-B200 gitlink 문서 참조를 Wiki 정본 문서로 교체하고, 내부 프로젝트 정책 문서의 Wiki index 노출을 제거했다.
+- **Privacy**: B200·학습·오류 기록의 서버·계정·스토리지 절대경로를 환경변수 표기로 마스킹했다. 세 gitlink는 로컬 clone 디렉터리를 보존한 채 Wiki index에서 제거했다.
+- **Quarantine**: `wiki/projects/Fine_Tuned/training.zip`은 열거나 이동하지 않고 quarantine 상태로 유지했다.
 - **Refactor**: ChatGPT 대화 내역을 17개 세부 기술 카테고리로 재구성하여 663개 지식 노트 배치 완료.
 
 - **Ingest**: `raw/notes/Chatgpt_2026-08-02-23-14-23` 대화 내역 중 유의미한 663개 대화를 분석하여 OKF 형식 지식 노트(`wiki/*/chatgpt-archive/`)로 추출 및 인덱스 갱신을 완료함.
@@ -15,10 +20,10 @@
 
 ## 2026-08-03
 
-- **Migration**: AegisLM-B200 문서 35개를 governance, design, evaluation, experiments, operations, templates, onboarding, review 구조로 이동하고 프로젝트 및 상위 wiki의 경로 참조를 갱신함.
+- **Migration**: AegisLM-B200 문서 35개를 governance, design, evaluation, experiments, operations, templates, onboarding, review 구조로 이동하고 Wiki에는 연구 정본 문서만 cross-link함.
 
 - **Decision**: AegisLM의 다중 모델 협업에서 사용자가 목적·불변 조건·gate와 파일 범위를 승인하고, Sol은 읽기 전용 독립 감사, Terra는 읽기 전용 계획과 별도 컨텍스트의 diff 검토, implementation agent는 승인 파일 구현만 담당하도록 권한을 분리했다.
-- **Documentation**: [AegisLM 다중 모델 작업 운영 가이드](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/governance/AGENT_WORKFLOW.md)를 추가하고 프로젝트 `AGENTS.md`, `README.md`, `docs/README.md`와 wiki index를 연결했다. 설치·다운로드·GPU·Git 작업은 각각 사용자 별도 승인 대상으로 고정했다.
+- **Documentation**: AegisLM 내부 `AGENTS.md`, `README.md`, `docs/README.md`에 다중 모델 수동 orchestration 규칙을 연결했다. 설치·다운로드·GPU·Git 작업은 각각 사용자 별도 승인 대상으로 고정했다.
 
 ## 2026-07-31
 
@@ -192,9 +197,9 @@
 - **Data Processing**: immutable raw snapshot 519,128행을 직접 감사하는 Phase F normalizer를 구현했다. DiverseVul 330,492행은 source core 후보로, BigVul 188,636행은 catalog quarantine으로 처리하고 Cybersecurity QA는 provenance-only inventory로 유지했다.
 - **Sampling**: project+commit group을 고정 hash로 80/10/10 split한 뒤 label 균형, primary CWE·repository tempered sampling, repository별 class quota 10% cap을 적용했다. train 10,000, validation 1,000, blind challenge/gold 500을 생성했으며 149 CWE·705 repository·4,147 group을 포함한다.
 - **Quality Gate**: exact/near duplicate reject 71,427/11,118건, label 충돌 duplicate quarantine 2,358/4,491건, cross-split group·content 누출 0, model-visible label/provenance 누출 0을 확인했다. secret-like assignment 134개를 redaction했고 LLaMA-Factory export 10,000/10,000 및 1,000/1,000을 통과했다.
-- **Reproducibility**: 동일 raw와 seed `20260728`에서 profile을 두 번 생성해 train, validation, challenge, gold, manifest, summary가 일치하고 현재 JSONL SHA-256과 동일함을 확인했다. 산출물은 `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/Data/processed/phase-f-source-v2`와 `SHA256SUMS`에 동결했다.
+- **Reproducibility**: 동일 raw와 seed `20260728`에서 profile을 두 번 생성해 train, validation, challenge, gold, manifest, summary가 일치하고 현재 JSONL SHA-256과 동일함을 확인했다. 산출물은 `${PHASE_F_SOURCE_OUTPUT_DIR}`와 `SHA256SUMS`에 동결했다.
 - **Data Acquisition**: B200 공유 저장소의 `data/raw_data/{dataset}`에 DiverseVul, BigVul, Cybersecurity QA의 고정 Hugging Face revision을 변환 없이 확보했다. 원본 디렉터리와 다운로드 로그·SHA-256 manifest를 분리했으며 세 snapshot 모두 checksum 재검증을 통과했다.
-- **Path Audit**: `data`가 `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/Data`를 가리키는 것을 확인하고 잘못된 `/approved/...` 예시를 실제 repository-relative 경로로 수정했다. 기존 `DATASET_OUTPUT_DIR`은 Phase E 호환용으로 유지하고 `RAW_DATA_ROOT`, `PHASE_F_SOURCE_OUTPUT_DIR`, `PHASE_F_BINARY_OUTPUT_DIR`을 별도 변수로 정의했다.
+- **Path Audit**: `data`가 `${DATA_ROOT}`를 가리키는 것을 확인하고 잘못된 `/approved/...` 예시를 실제 repository-relative 경로로 수정했다. 기존 `DATASET_OUTPUT_DIR`은 Phase E 호환용으로 유지하고 `RAW_DATA_ROOT`, `PHASE_F_SOURCE_OUTPUT_DIR`, `PHASE_F_BINARY_OUTPUT_DIR`을 별도 변수로 정의했다.
 - **Update**: [AegisLM Phase F 실행 계획](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md)에 F0-A raw snapshot 완료 상태와 F0-B raw 형식 감사·normalizer 설계를 다음 단계로 기록했다. Cybersecurity QA는 provenance 보존용이며 Phase F source vulnerability SFT quota에서 제외한다.
 
 ## 2026-07-28
@@ -203,7 +208,7 @@
 - **Implementation**: AegisLM-B200를 `Phase E infrastructure PASS / model quality FAIL`로 종료하고 Phase F를 활성화했다. label·source·metadata를 모델 prompt에서 제외하고, source catalog/eligible manifest Parquet와 10,000 train·1,000 validation·500 blind challenge를 고정 seed로 만드는 `phase-f-source-v2` 파이프라인을 구현했다.
 - **Schema**: raw executable 대신 pseudo-C, 제한된 assembly, imports·sections·strings·symbols를 받는 `aegislm.binary-analysis-record.v1`과 `present / not_observed / uncertain` 출력 계약을 추가했다. dataset·label·split·artifact path/hash는 binary prompt에서 제외하며 raw byte/payload key를 거부한다.
 - **Evaluation**: source 절대 gate와 별개로 binary precision·recall·FPR·abstention·schema·evidence 및 compiler consistency를 계산하는 evaluator를 추가했다. Source와 binary adapter가 독립 gate를 통과하기 전에는 multitask, NuriLab, RAG/MCP로 진행하지 않는 중단 순서를 확정했다.
-- **Docs**: [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](wiki/projects/Fine_Tuned/repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)을 SSOT로 추가하고 기존 데이터 축소 Decision Note, workbook, 데이터·평가 문서와 index를 연결했다.
+- **Docs**: [Phase F 데이터 재설계 및 바이너리 분석 실험 계획](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md)을 연구 정본으로 연결하고 기존 데이터 축소 Decision Note, 실행 기록, 데이터·평가 문서와 index를 연결했다.
 - **Decision Note**: [AegisLM 데이터 축소와 통제된 무작위화 결정](wiki/projects/Fine_Tuned/training/aegislm_dataset_reduction_randomization_decision_20260728.md)을 추가했다. 33만 건·7일 학습과 빠른 loss 수렴이 실제 500건 보안 품질로 이어지지 않은 연구 흐름을 가설–관측–검증–원인–다음 가설 구조로 기록하고, 다음 train을 1–2만 건으로 축소하기로 했다.
 - **Data Policy**: DiverseVul label/target 제거, BigVul before/after pair, Cybersecurity QA 분리, 중복 제거를 다음 dataset revision의 필수 조건으로 정했다. 무작위화는 고정 seed와 code hash를 사용한 표본·입력 표현 다양화로 제한하고 label, risk, JSON schema는 무작위화하지 않도록 규칙을 명시했다.
 - **Experiment**: merged Qwen3-Coder-Next adapter를 vLLM `0.26.0` TP2로 서빙해 250개 취약·250개 정상 label-blind challenge를 완주했다. 누락·서버 오류·OOM은 없었지만 TP/FP/TN/FN `84/116/0/166`, precision `0.42`, recall `0.336`, FPR `0.464`, abstention `0.598`, parse `0.556`, schema `0.53`으로 모든 품질 gate를 통과하지 못했다. 222개 JSON parse 실패 중 대부분은 1,024-token 상한까지 이어진 반복 루프였고 정상 사례를 유효한 `low`로 판정한 경우는 0건이었다.
@@ -261,7 +266,7 @@
 ## 2026-07-20
 
 - **Experiment**: B200 2장과 400GiB cgroup에서 시작한 Qwen3-Coder-Next 80B ZeRO-3 LoRA 실제 학습의 [실행 추적 문서](wiki/projects/Fine_Tuned/training/qwen3_coder_next_80b_2gpu_run_20260720.md)를 추가했다. 로딩 peak 400GiB, 학습 중 GPU당 약 90.7GiB, step당 약 32~33초, 초반 loss 변화와 step 500 evaluation/checkpoint 관측 계획을 분리해 기록했다.
-- **Project**: 최신 AegisLM `main`과 선별한 B200 코드를 통합한 private 저장소 `Malicious-code-detection-project/AegisLM-B200`을 만들고 draft PR #1을 생성했다. B200 2장, 400GiB cgroup, LlamaFactory v0.9.5, DeepSpeed ZeRO-3 LoRA 환경을 `/home/daegu/workspace/AegisLM-B200`에 배포했다.
+- **Project**: 최신 AegisLM `main`과 선별한 B200 코드를 통합한 private 저장소 `Malicious-code-detection-project/AegisLM-B200`을 만들고 draft PR #1을 생성했다. B200 2장, 400GiB cgroup, LlamaFactory v0.9.5, DeepSpeed ZeRO-3 LoRA 환경을 `${AEGISLM_B200_ROOT}`에 배포했다.
 - **Data/Model**: `hf-full-v1` 416,009건을 train 332,807 / validation 41,600 / test 41,602로 생성하고 source revision과 SHA256 manifest를 남겼다. Qwen3-Coder-Next revision `a7fbcb5…`의 148.41GiB safetensors 40개를 받아 누락이 없음을 확인했다.
 - **Checkpoint**: local 최신 1개와 persistent 최신 1개의 atomic mirror, step 불일치 시 자동 중단하는 resume 정책을 구현하고 dummy checkpoint로 검증했다.
 - **Performance**: dataset record의 중복 schema 검증과 split 후 재검증을 제거해 full 전처리 시간을 1시간 이상에서 약 7분으로 단축했다.
@@ -305,7 +310,7 @@
 
 ## 2026-07-08
 
-- **Error Note**: Qwen3-Coder-Next 80B full training이 `train/global_step=4500`, `epoch~=0.4327`까지 진행된 뒤 checkpoint 저장 단계에서 `FileNotFoundError: model/adapters`로 중단된 사건을 [LLaMA-Factory Checkpoint Save Failed Because Model Symlink Target Disappeared](wiki/errors/llamafactory-checkpoint-save-broken-model-symlink.md)에 기록했다. 원인은 `model -> /NHNHOME/WORKSPACE/26moel002_A/DAEGU/Model/MalwareAnalysis/` symlink target이 현재 존재하지 않는 상태로 확인되어 checkpoint output root를 만들 수 없었던 것이다.
+- **Error Note**: Qwen3-Coder-Next 80B full training이 `train/global_step=4500`, `epoch~=0.4327`까지 진행된 뒤 checkpoint 저장 단계에서 `FileNotFoundError: model/adapters`로 중단된 사건을 [LLaMA-Factory Checkpoint Save Failed Because Model Symlink Target Disappeared](wiki/errors/llamafactory-checkpoint-save-broken-model-symlink.md)에 기록했다. 원인은 `model -> ${TRAINING_STORAGE_ROOT}/Model/MalwareAnalysis/` symlink target이 현재 존재하지 않는 상태로 확인되어 checkpoint output root를 만들 수 없었던 것이다.
 - **Study Note**: Qwen3-Coder-Next 80B full training 중 W&B dashboard에 표시되는 `loss`, `eval_loss`, `learning_rate`, `epoch`, `grad_norm`, runtime, system metric을 해석하기 위한 [W&B Training Metrics Guide for MalwareAnalysisLLM](wiki/projects/Fine_Tuned/training/wandb_training_metrics_guide.md)를 추가했다. `logging_steps: 5`, `eval_steps: 250`, global batch size 32 기준으로 train/eval metric을 읽는 방법과 cgroup telemetry를 함께 봐야 하는 경우를 정리했다.
 - **Ingest**: 2026-07-08일 자 신규 학습 일지인 [my_study_log_260708.md](wiki/cs/engineer_info_processing/my_study_log_260708.md)를 생성하고 43번 자바 비트 연산 퀴즈 풀이를 수록했으며, 대시보드 index.md 및 README.md 대문 링크를 최신화했다.
 
@@ -354,6 +359,6 @@
 
 - **Fix**: 사용자가 원하는 하드코딩 credential류 보안 패턴을 데이터셋에서 버리지 않도록 AegisLM 변환 정책을 변경했다. `password=`, `api_key=`, `client_secret=` assignment는 실제 값을 `[REDACTED_SECRET]`으로 마스킹하고 학습에는 포함하되 secret 값은 보존하지 않도록 수정했다.
 - **Update**: AegisLM 데이터셋 빌더를 원래 5갈래 흐름(Cybersecurity QA, DiverseVul, BigVul, CTF write-up, ZIP/source corpus)으로 확장하고, CTF/BigVul target redaction, ZIP path traversal 방어, `.env.example`, `scripts/check_environment.py` 기반 B200 환경 preflight 계획을 문서화했다.
-- **Update**: B200 서버의 `/home/wyhwang/workspace/MalwareAnalysisLLM`에 AegisLM 스타일 파인튜닝 파이프라인을 구현했다. Hugging Face 직접 추출, AegisLM canonical JSONL 전처리, train/validation/test split, LLaMA-Factory dataset export/registration, Qwen3-Coder-480B 및 FP8 LoRA SFT 설정, W&B online logging run script를 추가했다.
+- **Update**: B200 서버의 `${MALWARE_ANALYSIS_LLM_ROOT}`에 AegisLM 스타일 파인튜닝 파이프라인을 구현했다. Hugging Face 직접 추출, AegisLM canonical JSONL 전처리, train/validation/test split, LLaMA-Factory dataset export/registration, Qwen3-Coder-480B 및 FP8 LoRA SFT 설정, W&B online logging run script를 추가했다.
 - **Update**: [Security Datasets](wiki/projects/Fine_Tuned/data/security_datasets.md)를 현재 AegisLM 구조에 맞춰 정리하고, 데이터셋 추출, canonical preprocessing, train/validation/test split, LLaMA-Factory export 절차를 문서화했다.
 - **Update**: [LLaMA-Factory + W&B Fine-Tuning Integration](wiki/projects/Fine_Tuned/training/llamafactory_wandb_finetuning.md)을 작성하고, LLaMA-Factory exporter, B200 DeepSpeed ZeRO-3 설정, W&B logging YAML, 실행 스크립트, Project NuriLab 연동 문서를 반영했다.

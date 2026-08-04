@@ -192,7 +192,7 @@ Serving Pod ← HTTP ← Evaluation Job
 - [네트워크와 배포: Docker에서 Kubernetes까지](../reading/notes/131-networking-deployment-docker-kubernetes.md)
 - [vLLM과 Triton Inference Server로 LLM 서빙하기](../reading/notes/062-vllm-triton-serving.md)
 - [Qwen3-Coder-Next 80B B200 2-GPU 실행 기록](../projects/Fine_Tuned/training/qwen3_coder_next_80b_2gpu_run_20260720.md)
-- [AegisLM 수동 파인튜닝 검증 워크북](../projects/Fine_Tuned/repos/AegisLM-B200/docs/operations/b200/FINETUNING_TEST_WORKBOOK.md)
+- [AegisLM B200 운영·hand-off 기록](../projects/Fine_Tuned/b200/aegislm_b200_2gpu_rebuild.md)
 
 # Citations
 

@@ -73,8 +73,8 @@ license gate에도 착수하지 않는다.
 
 # Related Concepts
 
-- [Phase F 구현 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [Patch-label 공급 결정 원문](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_PATCH_LABEL_SUPPLY_DECISION_20260731.md)
+- [Phase F 구현 계획](aegislm_phase_f_experiment_plan_20260728.md)
+- [Patch-label 공급 결정 원문](aegislm_cvefixes_supply_gate_decision_20260731.md)
 - [Binary Model-Ready Target Gate](aegislm_binary_model_ready_target_gate_decision_20260731.md)
 
 # Citations

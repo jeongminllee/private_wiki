@@ -95,9 +95,9 @@ PASS했으며 후속 결정은
 
 # Related Concepts
 
-- [AegisLM Phase F 실행 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/operations/b200/FINETUNING_TEST_WORKBOOK.md)
-- [절대평가 계획](../repos/AegisLM-B200/docs/evaluation/EVALUATION_PLAN.md)
+- [AegisLM Phase F 실행 계획](aegislm_phase_f_experiment_plan_20260728.md)
+- [파인튜닝 실행 기록](qwen3_coder_next_80b_2gpu_run_20260720.md)
+- [절대평가 계획](aegislm_phase_f_experiment_plan_20260728.md)
 - [데이터 축소와 통제된 무작위화 결정](aegislm_dataset_reduction_randomization_decision_20260728.md)
 - [LLM 생명주기 환경 설계](../../../infra/llm-lifecycle-environment-design.md)
 

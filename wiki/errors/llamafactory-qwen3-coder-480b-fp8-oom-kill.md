@@ -9,7 +9,7 @@ status: active
 
 # Situation
 
-`/home/wyhwang/workspace/MalwareAnalysisLLM`의 `experiment/b200-qwen3-coder-480b` 브랜치에서 LLaMA-Factory와 DeepSpeed ZeRO-3를 사용해 `Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8` LoRA smoke SFT를 실행했다.
+`${MALWARE_ANALYSIS_LLM_ROOT}`의 `experiment/b200-qwen3-coder-480b` 브랜치에서 LLaMA-Factory와 DeepSpeed ZeRO-3를 사용해 `Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8` LoRA smoke SFT를 실행했다.
 
 데이터셋 export, tokenizer/preprocessing 단계는 통과했지만, 모델 checkpoint weight loading 약 39-40% 지점에서 반복적으로 종료되었다.
 
@@ -100,6 +100,6 @@ memory watcher 관측:
 
 # Citations
 
-- Local server log: `/home/wyhwang/workspace/MalwareAnalysisLLM/model/runs/qwen3-coder-480b-fp8/lora/smoke/train_fp8_ds_20260702_050414.log`
+- Local server log: `${MALWARE_ANALYSIS_LLM_ROOT}/model/runs/qwen3-coder-480b-fp8/lora/smoke/train_fp8_ds_20260702_050414.log`
 - Raw sanitized record: [B200 Qwen3-Coder 480B FP8 SIGKILL at 2026-07-02 15:44 KST](../../raw/error-logs/b200-qwen3-480b-fp8-sigkill-20260702-1544.md)
 - Local cgroup counters checked on 2026-07-02.

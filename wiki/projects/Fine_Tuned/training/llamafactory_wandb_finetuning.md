@@ -16,7 +16,7 @@ Project NuriLab은 정적 분석과 보고서 생성을 담당하고, AegisLM은
 서버 기준 작업 위치:
 
 ```text
-/home/wyhwang/workspace/MalwareAnalysisLLM
+${MALWARE_ANALYSIS_LLM_ROOT}
 ```
 
 주요 구성:
@@ -45,7 +45,7 @@ export HF_TOKEN="<optional>"
 환경 점검:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 uv run python scripts/check_environment.py
 ```
 

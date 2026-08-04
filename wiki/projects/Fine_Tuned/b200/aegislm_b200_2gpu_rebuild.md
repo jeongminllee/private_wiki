@@ -15,7 +15,7 @@ status: ready
 
 - Private 저장소: [Malicious-code-detection-project/AegisLM-B200](https://github.com/Malicious-code-detection-project/AegisLM-B200)
 - Draft PR: [#1 Rebuild two-GPU B200 training profile](https://github.com/Malicious-code-detection-project/AegisLM-B200/pull/1)
-- 서버 코드: `/home/daegu/workspace/AegisLM-B200`
+- 서버 코드: `${AEGISLM_B200_ROOT}`
 - 서버 커밋: `c90de3bd19d74417be4d7d67e639392c223a12e5`
 - stable profile: ready
 - fast profile: `nvcc` 부재로 blocked
@@ -25,10 +25,10 @@ status: ready
 
 | 구분 | 경로 |
 | --- | --- |
-| 코드·venv | `/home/daegu/workspace/AegisLM-B200` |
-| 모델 | `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/Model` |
-| 데이터 | `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/Data` |
-| 로그·checkpoint | `/NHNHOME/WORKSPACE/26moel002_ex07/LLM/TrainingArtifacts` |
+| 코드·venv | `${AEGISLM_B200_ROOT}` |
+| 모델 | `${MODEL_ROOT}` |
+| 데이터 | `${DATA_ROOT}` |
+| 로그·checkpoint | `${TRAINING_ARTIFACTS_ROOT}` |
 
 프로젝트의 `model`과 `data`는 persistent 경로를 가리키는 symlink다. 관련 개념은 [Symlink](../../../infra/symlink.md)를 참고한다.
 
@@ -90,7 +90,7 @@ dummy `checkpoint-500`으로 mirror와 `auto` resume 선택을 검증했다. 이
 실행 전:
 
 ```bash
-cd /home/daegu/workspace/AegisLM-B200
+cd ${AEGISLM_B200_ROOT}
 set -a
 . ./.env
 set +a

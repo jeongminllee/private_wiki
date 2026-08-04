@@ -212,9 +212,9 @@ F7 공급 전체가 실패했다는 뜻은 아니다. 과거 B0를 포함한 누
 
 # Related Concepts
 
-- [Phase F 실행 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [수동 파인튜닝 검증 워크북](../repos/AegisLM-B200/docs/operations/b200/FINETUNING_TEST_WORKBOOK.md)
-- [절대평가 계획](../repos/AegisLM-B200/docs/evaluation/EVALUATION_PLAN.md)
+- [Phase F 실행 계획](aegislm_phase_f_experiment_plan_20260728.md)
+- [파인튜닝 실행 기록](qwen3_coder_next_80b_2gpu_run_20260720.md)
+- [절대평가 계획](aegislm_phase_f_experiment_plan_20260728.md)
 - [Q1R10 Blind 평가와 Evidence 보정 결정](aegislm_q1r10_blind_evaluation_decision_20260730.md)
 - [데이터 축소와 통제된 무작위화 결정](aegislm_dataset_reduction_randomization_decision_20260728.md)
 

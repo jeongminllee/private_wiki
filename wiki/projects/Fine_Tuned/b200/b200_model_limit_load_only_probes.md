@@ -32,7 +32,7 @@ B200 서버의 현재 container RAM 약 800GiB 조건에서 어떤 모델까지 
 
 # Implemented Files
 
-원격 프로젝트 `/home/wyhwang/workspace/MalwareAnalysisLLM`의 B200 실험 브랜치에 다음 파일을 추가했다.
+원격 프로젝트 `${MALWARE_ANALYSIS_LLM_ROOT}`의 B200 실험 브랜치에 다음 파일을 추가했다.
 
 - `experiments/model_limits/candidates.json`
 - `aegislm/experiments/model_limits.py`
@@ -45,7 +45,7 @@ B200 서버의 현재 container RAM 약 800GiB 조건에서 어떤 모델까지 
 # Probe Phases
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 
 .venv/bin/python scripts/run_model_limit_probe.py --phase summary
 .venv/bin/python scripts/run_model_limit_probe.py --phase dry-run-files --all

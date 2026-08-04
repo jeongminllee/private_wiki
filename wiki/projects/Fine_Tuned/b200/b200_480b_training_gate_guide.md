@@ -9,7 +9,7 @@ status: active
 
 # Summary
 
-이 문서는 `/home/wyhwang/workspace/MalwareAnalysisLLM`에서 `Qwen3-Coder-480B-A35B-Instruct-FP8` 실제 학습으로 넘어가기 전 확인해야 하는 0~4단계 게이트를 정리한다.
+이 문서는 `${MALWARE_ANALYSIS_LLM_ROOT}`에서 `Qwen3-Coder-480B-A35B-Instruct-FP8` 실제 학습으로 넘어가기 전 확인해야 하는 0~4단계 게이트를 정리한다.
 
 핵심 원칙은 다음과 같다.
 
@@ -24,7 +24,7 @@ status: active
 현재 기준 환경:
 
 ```text
-project: /home/wyhwang/workspace/MalwareAnalysisLLM
+project: ${MALWARE_ANALYSIS_LLM_ROOT}
 branch: experiment/b200-qwen3-coder-480b
 target model: Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8
 local model dir: model/base/qwen3-coder-480b-a35b-instruct-fp8
@@ -44,7 +44,7 @@ telemetry: scripts/check_memory_budget.py observe-only watcher
 모든 단계 시작 전에 같은 shell에서 환경변수를 주입한다.
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 set -a
 . ./.env
 set +a

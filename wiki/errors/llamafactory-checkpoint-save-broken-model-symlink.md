@@ -9,7 +9,7 @@ status: active
 
 # Situation
 
-`/home/wyhwang/workspace/MalwareAnalysisLLM`에서 `Qwen/Qwen3-Coder-Next` 80B LoRA full training을 실행했다.
+`${MALWARE_ANALYSIS_LLM_ROOT}`에서 `Qwen/Qwen3-Coder-Next` 80B LoRA full training을 실행했다.
 
 학습은 model loading과 실제 training loop를 통과했고, W&B에는 `train/global_step = 4500`, `train/epoch ~= 0.4327`까지 기록되었다. `eval_steps: 250` 기준 evaluation도 실행되었고, `eval_loss`가 기록된 뒤 checkpoint 저장 단계에서 중단되었다.
 
@@ -43,16 +43,16 @@ os.makedirs(output_dir, exist_ok=True)
 - 프로젝트의 `model` 경로는 실제 디렉터리가 아니라 symlink였다.
 
 ```text
-model -> /NHNHOME/WORKSPACE/26moel002_A/DAEGU/Model/MalwareAnalysis/
+model -> ${TRAINING_STORAGE_ROOT}/Model/MalwareAnalysis/
 ```
 
-- 확인 시점에는 symlink target의 중간 경로 `/NHNHOME/WORKSPACE/26moel002_A/DAEGU` 자체가 존재하지 않았다.
-- `/NHNHOME/WORKSPACE/26moel002_A` 아래에는 `DAEJEON`, `GANGSEO`만 존재했다.
+- 확인 시점에는 symlink target의 중간 경로 `${TRAINING_STORAGE_ROOT}` 자체가 존재하지 않았다.
+- `${TRAINING_STORAGE_PARENT}` 아래에는 `DAEJEON`, `GANGSEO`만 존재했다.
 - 프로젝트와 `/NHNHOME`에서 `checkpoint-*`, `adapter_model.safetensors`, `qwen3-coder-next`를 검색했지만 현재 보이는 checkpoint/adapters는 없었다.
 - W&B local directory에서도 `adapter_model.safetensors`, `adapter_config.json`, `trainer_state.json` 같은 model artifact는 발견되지 않았다.
 - `output.log`에는 `checkpoint-250`, `checkpoint-500`, `checkpoint-3750`, `checkpoint-4000`, `checkpoint-4250` 저장 루틴 진입 로그가 있다.
 - 그러나 현재 접근 가능한 filesystem에는 해당 checkpoint directory/file이 없다.
-- `/NHNHOME/WORKSPACE/26moel002_A/.gc` 로그 기준 2026-07-08 17:01~17:03 KST에 `CHEONGJU-MOBILITY` 컨테이너 재생성 흔적이 있으며, 새 container mount는 `/NHNHOME/WORKSPACE/CHEONGJU`, `/NHNHOME/WORKSPACE/GANGSEO` 중심으로 구성되어 있었다.
+- `${TRAINING_STORAGE_PARENT}/.gc` 로그 기준 2026-07-08 17:01~17:03 KST에 `CHEONGJU-MOBILITY` 컨테이너 재생성 흔적이 있으며, 새 container mount는 `${CONTAINER_MOUNT_ROOT}/CHEONGJU`, `${CONTAINER_MOUNT_ROOT}/GANGSEO` 중심으로 구성되어 있었다.
 
 # Cause
 
@@ -77,12 +77,12 @@ eval_steps: 250
 
 재실행 전에 먼저 artifact root를 안정적인 실제 디렉터리로 고정해야 한다.
 
-현재 기준으로는 resume 가능한 checkpoint가 확인되지 않았다. 이전 컨테이너 또는 이전 mount namespace에서 `/NHNHOME/WORKSPACE/26moel002_A/DAEGU/Model/MalwareAnalysis/model/adapters/qwen3-coder-next/lora/full/checkpoint-*`를 복구할 수 있는지 운영/스토리지 레벨에서 확인해야 한다.
+현재 기준으로는 resume 가능한 checkpoint가 확인되지 않았다. 이전 컨테이너 또는 이전 mount namespace에서 `${TRAINING_STORAGE_ROOT}/Model/MalwareAnalysis/model/adapters/qwen3-coder-next/lora/full/checkpoint-*`를 복구할 수 있는지 운영/스토리지 레벨에서 확인해야 한다.
 
 확인 명령:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 readlink model
 readlink -f model
 ls -ld model model/base model/adapters model/runs

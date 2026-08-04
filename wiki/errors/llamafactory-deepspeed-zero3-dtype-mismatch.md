@@ -9,7 +9,7 @@ status: investigating
 
 # Situation
 
-`/home/wyhwang/workspace/MalwareAnalysisLLM`의 `experiment/b200-qwen3-coder-480b` 브랜치에서 30B/72B smoke fine-tuning을 실행했다. 두 run 모두 model loading 이후 training loop에 진입했지만, 첫 optimizer step에서 동일한 오류로 중단되었다.
+`${MALWARE_ANALYSIS_LLM_ROOT}`의 `experiment/b200-qwen3-coder-480b` 브랜치에서 30B/72B smoke fine-tuning을 실행했다. 두 run 모두 model loading 이후 training loop에 진입했지만, 첫 optimizer step에서 동일한 오류로 중단되었다.
 
 이 문제는 `Qwen3-Coder-480B-A35B-Instruct-FP8`의 checkpoint loading 중 SIGKILL 문제와 분리해서 본다.
 

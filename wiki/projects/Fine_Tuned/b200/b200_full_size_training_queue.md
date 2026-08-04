@@ -20,7 +20,7 @@ status: active
 
 # Server Changes
 
-원격 프로젝트 `/home/wyhwang/workspace/MalwareAnalysisLLM`에 다음 변경을 추가했다.
+원격 프로젝트 `${MALWARE_ANALYSIS_LLM_ROOT}`에 다음 변경을 추가했다.
 
 - `scripts/download_hf_model.py`: `deepseek-v4-flash`, `deepseek-v4-flash-base`, `qwen3-coder-next`, `glm45-air-fp8`, `glm45-full-fp8` variant alias 추가
 - `configs/llamafactory/b200/qwen3_coder_next_lora_full.yaml`: Qwen3-Coder-Next 80B full dataset LoRA SFT config 추가
@@ -32,7 +32,7 @@ status: active
 DeepSeek Flash 다운로드 재개:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 set -a
 . ./.env
 set +a

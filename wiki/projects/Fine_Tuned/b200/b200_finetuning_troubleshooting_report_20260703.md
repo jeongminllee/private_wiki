@@ -9,7 +9,7 @@ status: active
 
 # Goal
 
-`/home/wyhwang/workspace/MalwareAnalysisLLM`에서 `Qwen3-Coder` 계열 모델을 LLaMA-Factory 기반으로 fine-tuning하기 위해 진행한 작업 중 발생한 문제, 원인, 해결 방법, 현재 남은 리스크를 팀원이 재현 가능한 형태로 정리한다.
+`${MALWARE_ANALYSIS_LLM_ROOT}`에서 `Qwen3-Coder` 계열 모델을 LLaMA-Factory 기반으로 fine-tuning하기 위해 진행한 작업 중 발생한 문제, 원인, 해결 방법, 현재 남은 리스크를 팀원이 재현 가능한 형태로 정리한다.
 
 이 문서는 "무엇이 터졌는가"보다 "어디까지 해결됐고, 다음에는 무엇을 먼저 확인해야 하는가"를 기준으로 읽는다.
 
@@ -255,7 +255,7 @@ torch        2.12.1
 해결:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 uv pip install "datasets==4.0.0"
 ```
 
@@ -310,7 +310,7 @@ llamafactory = { path = "LLaMA-Factory", editable = true }
 복구 명령:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 uv sync --group training
 ```
 
@@ -391,7 +391,7 @@ rank RSS: 약 200 GiB x 4
 ## 환경 복구 확인
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 uv pip show datasets transformers deepspeed peft torch
 ```
 

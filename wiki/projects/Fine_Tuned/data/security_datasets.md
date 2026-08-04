@@ -78,7 +78,7 @@ AegisLM의 1차 저장 포맷은 JSONL이며, 각 줄은 다음 구조를 따른
 Smoke 100 build:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 
 uv run python scripts/build_security_dataset.py \
   --include-hf \

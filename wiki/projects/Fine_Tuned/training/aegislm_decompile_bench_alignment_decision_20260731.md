@@ -78,8 +78,8 @@ dataset card의 `CC0-1.0`과 “permissively licensed repositories” 설명을
 
 # Related Concepts
 
-- [Phase F 구현 계획](../repos/AegisLM-B200/docs/experiments/plans/PHASE_F_DATASET_AND_BINARY_EXPERIMENT_PLAN.md)
-- [Decompile-Bench 결정 원문](../repos/AegisLM-B200/docs/experiments/decisions/phase-f/PHASE_F_DECOMPILE_BENCH_ALIGNMENT_DECISION_20260731.md)
+- [Phase F 구현 계획](aegislm_phase_f_experiment_plan_20260728.md)
+- [Decompile-Bench 결정 원문](aegislm_decompile_bench_alignment_decision_20260731.md)
 - [CVEfixes Patch-label 공급 Gate](aegislm_cvefixes_supply_gate_decision_20260731.md)
 - [Binary Model-Ready Target Gate](aegislm_binary_model_ready_target_gate_decision_20260731.md)
 

@@ -9,7 +9,7 @@ status: solved
 
 # Situation
 
-`/home/wyhwang/workspace/MalwareAnalysisLLM`에서 Qwen3-Coder-Next 80B full training을 준비하던 중 runner가 시작 직후 실패했다.
+`${MALWARE_ANALYSIS_LLM_ROOT}`에서 Qwen3-Coder-Next 80B full training을 준비하던 중 runner가 시작 직후 실패했다.
 
 이 시점의 문제는 model loading, DeepSpeed, GPU memory, dataset tokenizing 문제가 아니라 `.venv` 안에 LLaMA-Factory CLI와 training runtime dependency가 제대로 설치되어 있지 않은 환경 정합성 문제였다.
 
@@ -55,7 +55,7 @@ llamafactory = { path = "LLaMA-Factory", editable = true }
 복구 명령:
 
 ```bash
-cd /home/wyhwang/workspace/MalwareAnalysisLLM
+cd ${MALWARE_ANALYSIS_LLM_ROOT}
 uv sync --group training
 ```
 
@@ -123,5 +123,5 @@ uv sync --group training
 
 # Citations
 
-- LLaMA-Factory local checkout: `/home/wyhwang/workspace/MalwareAnalysisLLM/LLaMA-Factory`
-- Project dependency file: `/home/wyhwang/workspace/MalwareAnalysisLLM/pyproject.toml`
+- LLaMA-Factory local checkout: `${MALWARE_ANALYSIS_LLM_ROOT}/LLaMA-Factory`
+- Project dependency file: `${MALWARE_ANALYSIS_LLM_ROOT}/pyproject.toml`
