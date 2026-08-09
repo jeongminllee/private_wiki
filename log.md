@@ -1,5 +1,17 @@
 # Change Log
 
+## 2026-08-09
+
+- **Setup Guide**: Mistral F5-X를 처음 파인튜닝하는 사용자가 B200에서 compatibility matrix, 분리된 Axolotl runtime, model·dataset hash, immutable render, QLoRA/DDP와 BF16 LoRA/FSDP2 1-step을 직접 실행하고 관찰할 수 있는 실습 워크북을 추가했다.
+- **Learning**: 각 단계에 학습 목표, copy 가능한 명령, 기대 결과, 기록표, PASS/BLOCK 기준과 복습 질문을 배치하고 loss와 모델 품질 판정, validation preflight와 Trainer evaluation의 차이를 설명했다.
+- **Safety**: 기존 Qwen 환경 보존, runtime pin 충돌 시 중단, run directory 재사용 금지, secret·model·dataset·adapter의 Git 반입 금지와 G3 전 merge·full epoch 금지를 워크북 전체 경계로 고정했다.
+
+## 2026-08-05
+
+- **Handoff**: Mistral Small 4 119B F5-X 통합 설정 v2의 프로젝트 현황, immutable pin, G0–G3 gate, 구현 allowlist와 다음 대화 시작 절차를 단일 인계 보고서로 동결했다.
+- **Decision**: Sol은 현재 대화 내부 subagent만 orchestration하며 별도 Codex Terra/Luna 대화를 subagent처럼 사용하지 않는다. Luna 인스레드 호출이 불가능하면 임의 대체하지 않고 `BLOCK`한다.
+- **Safety**: 별도 Luna 작업에 잘못 전달된 Work Order는 `STOPPED`·변경 파일 0건으로 종료됐다. 마지막 확인 시 AegisLM-B200에는 기존 untracked draft 5개 외 신규 구현 변경이 없었으며, 새 대화가 수정 전 상태를 재검증하도록 기록했다.
+
 ## 2026-08-04
 
 - **Decision**: AegisLM의 모델별 수동 작업에서 서브에이전트 생성, 자동 handoff와 다른 모델로의 재위임을 기본 금지했다. 사용자가 Terra·Luna·Sol에 배정한 작업은 해당 모델이 직접 수행하며, 다른 모델이 필요하면 현재 작업을 `BLOCK`하고 사용자가 별도 작업을 직접 열어야 한다.

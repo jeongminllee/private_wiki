@@ -13,6 +13,13 @@ Desktop.ini
 # 로컬 절대 경로, 사용자 계정명, API Key 노출 방지를 위해 제외
 raw/
 
+# Python cache
+__pycache__/
+*.pyc
+
+# Code Repositories in Wiki Projects
+wiki/projects/Fine_Tuned/repos/
+
 # Temporary and Log files
 *.log
 *.tmp

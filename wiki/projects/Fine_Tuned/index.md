@@ -13,6 +13,8 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 
 ## High-Signal Docs
 
+- [Mistral F5-X 첫 파인튜닝 실습 워크북](training/mistral_f5x_first_finetuning_workbook_20260809.md) - 처음 파인튜닝을 실행하는 사용자가 compatibility probe, runtime 동결, model·dataset 검증, QLoRA·LoRA 1-step과 GPU·loss·adapter 증거를 직접 관찰하는 단계별 교재
+- [Mistral F5-X 통합 설정 v2 새 대화 인계 보고서](handoffs/mistral_f5x_unified_config_v2_handoff_20260805.md) - 현재 진행 상태, 승인된 구현 계획, Sol·Terra·Luna 계약과 인스레드 서브에이전트 작업 방식을 동결한 인계 문서
 - [LLM 생명주기 환경 설계](../../infra/llm-lifecycle-environment-design.md) - 개발·학습·서빙·평가의 end-to-end preflight와 환경 통합·분리 기준
 - [AegisLM-B200 2-GPU 재구축](b200/aegislm_b200_2gpu_rebuild.md) - 새 private 저장소와 B200 2장·400GiB 환경의 80B full-training 준비 및 검증 기록
 - [B200 Full-Size Training Queue](b200/b200_full_size_training_queue.md) - Qwen3-Coder-Next 80B부터 full dataset real training으로 전환하는 실행 큐
