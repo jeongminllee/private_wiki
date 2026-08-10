@@ -26,6 +26,26 @@ status: active
 > `5.15.0.dev0`이다. compatibility probe와 후보 검토가 끝나기 전에는 최종
 > `.venv-axolotl` 설치를 진행하지 않는다.
 
+## 현재 검증 상태 — 2026-08-09
+
+| 항목 | 확인 결과 |
+| --- | --- |
+| B200 source sync | `PASS`; `workspace/AegisLM-B200-phase-f-source-v3`에 로컬 dirty 31개 파일 동기화, hash mismatch 0 |
+| B200 기준 | branch `codex/phase-f-source-v3`, HEAD `cb520cdd132f86f23fc45a8800cb6c20c3ab9dc3` |
+| Compatibility matrix | SHA-256 `47e2a8714d38e5b9cad3001a6bdad95fc6e0cd2599a51851618adbddc2007378` |
+| Matrix 비실행 검사 | `validate`와 `plan` PASS; 세 후보와 격리된 probe 경로 확인 |
+| B200 CPU 회귀 검사 | 대상 회귀 `48 passed`, 전체 pytest `470 passed` |
+| Experiment config | `validate` PASS; SHA-256 `f5e8cd4be53cda6db55a886ddda12a967ceed68e84e6ec7ba0a4f167e28af07d` |
+| GPU 식별 | NVIDIA B200 2장, 각 `183359 MiB` |
+| 보호 경계 | `.runtime-probes/mistral-f5x`와 `.venv-axolotl` 미생성 |
+
+여기까지는 바로 다시 확인해도 된다. 다음 `2.2 실제 B200 probe`는 dependency를
+다운로드하고 임시 환경을 만드는 별도 실행 단계다. 사용자가 그 작업을 시작하기
+전까지 model·dataset 다운로드, symlink 생성과 G1 학습도 실행하지 않는다.
+
+> 경로 주의: 기존 `workspace/AegisLM-B200`은 Qwen 작업용이다. Mistral F5-X
+> 명령은 반드시 `workspace/AegisLM-B200-phase-f-source-v3`에서 실행한다.
+
 # 사용 방법
 
 - 위에서 아래로 한 단계씩 진행한다.
@@ -120,20 +140,20 @@ chmod 600 .env
 
 ## 실행 세션 기록
 
-| 항목 | 직접 기록 |
-| --- | --- |
-| 시작 일시·timezone |  |
-| 운영자 |  |
-| 서버 |  |
-| repository path | 비공개 경로는 로컬 기록에만 작성 |
-| Git branch |  |
-| Git HEAD |  |
-| compatibility matrix SHA-256 |  |
-| runtime manifest SHA-256 |  |
-| experiment config SHA-256 |  |
-| active profile |  |
-| run ID |  |
-| GPU 이름·개수 |  |
+| 항목                           | 직접 기록                                    |
+| ---------------------------- | ---------------------------------------- |
+| 시작 일시·timezone               |                                          |
+| 운영자                          |                                          |
+| 서버                           |                                          |
+| repository path              | 비공개 경로는 로컬 기록에만 작성                       |
+| Git branch                   |                                          |
+| Git HEAD                     | cb520cdd132f86f23fc45a8800cb6c20c3ab9dc3 |
+| compatibility matrix SHA-256 |                                          |
+| runtime manifest SHA-256     |                                          |
+| experiment config SHA-256    |                                          |
+| active profile               |                                          |
+| run ID                       |                                          |
+| GPU 이름·개수                    |                                          |
 
 기본 상태를 확인한다.
 
@@ -176,11 +196,11 @@ negative control이 실패하는 것은 실험 실패가 아니다. 예상한 �
 이 두 명령은 파일을 생성하지 않는다.
 
 ```bash
-python scripts/probe_mistral_f5x_compatibility.py \
+.venv/bin/python scripts/probe_mistral_f5x_compatibility.py \
   --matrix configs/runtime/mistral_f5x_compatibility_matrix.json \
   --action validate
 
-python scripts/probe_mistral_f5x_compatibility.py \
+.venv/bin/python scripts/probe_mistral_f5x_compatibility.py \
   --matrix configs/runtime/mistral_f5x_compatibility_matrix.json \
   --action plan
 ```

@@ -2,6 +2,9 @@
 
 ## 2026-08-09
 
+- **B200 Sync**: 정확한 대상 `workspace/AegisLM-B200-phase-f-source-v3`가 로컬과 같은 branch `codex/phase-f-source-v3`, HEAD `cb520cdd…`의 clean worktree임을 확인하고, 로컬 tracked 수정 10개와 신규 21개를 합친 31개 파일을 SHA-256 mismatch 0으로 동기화했다. tracked 10개 원본은 worktree 밖 staging에 백업했다.
+- **B200 Correction**: 앞서 Qwen용 `workspace/AegisLM-B200`에 잘못 반영한 compatibility 12개는 staging hash를 재검증한 뒤 이전 3개를 백업에서 복구하고 새 9개만 제거했다. 더 이전의 Qwen 변경과 runtime-readiness 파일은 보존했다.
+- **B200 Test**: 올바른 phase-f-source-v3 worktree에서 compatibility matrix `validate`·`plan`, experiment config `validate`, 대상 회귀 `48 passed`와 전체 pytest `470 passed`를 확인했다. dependency probe, `.venv-axolotl`, model·dataset, symlink와 학습은 실행하지 않았다.
 - **Setup Guide**: Mistral F5-X를 처음 파인튜닝하는 사용자가 B200에서 compatibility matrix, 분리된 Axolotl runtime, model·dataset hash, immutable render, QLoRA/DDP와 BF16 LoRA/FSDP2 1-step을 직접 실행하고 관찰할 수 있는 실습 워크북을 추가했다.
 - **Learning**: 각 단계에 학습 목표, copy 가능한 명령, 기대 결과, 기록표, PASS/BLOCK 기준과 복습 질문을 배치하고 loss와 모델 품질 판정, validation preflight와 Trainer evaluation의 차이를 설명했다.
 - **Safety**: 기존 Qwen 환경 보존, runtime pin 충돌 시 중단, run directory 재사용 금지, secret·model·dataset·adapter의 Git 반입 금지와 G3 전 merge·full epoch 금지를 워크북 전체 경계로 고정했다.
