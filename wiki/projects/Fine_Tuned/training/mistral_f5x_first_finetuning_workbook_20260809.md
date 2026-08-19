@@ -39,6 +39,18 @@ status: active
 | GPU 식별 | NVIDIA B200 2장, 각 `183359 MiB` |
 | 보호 경계 | `.runtime-probes/mistral-f5x`와 `.venv-axolotl` 미생성 |
 
+## 수동 독립 프로젝트 경로 추가 — 2026-08-11
+
+기존 F5-X 승인 계획은 Axolotl 배포 BF16 snapshot을 pin했다. 이후 별도 수동 실습
+프로젝트에서는 공식 `mistralai/Mistral-Small-4-119B-2603` FP8 snapshot을 immutable
+revision으로 받고, Mistral의 공식 descale 식으로 local BF16 checkpoint를 직접
+생성했다. 이 경로는 기존 승인 pin을 소급 변경하지 않는 별도 실습 분기다.
+
+FP8을 BF16으로 변환해도 양자화 전에 잃은 정밀도는 복원되지 않는다. 자세한 수학,
+파일 구조와 독립 검증 gate는 [Mistral 공식 FP8 체크포인트의 로컬 BF16 변환 이해](../fundamentals/mistral_fp8_to_bf16_checkpoint_conversion.md)를 따른다. 새 local checkpoint를
+실제 G1 config에 연결하려면 model source·revision·conversion manifest와 output inventory를
+새 승인 기준으로 다시 동결해야 한다.
+
 여기까지는 바로 다시 확인해도 된다. 다음 `2.2 실제 B200 probe`는 dependency를
 다운로드하고 임시 환경을 만드는 별도 실행 단계다. 사용자가 그 작업을 시작하기
 전까지 model·dataset 다운로드, symlink 생성과 G1 학습도 실행하지 않는다.
@@ -482,6 +494,41 @@ sha256sum data/processed/phase-f-source-decision-v1/dataset_manifest.json
 
 tokenizer가 없으면 문자 수 추정으로 대신하지 않고 중단하는 것이 정상이다.
 
+## 2026-08-18 전수 검사 실측 결과
+
+```text
+STEP 3-B PASS : all 11,000 dataset rows passed tokenizer preflight
+```
+
+| split | count | min | p50 | p95 | p99 | max | target min/max | over 2048 | THINK |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| train | 10,000 | 254 | 381 | 830 | 927 | 1,505 | 7 / 10 | 0 | 0 |
+| validation | 1,000 | 254 | 382 | 759 | 920 | 1,497 | 7 / 10 | 0 | 0 |
+
+`present`와 `not_observed`는 train에서 각각 5,000건, validation에서 각각 500건으로
+균형을 이뤘다. 전체 고유 ID 11,000개와 세 SHA-256 pin도 일치했다. 따라서 현재
+dataset은 2,048-token 계약 안에서 Axolotl 설정 검증 단계로 이동할 수 있다.
+
+첫 실행의 `train:1: empty target`은 실제 빈 label이 아니라 Transformers 5.x의
+chat-template 반환 객체에서 `.input_ids`를 꺼내지 않은 helper 오류였다. 자세한
+원인과 수정은 [Mistral 전수 Preflight의 잘못된 Empty Target 판정](../../../errors/mistral-preflight-empty-target-batchencoding.md)을 참고한다.
+
+## Axolotl debug preprocess 주의
+
+`axolotl preprocess ... --debug` 실행에서는 실효 `sequence_len`이 512로 출력되면서
+10,000건 중 1,221건이 제외되고 8,779건짜리 cache가 만들어졌다. 명령 자체는 이
+상태에서도 `Success!`를 출력하므로 성공 문자열만으로 학습용 cache를 승인하면 안 된다.
+
+debug 출력에서는 assistant JSON token과 EOS만 실제 label ID를 유지하고 system·user
+token은 `-100`으로 masking되어 assistant-only 학습 계약이 정상임을 확인했다. label
+수 7 또는 10도 독립 tokenizer preflight와 일치했다.
+
+학습용 전처리는 `--debug` 없이 다시 실행했다. 실효 `sequence_len: 2048`,
+`min_input_len: 254`, `max_input_len: 1505`, 저장 row 10,000, exit code 0과
+`Success!`를 확인했다. debug 8,779건 cache와 정상 10,000건 cache는 서로 다른 hash
+하위 경로에 남았다. Axolotl이 기존 정상 cache를 찾지 못하고 재생성하는 현상은
+데이터 정확성 문제가 아니라 성능·cache 재사용 문제로 분리해 관찰한다.
+
 # 7. `configs/experiment.yaml` 공부하기
 
 ## 세 종류의 값
@@ -509,6 +556,22 @@ lora_dropout: 0.0
 
 QLoRA는 FSDP와 DeepSpeed key가 없어야 한다. Axolotl의 multi-GPU 기본 경로로
 DDP를 사용한다.
+
+### 2026-08-18 QLoRA G1 실측 BLOCK
+
+일반적인 1,024×1,024 BF16 tensor의 NF4 quantize/dequantize는 B200·CUDA 13.0과
+bitsandbytes 0.49.1에서 finite 결과로 PASS했다. 그러나 Mistral의 fused
+`gate_up_proj`는 `[128, 4096, 4096]`, 즉 정확히 2,147,483,648(`2^31`)개 원소였다.
+이는 bitsandbytes CUDA kernel이 단일 tensor 크기로 받는 signed `int` 최대값보다
+1 크다.
+
+실제 2-GPU run은 `/src/csrc/ops.cu`의 `invalid argument`로 model quantization 중
+종료됐다. 따라서 이 QLoRA run은 데이터·B200·CUDA 일반 호환성 문제가 아니라
+upstream fused-tensor 크기 제한으로 `BLOCK`한다. 실패 output과 log는 보존하고
+재사용하지 않는다. 자세한 증거는 [Mistral Fused Expert가 bitsandbytes INT_MAX를 초과해 QLoRA 실패](../../../errors/mistral-fused-expert-bitsandbytes-intmax-qlora.md)에 있다.
+
+현재 워크북은 임의 chunk quantization patch를 적용하지 않고 다음 승인 profile인
+BF16 LoRA + FSDP2 1-step으로 이동한다.
 
 ## LoRA에서 읽어야 할 값
 
@@ -791,6 +854,35 @@ QLoRA와 같은 방식으로 GPU CSV, stdout/stderr, adapter inventory를 보존
 | adapter 저장 성공 |  |  |
 | adapter SHA-256 inventory 존재 |  |  |
 
+### 2026-08-18 standalone BF16 LoRA FSDP2 G1 실측 PASS
+
+별도 수동 프로젝트에서 local BF16 checkpoint와 Axolotl 0.17.0을 사용한
+`g1-bf16-lora-fsdp2-20260818-002` 1-step이 완료됐다. rank 1 dataset log와 FSDP2
+DTensor patch가 확인됐고, global batch의 두 sample에서 총 832 token, assistant target
+17 token을 학습했다.
+
+```text
+loss: 0.1592
+grad_norm: 5.937
+train_runtime: 81.64 seconds
+GPU 0 peak: 151,586 MiB
+GPU 1 peak: 151,842 MiB
+adapter_model.safetensors: 4,337,827,640 bytes
+```
+
+loss·gradient는 finite였고 두 GPU peak는 `168,960 MiB` gate 아래였다. root와
+`checkpoint-1`에 adapter가 저장됐으며 최종 로그는 `Model successfully saved`로
+끝났다. QLoRA는 upstream tensor-size 제한으로 BLOCK이고 LoRA가 위 gate를 통과했으므로
+다음 방식은 BF16 LoRA + FSDP2로 선택한다.
+
+전체 GPU CSV에서 GPU 0/1 평균 utilization은 각각 8.8%/92.1%로 비대칭이었다. 그러나
+두 GPU의 peak memory가 256 MiB 차이로 거의 같아 model shard 배치 실패로 해석하지
+않는다. 이 1-step run에는 rank 0의 CPU-efficient checkpoint load, FSDP2 full-state
+broadcast, checkpoint-1 저장과 최종 저장 시간이 실제 Trainer runtime보다 크게 포함됐다.
+`nvidia-smi` utilization은 NCCL collective 대기 kernel도 active로 계산할 수 있으므로
+전체-run 평균만으로 유효 연산량을 판정하지 않는다. G2 10-step에서 학습 구간 비중을
+늘리고 step별 loss와 timestamp GPU CSV를 함께 기록해 비대칭이 계속되는지 재검사한다.
+
 # 11. QLoRA와 LoRA 중 무엇을 선택하는가
 
 | QLoRA | LoRA | 결정 |
@@ -895,6 +987,31 @@ G1에서 방식이 선택되면 바로 100-step으로 가지 않는다.
 3. 새 process에서 reload한다.
 4. 단일 inference로 load/save lifecycle을 검증한다.
 5. G2 PASS 뒤에만 G3 100-step과 blind 500건 절대평가를 실행한다.
+
+### 2026-08-18 standalone G2 10-step 학습 결과
+
+`g2-bf16-lora-fsdp2-20260818-001`은 BF16 LoRA + FSDP2로 10-step을 완료했다.
+step별 loss 10개는 모두 finite였고 최종 `train_loss`는 0.1523이었다.
+
+```text
+loss: 0.1592, 0.5566, 0.3447, 0.08929, 0.1096
+      0.1289, 0.04529, 0.05817, 0.001171, 0.02975
+train_runtime: 100.3 seconds
+train_steps_per_second: 0.1
+GPU 0/1 compute utilization: 99-100% during forward/backward
+observed peak: 155,688/155,944 MiB
+```
+
+두 GPU peak는 165 GiB gate 아래였고 실제 학습 구간에는 양쪽이 동시에 99-100%로
+동작했다. 초기 CPU-efficient load/full-state broadcast와 checkpoint·final save에서만
+GPU 1의 utilization이 높고 GPU 0은 낮았다. 따라서 G1 전체-run의 8.8%/92.1% 평균은
+rank 참여 실패가 아니라 load/save phase와 짧은 1-step의 비율 때문에 생긴 관측
+왜곡으로 확정한다.
+
+root와 `checkpoint-10`에 각각 4,337,827,640-byte `adapter_model.safetensors`가
+저장됐다. checkpoint에는 약 8.68 GB optimizer state와 약 2.17 GB FSDP state도
+보존됐다. 이 결과는 G2의 **학습·저장 단계 PASS**이며, 전체 G2 PASS에는 artifact
+SHA-256 inventory와 새 process adapter reload·단일 inference가 남아 있다.
 
 G3 PASS 전 merge, evidence adapter와 full epoch는 계속 금지한다. G3 PASS 뒤에도
 이 작업들은 자동 후속 단계가 아니라 별도 연구 결정과 승인 대상이다.

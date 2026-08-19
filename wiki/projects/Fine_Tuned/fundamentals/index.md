@@ -9,3 +9,4 @@
 - [LLaMA-Factory Basics](llamafactory_basics.md) - YAML config, dataset registration, AegisLM과 LLaMA-Factory의 책임 경계
 - [W&B and Telemetry Basics](wandb_telemetry_basics.md) - W&B loss logging, model/watch 설정, cgroup/GPU/process telemetry
 - [Fine-Tuning Framework Comparison Basics](finetuning_framework_comparison.md) - LLaMA-Factory, TRL, Axolotl, torchtune, ms-swift, NeMo, Unsloth 비교
+- [Mistral 공식 FP8 체크포인트의 로컬 BF16 변환 이해](mistral_fp8_to_bf16_checkpoint_conversion.md) - FP8 weight와 inverse scale을 BF16 tensor로 펼치는 수학적 의미, safetensors 구조, 변환 한계와 학습 전 검증 gate

@@ -1,5 +1,36 @@
 # Change Log
 
+## 2026-08-19
+
+- **Economy Briefing Ingest**: ChatGPT 공유 대화(2026-08-13 ~ 2026-08-19 총 7일치)에서 '미국 경제 아침 브리핑' 전문을 추출하여 `wiki/routine/economy/{date}/{date}.md`에 날짜별로 분류 작성하고, 해당 일자 체크리스트의 경제 브리핑 항목을 완료(`- [x]`) 처리했다.
+- **Routine Backlog Ingest**: 2026-08-13부터 2026-08-19(오늘)까지 7일분의 4개 과목(`economy`, `ai_paper`, `Eng`, `Job_LLM_ML`) 루틴 폴더/마크다운 문서와 일자별 Daily Routine Checklist를 생성했다.
+
+## 2026-08-18
+
+- **Dataset Full Gate**: local Mistral tokenizer로 train 10,000건과 validation 1,000건을 전수 검사했다. dataset·manifest·system prompt hash, 11,000개 고유 ID, target 계약과 EOS 경계가 일치했고 최대 길이는 1,505/1,497 token, 2,048 token 초과와 THINK marker는 모두 0건이어서 STEP 3-B를 PASS했다.
+- **Troubleshooting Archive**: Transformers 5.x Mistral chat-template 반환 객체의 `.input_ids`를 꺼내지 않아 정상 assistant target을 빈 리스트로 오판한 문제를 해결하고 Error Note로 기록했다. sample gate와 전수 gate의 충돌을 검사 코드 API boundary 문제로 분리했다.
+- **Axolotl Preprocess Gate**: debug preprocess는 실효 sequence length 512로 1,221건을 제외하고도 Success를 출력함을 확인했다. assistant-only label masking은 정상인 반면 해당 cache는 학습용으로 거부했다. debug 없이 2,048 token으로 다시 실행해 min/max 254/1,505, 저장 10,000건, exit 0과 Success를 확인했으며 cache 재사용 실패는 별도 성능 문제로 남겼다.
+- **QLoRA G1 BLOCK**: B200·CUDA 13.0에서 작은 BF16↔NF4 kernel은 PASS했지만 Mistral fused `gate_up_proj`가 `[128,4096,4096]`, 즉 `INT_MAX + 1`개 원소임을 safetensors header로 확인했다. bitsandbytes 0.49.1 단일-tensor 4-bit CUDA kernel이 invalid argument로 종료되어 run을 upstream 크기 제한으로 BLOCK하고, 실패 증거를 보존한 채 BF16 LoRA + FSDP2 profile로 전환했다.
+- **BF16 LoRA FSDP2 G1 PASS**: 두 B200의 peak가 151,586/151,842 MiB로 165 GiB gate 아래였고 1-step loss 0.1592, grad norm 5.937, Trainer runtime 81.64초와 4,337,827,640-byte adapter 저장을 확인했다. QLoRA BLOCK 뒤 BF16 LoRA + FSDP2를 선택하고 G2 10-step save·reload·inference 대상으로 확정했다.
+- **GPU Utilization Interpretation**: G1 전체-run CSV는 GPU 0/1 평균 utilization 8.8%/92.1%로 비대칭이었지만 model shard memory는 거의 같았다. 전체 기록에 CPU-efficient load, full-state broadcast와 두 번의 save가 포함되고 NCCL 대기 kernel도 utilization으로 집계될 수 있어 FSDP 참여 실패로 단정하지 않았다. G2 10-step에서 학습 구간 비중과 step별 telemetry로 재검사한다.
+- **G2 10-step Training PASS**: BF16 LoRA + FSDP2로 10개 finite loss, 최종 train loss 0.1523, runtime 100.3초와 adapter 저장을 확인했다. 실제 forward/backward에서는 두 B200이 동시에 99-100%로 동작했고 peak 155,688/155,944 MiB로 165 GiB gate를 통과해 G1 utilization 비대칭이 load/save phase 관측임을 확인했다. 전체 G2 PASS에는 SHA-256 inventory와 새 process reload·단일 inference가 남아 있다.
+
+## 2026-08-12
+
+- **Storage Incident**: B200 Mistral 프로젝트의 `model`, `data`, `artifact`, `tools` symlink가 삭제된 것이 아니라 모두 존재하면서 공통 persistent root를 resolve하지 못하는 상태임을 확인했다. mount namespace·상위 execute permission/ACL·target rename 가능성을 분리하는 Error Note를 만들고 원인 확정 전 link 재생성을 금지했다.
+- **Storage Recovery**: 서버 관리 측 오류가 해소된 후 로컬 link·permission 변경 없이 네 persistent symlink가 동시에 정상화됐다. project link 손상은 배제하고 서버 측 shared-storage/mount의 일시적 장애를 가장 강한 원인으로 기록했으며 사건 상태를 `solved`로 전환했다.
+- **Troubleshooting Archive**: Mistral 공식 FP8→BF16 변환 script의 scale 집합·params 직렬화·config key 오타와 `PixtralProcessor`의 TorchVision 누락 문제를 각각 해결된 Error Note로 작성하고 Fine-Tuned 학습 노트에 cross-link했다.
+
+## 2026-08-11
+
+- **Study Note**: Mistral Small 4 119B 공식 FP8 checkpoint의 weight와 inverse scale을 BF16 safetensors로 펼치는 변환을 학술적 수식, FP8 E4M3·BF16 표현 차이, 비가역적 양자화 오차, shard·index·config·manifest 구조와 학습 전 검증 gate로 정리했다.
+- **Checkpoint Gate**: local BF16 checkpoint의 독립 header·index 검사를 수행해 source revision `a11f36b…`, BF16 tensor 765개, shard 35개, 저장 byte 238,802,597,888, 변환 tensor 360개를 확인했다. index와 실제 key가 일치하고 누락 shard·FP8·scale tensor가 모두 0개여서 구조 gate를 PASS했다.
+- **Runtime Gate**: multimodal `PixtralProcessor`의 누락 dependency를 확인하고 공식 호환 조합 `torchvision==0.27.1+cu130`을 `torch==2.12.1+cu130`과 같은 CUDA 13.0 index로 맞췄다. import, CUDA availability와 B200 2장 인식 검사가 PASS했다.
+- **Tokenizer Gate**: local `Mistral3Config`·`PixtralProcessor`·`TokenizersBackend`를 network와 weight load 없이 읽고 vocabulary 131,072, BOS/EOS/PAD, 30-token smoke prompt를 확인했다. `reasoning_effort=none`이 `MODEL_SETTINGS`에 렌더링되고 `[THINK]` marker가 0개여서 chat-template smoke gate를 PASS했다.
+- **Dataset Sample Gate**: train·validation 첫 행의 `system → user → assistant` 구조를 local Mistral tokenizer로 렌더링했다. 각각 전체 328/390 token, assistant target 10/10 token, THINK marker 0, EOS 종료와 prompt-target prefix 경계를 확인해 sample template gate를 PASS했다.
+- **Experiment Update**: 별도 수동 Mistral 프로젝트에서 공식 immutable FP8 snapshot을 local BF16 checkpoint로 변환한 경로를 기존 F5-X 워크북에 추가했다. 기존 Axolotl BF16 승인 pin은 소급 변경하지 않고, 새 local checkpoint는 별도 inventory와 승인 기준이 필요함을 명시했다.
+- **Index**: 새 FP8→BF16 학습 노트를 Fine-Tuning Fundamentals와 Fine-Tuned Project의 high-signal 문서에 연결했다.
+
 ## 2026-08-09
 
 - **B200 Sync**: 정확한 대상 `workspace/AegisLM-B200-phase-f-source-v3`가 로컬과 같은 branch `codex/phase-f-source-v3`, HEAD `cb520cdd…`의 clean worktree임을 확인하고, 로컬 tracked 수정 10개와 신규 21개를 합친 31개 파일을 SHA-256 mismatch 0으로 동기화했다. tracked 10개 원본은 worktree 밖 staging에 백업했다.
