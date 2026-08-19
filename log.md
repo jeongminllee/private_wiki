@@ -2,6 +2,8 @@
 
 ## 2026-08-19
 
+- **Big Data Analysis Knowledge Ingest**: `raw/notes/Bigdata_analysis/` 내 교재 및 과목별 PDF 자료의 핵심 지식을 추출하여 `wiki/ml/bigdata_analysis/` 하위에 15개 Concept 문서와 인덱스(`index.md`)를 작성하고, 상위 ML 인덱스(`wiki/ml/index.md`) 및 루트 `index.md`에 연결했다.
+- **JSP Knowledge Ingest**: `raw/notes/JSP/` 내 17개 챕터 PPT 강의 자료의 핵심 지식을 추출하여 `wiki/cs/jsp/` 하위에 17개 Concept/Study Note 문서와 인덱스(`index.md`)를 작성하고, 상위 CS 인덱스(`wiki/cs/index.md`) 및 루트 `index.md`에 연결했다.
 - **Economy Briefing Ingest**: ChatGPT 공유 대화(2026-08-13 ~ 2026-08-19 총 7일치)에서 '미국 경제 아침 브리핑' 전문을 추출하여 `wiki/routine/economy/{date}/{date}.md`에 날짜별로 분류 작성하고, 해당 일자 체크리스트의 경제 브리핑 항목을 완료(`- [x]`) 처리했다.
 - **Routine Backlog Ingest**: 2026-08-13부터 2026-08-19(오늘)까지 7일분의 4개 과목(`economy`, `ai_paper`, `Eng`, `Job_LLM_ML`) 루틴 폴더/마크다운 문서와 일자별 Daily Routine Checklist를 생성했다.
 

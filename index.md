@@ -4,6 +4,7 @@
 
 ### Wiki
 - [ML](wiki/ml/index.md) - Machine Learning notes and concept documents
+  - [Big Data Analysis](wiki/ml/bigdata_analysis/index.md) - 빅데이터 분석 기획, 통계적 가설 검정, 회귀분석, 머신러닝/데이터마이닝 분류·군집·앙상블 모델 지식 대시보드
   - [MML Study](wiki/ml/mml/index.md) - Mathematics for Machine Learning book study
   - [LLM Ensemble Methods](wiki/ml/llm-ensemble.md) - LLM에 앙상블 기법을 적용하는 아이디어 분석
   - [cuML Random Forest](wiki/ml/cuml-random-forest.md) - GPU 기반 랜덤 포레스트 가속 분석 및 학습 가이드
@@ -14,12 +15,12 @@
 - [CS](wiki/cs/index.md) - Computer Science core concepts
   - [Python Study](wiki/cs/python/index.md) - Core Python programming study notes
   - [Java Programming](wiki/cs/java/index.md) - Core Java programming study notes
+  - [JSP & Web Architecture](wiki/cs/jsp/index.md) - JSP, 서블릿, 톰캣 아키텍처, MVC, JDBC 데이터베이스 및 웹 시큐리티 총 17개 챕터
   - [정보처리기사 실기](wiki/cs/engineer_info_processing/index.md) - 정보처리기사 실기 기본서, Final 모의고사 및 기출문제 모음집
 - [Algorithms](wiki/algorithms/index.md) - Data Structure & Algorithm study dashboard
 - [Projects](wiki/projects/index.md) - Side projects and active project notes
   - [Fine-Tuned Project](wiki/projects/Fine_Tuned/index.md) - B200 서버 기반 LLM 서빙, 보안 데이터셋, AegisLM 파인튜닝 실행 기록
     - [AegisLM Phase F](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md) - F0–F9 데이터 감사, Qwen 80B 신규 학습, binary/NuriLab 실험 연구 기록
-    - [AegisLM Phase F 연구 기록](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md) - F0–F9 진행 상태와 다음 실험을 추적하는 Project Note
     - [AegisLM Q1R10 Blind 평가 결정](wiki/projects/Fine_Tuned/training/aegislm_q1r10_blind_evaluation_decision_20260730.md) - Decision PASS, evidence FAIL과 새 blind·Q1R11 결정 기록
     - [AegisLM Q1R11 신규 Blind 500 PASS](wiki/projects/Fine_Tuned/training/aegislm_q1r11_fresh_blind_pass_decision_20260730.md) - source two-stage·F5-M1 PASS와 F6 binary 최초 판정 기록
     - [AegisLM Binary 엄격 Target Evidence 재감사](wiki/projects/Fine_Tuned/training/aegislm_binary_strict_target_evidence_decision_20260730.md) - F7 500-pair 확대, 과거 판정 정정과 보수적 공급 gate

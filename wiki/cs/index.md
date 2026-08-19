@@ -18,6 +18,7 @@ status: active
 ### 프로그래밍 언어 (Programming Languages)
 - **[Python Programming Study Dashboard](python/index.md)** - 파이썬 프로그래밍 교재 전 단원에 대한 세밀한 번역형 학습 노트 및 실습 해설집.
 - **[Java Programming](java/index.md)** - 자바 프로그래밍 기본 개념 및 원본 자료 학습 노트.
+- **[JSP & Web Architecture Study Dashboard](jsp/index.md)** - JSP, 서블릿, 톰캣 아키텍처, 내장 객체, MVC 패턴, JDBC 데이터베이스 연동 및 웹 시큐리티 총 17개 챕터 학습 대시보드.
 
 ### 자격증 및 전문 지식 (Certifications & Specialized Knowledge)
 - **[정보처리기사 실기 학습 대시보드](engineer_info_processing/index.md)** - 2026 수제비 정보처리기사 실기 기본서 1, 2권 본문 텍스트 추출본 및 Final 모의고사 1~20회 문제/해설 모음집.
