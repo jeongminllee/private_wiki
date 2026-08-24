@@ -1,5 +1,6 @@
 # Errors
 
+- [Mistral Small 4 B200 vLLM 0.26 서빙 트러블슈팅](mistral-small4-b200-vllm-serving-troubleshooting-20260820.md) - native/HF checkpoint format, 누락 consolidated shard, B200 attention backend, Triton cache, IPC path와 CuTeDSL warmup 실패를 거쳐 base API server를 기동한 기록
 - [Mistral Fused Expert가 bitsandbytes INT_MAX를 초과해 QLoRA 실패](mistral-fused-expert-bitsandbytes-intmax-qlora.md) - gate_up_proj가 정확히 2^31개 원소라 4-bit CUDA kernel 크기 한계를 넘은 QLoRA G1 BLOCK 기록
 - [Mistral 전수 Preflight의 잘못된 Empty Target 판정](mistral-preflight-empty-target-batchencoding.md) - Transformers 5.x chat-template 반환 객체의 input_ids를 꺼내지 않아 정상 target을 빈 값으로 오판한 문제
 - [B200 Persistent Root 하위 Symlink 일괄 Broken 진단](b200-persistent-root-symlinks-broken-20260812.md) - model·data·artifact·tools link는 존재하지만 공통 persistent root를 resolve하지 못하는 mount·권한 사건 조사

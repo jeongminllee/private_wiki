@@ -13,8 +13,10 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 
 ## High-Signal Docs
 
+- [Mistral Small 4 B200 vLLM 0.26 서빙 트러블슈팅](../../errors/mistral-small4-b200-vllm-serving-troubleshooting-20260820.md) - native/HF checkpoint 경계와 B200 kernel·cache·IPC 문제를 해결해 official native FP8 base startup까지 통과한 기록
 - [Mistral 공식 FP8 체크포인트의 로컬 BF16 변환 이해](fundamentals/mistral_fp8_to_bf16_checkpoint_conversion.md) - 공식 FP8 checkpoint를 local BF16 shard로 변환한 과정의 수학, 파일 구조, 비가역적 정밀도 한계와 실무 검증 절차
 - [Mistral F5-X 첫 파인튜닝 실습 워크북](training/mistral_f5x_first_finetuning_workbook_20260809.md) - 처음 파인튜닝을 실행하는 사용자가 compatibility probe, runtime 동결, model·dataset 검증, QLoRA·LoRA 1-step과 GPU·loss·adapter 증거를 직접 관찰하는 단계별 교재
+- [Mistral Small 4 119B G3 Blind 500 Source Decision PASS](training/mistral_small_4_119b_g3_blind500_decision_20260820.md) - BF16 LoRA FSDP2 100-step과 fresh blind decision 500건의 1.0 precision·recall·schema PASS 결정
 - [Mistral F5-X 통합 설정 v2 새 대화 인계 보고서](handoffs/mistral_f5x_unified_config_v2_handoff_20260805.md) - 현재 진행 상태, 승인된 구현 계획, Sol·Terra·Luna 계약과 인스레드 서브에이전트 작업 방식을 동결한 인계 문서
 - [LLM 생명주기 환경 설계](../../infra/llm-lifecycle-environment-design.md) - 개발·학습·서빙·평가의 end-to-end preflight와 환경 통합·분리 기준
 - [AegisLM-B200 2-GPU 재구축](b200/aegislm_b200_2gpu_rebuild.md) - 새 private 저장소와 B200 2장·400GiB 환경의 80B full-training 준비 및 검증 기록

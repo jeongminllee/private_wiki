@@ -1,11 +1,29 @@
 # Change Log
 
+## 2026-08-24
+
+- **Routine Backlog Generation**: 2026-08-20부터 2026-08-24(오늘)까지 누락된 5일분의 4개 과목(`economy`, `ai_paper`, `Eng`, `Job_LLM_ML`) 루틴 폴더 및 마크다운 템플릿과 일자별 Daily Routine Checklist를 일괄 생성하고, 2026-08-13~2026-08-19의 체크리스트를 실제 작성된 콘텐츠 상태와 동기화 완료함.
+
+## 2026-08-20
+
+- **Mistral vLLM Base Chat Completion PASS**: 같은 official native FP8 TP2 server의 Chat Completions가 `system → user` prompt를 28 token으로 처리하고 assistant content `OK`와 정상 stop을 반환했다. completion 2 token, vLLM 0.26.0 TP2 fingerprint를 확인해 base startup·OpenAI-compatible chat template·non-empty decode gate를 PASS로 닫았으며, G3 LoRA attach와 vision은 별도 PENDING으로 유지한다.
+- **Mistral vLLM API Transport PASS**: official native FP8 base server의 raw Completions API가 vLLM 0.26.0 TP2 fingerprint, prompt 8 token과 completion 1 token을 포함한 정상 JSON을 반환했다. 다만 생성 text가 빈 문자열이고 즉시 stop됐으므로 endpoint·routing·decode는 PASS, non-empty generation은 PENDING으로 분리했으며 다음 검사는 chat template가 적용되는 Chat Completions로 진행한다.
+- **Mistral vLLM Serving Troubleshooting**: 학습 환경과 vLLM 0.26 serving 환경의 PyTorch pin을 분리하고, HF BF16/native FP8 format 경계, 누락된 7개 consolidated shard, B200에서의 forced attention backend 거부, Triton executable cache, ZMQ Unix socket path 제한과 SM100 CuTeDSL `TYPE_UNSTABLE_JOIN`을 시간순으로 정리했다. official native FP8 base의 TP2 API server startup은 PASS했지만 `/v1/models`·completion smoke, G3 LoRA attach와 vision serving은 아직 별도 gate임을 기록했다.
+- **Mistral G3 Blind Preflight**: fresh blind source와 decision contract의 challenge/gold가 각각 500행, challenge 고유 ID 500개, `system → user` 구조임을 확인했다. source·contract SHA256SUMS 전 항목이 일치했다. standalone의 `blind500_check.sh`는 discovery script일 뿐 evaluator가 아니므로, challenge-only prediction을 먼저 hash로 동결한 뒤 기존 source-decision scorer가 gold를 별도 process에서 여는 순서를 유지한다.
+- **Mistral G3 Training/Save PASS**: BF16 LoRA + FSDP2 100-step에서 loss log 100개, runtime 271.3초, train loss 0.04073, final adapter 저장과 artifact inventory PASS를 확인했다. sibling source repository의 기존 source-decision evaluator와 library import smoke도 통과해 blind prediction과 scoring을 분리해 진행한다.
+- **Mistral Blind 500 Prediction Freeze**: gold를 참조하지 않는 G3 prediction process가 decision challenge 500건을 모두 생성했고 `predictions.jsonl` 행 수 500 및 SHA-256 checksum PASS를 확인했다. 후속 빈 `PREDICT_LOG` grep 오류는 새 shell의 변수 재선언 누락으로 분리했으며, hash 동결 뒤에만 별도 scorer가 gold를 열도록 했다.
+- **Mistral G3 Blind 500 PASS**: 동결 prediction을 기존 source-decision evaluator의 final threshold로 평가해 TP/TN/FP/FN 250/250/0/0, precision·recall·parse·schema 1.0, FPR·abstention 0, scorer exit 0과 overall PASS를 확인했다. decision-only scope와 evidence 미평가, blind 재사용 금지, merge·evidence adapter·full epoch 별도 승인 경계를 Decision Note로 동결했다.
+- **Mistral G3 Evidence Bundle Freeze**: prediction, summary와 scorer log inventory를 담은 evaluation `SHA256SUMS` 자체 hash `4476d2e7…d7958`을 추가로 동결해 G3 evidence chain을 마감했다.
+
 ## 2026-08-19
 
 - **Big Data Analysis Knowledge Ingest**: `raw/notes/Bigdata_analysis/` 내 교재 및 과목별 PDF 자료의 핵심 지식을 추출하여 `wiki/ml/bigdata_analysis/` 하위에 15개 Concept 문서와 인덱스(`index.md`)를 작성하고, 상위 ML 인덱스(`wiki/ml/index.md`) 및 루트 `index.md`에 연결했다.
 - **JSP Knowledge Ingest**: `raw/notes/JSP/` 내 17개 챕터 PPT 강의 자료의 핵심 지식을 추출하여 `wiki/cs/jsp/` 하위에 17개 Concept/Study Note 문서와 인덱스(`index.md`)를 작성하고, 상위 CS 인덱스(`wiki/cs/index.md`) 및 루트 `index.md`에 연결했다.
 - **Economy Briefing Ingest**: ChatGPT 공유 대화(2026-08-13 ~ 2026-08-19 총 7일치)에서 '미국 경제 아침 브리핑' 전문을 추출하여 `wiki/routine/economy/{date}/{date}.md`에 날짜별로 분류 작성하고, 해당 일자 체크리스트의 경제 브리핑 항목을 완료(`- [x]`) 처리했다.
 - **Routine Backlog Ingest**: 2026-08-13부터 2026-08-19(오늘)까지 7일분의 4개 과목(`economy`, `ai_paper`, `Eng`, `Job_LLM_ML`) 루틴 폴더/마크다운 문서와 일자별 Daily Routine Checklist를 생성했다.
+- **G2 Reload Gate**: 사용자가 새 Python process에서 local BF16 base와 최종 LoRA adapter를 읽고 비어 있지 않은 generation 및 `G2 RELOAD + INFERENCE TECHNICAL PASS`를 확인했다. shell wrapper permission 문제는 직접 실행이 성공했으므로 model lifecycle과 분리했으며, G3 직전 SHA-256 inventory와 reload log 존재를 다시 검사한다.
+- **G3 Approval**: 사용자가 BF16 LoRA + FSDP2 방식의 G3 100-step 시작을 명시적으로 승인했다. 새 run ID·config·output·monitor log를 사용하고, 완료 뒤 기존 blind 500건 절대평가로 품질을 판정한다.
+- **G2 Final PASS**: 기존 SHA-256 inventory PASS에 더해 final adapter를 새 process에서 다시 reload하고 evidence log에 `G2 RELOAD + INFERENCE TECHNICAL PASS`, `reload exit code: 0`을 보존했다. G2의 학습·저장·inventory·reload·단일 inference gate를 모두 PASS로 닫았다.
 
 ## 2026-08-18
 

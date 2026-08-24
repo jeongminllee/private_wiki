@@ -12,6 +12,7 @@
   - [LLM 생명주기 환경 설계](wiki/infra/llm-lifecycle-environment-design.md) - 개발·학습·서빙·평가 환경의 통합과 분리 판단 기준
   - [Symlink](wiki/infra/symlink.md) - OS별 심볼릭 링크 생성 및 해제 방법
 - [Errors](wiki/errors/index.md) - Troubleshooting and error logs
+  - [Mistral Small 4 B200 vLLM 0.26 서빙 트러블슈팅](wiki/errors/mistral-small4-b200-vllm-serving-troubleshooting-20260820.md) - official native FP8 base를 B200 TP2로 기동하며 해결한 format·shard·kernel·IPC 문제
 - [CS](wiki/cs/index.md) - Computer Science core concepts
   - [Python Study](wiki/cs/python/index.md) - Core Python programming study notes
   - [Java Programming](wiki/cs/java/index.md) - Core Java programming study notes

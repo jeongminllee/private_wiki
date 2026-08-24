@@ -1013,11 +1013,57 @@ root와 `checkpoint-10`에 각각 4,337,827,640-byte `adapter_model.safetensors`
 보존됐다. 이 결과는 G2의 **학습·저장 단계 PASS**이며, 전체 G2 PASS에는 artifact
 SHA-256 inventory와 새 process adapter reload·단일 inference가 남아 있다.
 
+2026-08-19 사용자가 새 terminal command로 local BF16 base와 최종 adapter를 다시
+읽고 비어 있지 않은 generation 및 `G2 RELOAD + INFERENCE TECHNICAL PASS` 출력을
+확인했다. shell wrapper의 별도 permission 문제는 model lifecycle과 무관한 실행 편의
+문제로 분리했다. SHA-256 inventory 파일과 reload log가 존재하는지 G3 시작 직전 다시
+검사하며, 둘이 있으면 G2 전체를 PASS로 닫는다.
+
+초기 직접 실행의 terminal output이 파일에 남지 않아 같은 final adapter를 새 process로
+한 번 더 reload했다. 새 evidence log에는 `G2 RELOAD + INFERENCE TECHNICAL PASS`와
+`reload exit code: 0`이 모두 기록됐고 기존 SHA-256 inventory도 PASS했다. 따라서 G2는
+학습, 저장, inventory, reload와 단일 inference 전 항목 **PASS**로 확정한다.
+
+사용자는 이어서 G3 100-step 실행을 명시적으로 승인했다. 새 run ID와 config hash를
+사용하고 G2 output을 재사용하지 않는다. 100-step adapter 저장 뒤 기존 blind 500건
+절대평가를 수행하며 loss 감소 자체는 품질 판정 기준으로 사용하지 않는다.
+
+2026-08-20 blind 평가 preflight에서
+`phase-f-source-fresh-blind-500-v1`과 그 decision contract의 challenge/gold가 각각
+500행이고 challenge ID가 500개 모두 고유함을 확인했다. 두 challenge는
+`system → user` 두 message만 가지며 assistant target이나 gold를 model input에
+포함하지 않는다. source와 contract의 `SHA256SUMS`는 모든 항목이 일치했다.
+
+standalone 프로젝트의 `scripts/blind500_check.sh`는 dataset·script 경로를 찾는
+discovery 명령뿐이며 prediction generator나 scorer가 아니다. 따라서 이 파일을 평가기로
+오인해 실행하지 않고, challenge-only prediction을 먼저 동결한 뒤 별도 process에서 기존
+source-decision evaluator가 gold를 여는 두 단계로 수행한다.
+
+G3 100-step은 loss log 100개, runtime 271.3초, 최종 train loss 0.04073으로
+완료됐고 final adapter 저장과 SHA-256 inventory가 PASS했다. sibling
+`AegisLM-B200-phase-f-source-v3`의 `evaluate_source_decision.py`와 내부 evaluation
+library가 존재하며 standalone uv runtime에서 `--help` import smoke도 통과했다. 따라서
+prediction은 Mistral standalone process가 만들고 scoring만 기존 evaluator를 읽기 전용으로
+호출한다.
+
+challenge-only generator가 G3 adapter로 prediction 500건을 생성했고 최종
+`predictions.jsonl`의 행 수 500과 별도 SHA-256 checksum 검증이 PASS했다. 이후 발생한
+`grep: : No such file or directory`는 새 shell에서 `PREDICT_LOG` 변수를 다시 선언하지
+않아 빈 경로를 전달한 증거 조회 오류이며 prediction artifact와 무관하다. prediction이
+hash로 동결됐으므로 이 시점 이후 별도 scorer process가 decision gold를 열 수 있다.
+
+기존 source-decision evaluator를 final threshold로 실행한 결과 scorer exit code 0,
+overall PASS였다. TP/TN/FP/FN은 `250/250/0/0`, precision/recall/schema/parse는
+모두 1.0, FPR·abstention·누락·추가는 모두 0이었다. latency p50/p95는
+2,395.3907/3,354.4281 ms다. 상세 판정과 hash는
+[Mistral Small 4 119B G3 Blind 500 Source Decision PASS](mistral_small_4_119b_g3_blind500_decision_20260820.md)에 동결했다.
+
 G3 PASS 전 merge, evidence adapter와 full epoch는 계속 금지한다. G3 PASS 뒤에도
 이 작업들은 자동 후속 단계가 아니라 별도 연구 결정과 승인 대상이다.
 
 # Related Concepts
 
+- [Mistral Small 4 B200 vLLM 0.26 서빙 트러블슈팅](../../../errors/mistral-small4-b200-vllm-serving-troubleshooting-20260820.md)
 - [Mistral F5-X 통합 설정 v2 인계서](../handoffs/mistral_f5x_unified_config_v2_handoff_20260805.md)
 - [Fine-Tuning Fundamentals](../fundamentals/index.md)
 - [AegisLM Phase F 연구 계획](aegislm_phase_f_experiment_plan_20260728.md)

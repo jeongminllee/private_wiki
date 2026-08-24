@@ -1,6 +1,7 @@
 # Training Runtime
 
 - [Mistral F5-X 첫 파인튜닝 실습 워크북](mistral_f5x_first_finetuning_workbook_20260809.md) - B200 2장 환경에서 runtime 호환성 검사부터 QLoRA·BF16 LoRA 1-step 실행, 모니터링과 증거 판정까지 직접 배우는 입문용 워크북
+- [Mistral Small 4 119B G3 Blind 500 Source Decision PASS](mistral_small_4_119b_g3_blind500_decision_20260820.md) - BF16 LoRA FSDP2 100-step adapter의 fresh blind decision 500건 전 gate PASS와 적용 범위
 - [LLaMA-Factory + W&B Fine-Tuning Integration](llamafactory_wandb_finetuning.md) - B200 서버에서 LLaMA-Factory, DeepSpeed, W&B로 Qwen3-Coder SFT를 실행하는 가이드
 - [W&B Training Metrics Guide for MalwareAnalysisLLM](wandb_training_metrics_guide.md) - LLaMA-Factory 학습 중 W&B에 표시되는 loss, learning rate, grad norm, epoch, runtime, system metric 해석 가이드
 - [Qwen3-Coder-Next 80B B200 2-GPU Real Training Run](qwen3_coder_next_80b_2gpu_run_20260720.md) - 400GiB cgroup 환경의 ZeRO-3 로딩 peak, steady-state VRAM/RAM, loss, evaluation, checkpoint 추적 기록
