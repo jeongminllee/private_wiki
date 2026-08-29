@@ -1,7 +1,29 @@
 # Change Log
 
+## 2026-08-29
+
+- **Big Data Analysis 2nd Written Exam Review Ingest (Subject 2 Complete)**: 빅데이터 분석기사 필기 제2회 기출문제 제2과목 빅데이터 탐색(21번~40번) 전체 문항에 대한 정답/오답 심화 분석, 1타 강사 암기 공식(박스플롯 IQR, 차원축소, 확률표본추출, 베이즈 정리, 확률분포 체계, 점추정/구간추정, 가설검정 오류-혼동행렬 매핑)을 [제2회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-02-review.md)에 누적 수록 완료했다.
+
+## 2026-08-28
+
+- **Big Data Analysis 2nd Written Exam Review Ingest (Subject 1 Complete)**: 빅데이터 분석기사 필기 제2회 기출문제 제1과목(1번~20번) 전체 문항에 대한 정답/오답 심화 분석, 1타 강사 암기 공식 및 출제위원 족보를 [제2회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-02-review.md)로 작성하고 인덱스([wiki/ml/bigdata_analysis/index.md](wiki/ml/bigdata_analysis/index.md))에 연결했다.
+- **Big Data Instructor Persona Established**: 기존 정보처리기사 강사 프롬프트를 발전시켜 빅데이터 분석기사 필기/실기 전문 1타 강사 페르소나 및 문제 풀이 6단계 표준 템플릿([references/bigdata-instructor-prompt.md](references/bigdata-instructor-prompt.md))을 신규 제정했다.
+- **Big Data Analysis Wiki Knowledge Enrichment**:
+  - `04-analysis-planning-directions.md`: 분석 대상(What) vs 방법(How) 2×2 매트릭스(최적화, 솔루션, 통찰, 발견) 오류 수정 및 정의 보강.
+  - `06-analysis-masterplan-governance.md`: 분석 준비도 6대 영역, 성숙도 CMMI 3대 부문/4단계 및 데이터 거버넌스 3대 구성요소(원칙, 조직, 프로세스) 추가.
+
+## 2026-08-25
+
+- **Mistral Dataset Language Audit**: Luna read-only auditor가 train 10,000·validation 1,000·fresh blind 500 ID를 eligible manifest의 `archive_path`에 100% deterministic join했다. train+validation은 C 8,606(78.24%), C++ 2,394(21.76%), blind는 C 402(80.40%), C++ 98(19.60%)이며 unknown·conflict는 0이다. 각 언어 내부 present/not_observed label도 정확히 균형임을 확인했다.
+- **Mistral Base Serving Script Drift Fixed**: B200의 `check_serving.sh`가 GitHub 보존본보다 오래돼 CuTeDSL warmup 우회와 cache/TMP 분리가 빠진 상태로 실행됐고 SM100 `TYPE_UNSTABLE_JOIN`이 재발했다. 기존 script를 artifact에 백업한 뒤 검증본 하나만 역동기화해 SHA-256 `e2559546…e784c`와 Bash syntax를 확인했다. 재실행 전 8000 포트와 두 B200 memory/utilization이 모두 0임을 확인했다.
+- **Mistral G3 vLLM LoRA Attach BLOCK**: official native FP8 base의 TP2 load, FP8 autotuning, CUDA graph와 KV cache 준비는 통과했지만 static G3 adapter 등록에서 모듈 검증이 실패했다. HF/Axolotl adapter의 split `q_a_proj`·`kv_a_proj_with_mqa` 144개 A/B tensor가 vLLM native executor의 `fused_qkv_a_proj`와 일치하지 않는 module ABI 문제로 판정했다. 학습·G3 blind PASS는 유지하며, 단순 key rename과 기존 blind 재사용은 금지한다.
+- **Mistral B200 Source Audit**: B200 standalone Mistral 프로젝트의 source allowlist 40개를 로컬과 SHA-256으로 비교해 missing·extra·mismatch 모두 0임을 확인했다. server의 `.git`에는 유효한 commit과 remote가 없었고, 로컬 저장본도 없어 새 nested repository를 만들었다.
+- **Mistral Local Git Baseline**: secret, model, dataset, adapter, artifact와 runtime cache를 제외하고 source·config·lockfile만 보존했다. portable `.gitignore`, README, serving helper와 LF 보완을 적용해 root commit `21f02558269af6f5b8b7634d69a9c3b37e54eef4`를 생성했다. B200 원본은 수정하지 않았다.
+- **GitHub Sync PASS**: 사용자가 GitHub CLI를 재인증한 뒤 `Malicious-code-detection-project/AegisLM-Mistral-Small-4-119B` private repository가 비어 있음을 확인하고 로컬 `main`을 push했다. 초기 source commit `21f02558269af6f5b8b7634d69a9c3b37e54eef4`, 보존 문서를 포함한 최종 remote HEAD `ea1891578dfd56fa679dcfd3acdecdb063c41c37`, default branch `main`, visibility `PRIVATE`를 검증했다. Windows 계정 차이의 `dubious ownership`은 전역 설정 없이 명령 단위 `safe.directory`로 처리했다.
+
 ## 2026-08-24
 
+- **Computer Vision Knowledge Ingest**: `raw/notes/Computer_vision/Szeliski_CVAABook_2ndEd.pdf` 원문(1,232쪽)을 기반으로 영상 형성, 3D 기하, SLAM, VLM, NeRF/3D-GS를 아우르는 13개 챕터별 핵심 Concept 문서 및 종합 대시보드([wiki/cv/index.md](wiki/cv/index.md))를 구축하고 루트 `index.md`에 연결했다.
 - **Routine Backlog Generation**: 2026-08-20부터 2026-08-24(오늘)까지 누락된 5일분의 4개 과목(`economy`, `ai_paper`, `Eng`, `Job_LLM_ML`) 루틴 폴더 및 마크다운 템플릿과 일자별 Daily Routine Checklist를 일괄 생성하고, 2026-08-13~2026-08-19의 체크리스트를 실제 작성된 콘텐츠 상태와 동기화 완료함.
 
 ## 2026-08-20

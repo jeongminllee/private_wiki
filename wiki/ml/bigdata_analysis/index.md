@@ -38,6 +38,9 @@ status: active
 - **[14. 군집 분석 및 연관 분석 (Clustering & Association Rules)](14-clustering-and-association.md)** - K-Means, 계층적 군집(덴드로그램), DBSCAN, 실루엣 계수 평가, Apriori 알고리즘(지지도, 신뢰도, 향상도)
 - **[15. 모델 평가 지표 및 최적화 (Model Evaluation & Tuning)](15-model-evaluation-and-optimization.md)** - 혼동행렬(Confusion Matrix), 정확도/정밀도/재현율/F1-score, ROC-AUC 곡선, K-Fold 교차검증, 하이퍼파라미터 튜닝
 
+### Part 5. 기출문제 복기 및 심화 해설
+- **[제2회 기출문제 복기 및 심화 해설](past-exam-02-review.md)** - 2회차 필기 기출문제 1번~순차 복기, 함정 선지 분석 및 1타 강사 암기 족보
+
 ---
 
 ## 🔗 관련 문서 및 상위 인덱스

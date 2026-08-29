@@ -28,11 +28,46 @@ environment를 사용했다. 두 환경은 model artifact와 API contract만 공
 | engine/API server startup | PASS | `Application startup complete` |
 | `/v1/completions` transport·decode | PASS | HTTP 응답, model routing, prompt 8 token과 decode 1 token 확인 |
 | `/v1/chat/completions` text generation | PASS | chat template 적용 뒤 정확히 `OK` 생성 |
-| G3 LoRA를 vLLM에 attach | PENDING | adapter 지원 범위를 별도 검증해야 함 |
+| G3 LoRA를 vLLM에 attach | BLOCK | HF/Axolotl의 분리된 `q_a_proj`·`kv_a_proj_with_mqa`와 vLLM native의 `fused_qkv_a_proj` 모듈 ABI 불일치 |
 | vision request | PENDING/BLOCKED | CuTeDSL warmup 우회는 text-only 범위 |
 
 따라서 현재 판정은 **official native FP8 base의 text-serving startup과 API transport
-및 non-empty Chat Completions PASS**다. G3 LoRA serving과 vision까지 통과했다는 뜻은
+및 non-empty Chat Completions PASS**, **G3 LoRA native attach BLOCK**이다. vision은 계속
+별도 PENDING/BLOCKED gate다.
+
+## G3 LoRA Attach Attempt
+
+2026-08-25 static LoRA 등록으로 base와 G3 adapter를 함께 기동했다. 두 B200의 TP2,
+FP8 autotuning, CUDA graph profiling과 KV cache 생성은 정상적으로 끝났으며 GPU당 사용
+가능 KV cache는 약 81.98 GiB였다. 실패 위치는 engine 준비 뒤
+`init_static_loras → add_lora → check_unexpected_modules`였다.
+
+핵심 오류는 다음 모듈 불일치다.
+
+```text
+adapter received:
+  self_attn.q_a_proj
+  self_attn.kv_a_proj_with_mqa
+
+vLLM native model expected:
+  fused_qkv_a_proj
+```
+
+G3 safetensors에는 총 720개 LoRA tensor가 있고 36개 layer 각각에 A/B tensor가
+저장돼 있다. 즉 `q_a_proj` 72개와 `kv_a_proj_with_mqa` 72개, 합계 144개 tensor가
+native executor의 fused target과 맞지 않아 거부됐다. adapter key의 긴
+`language_model.model.layers.*` prefix 자체가 원인은 아니다. 같은 prefix를 쓰는
+`q_b_proj`, `kv_b_proj`, `o_proj`와 shared expert target은 unexpected 목록에 없었다.
+
+이는 training artifact 손상이나 rank·dtype·VRAM 문제가 아니다. Axolotl/Transformers
+학습 graph는 두 projection을 별도 module로 노출하지만 vLLM native Mistral executor는
+kernel 실행을 위해 하나의 `fused_qkv_a_proj`로 pack한다. 따라서 현재 adapter를 단순히
+rename해서는 안 된다. 두 rank-16 delta를 정확히 합치려면 일반적으로 fused output에
+대한 block 구성과 최대 rank 32가 필요하며, 새 artifact hash와 수치 동등성 검증이
+필수다.
+
+종료 시 보인 leaked semaphore/shared-memory warning은 worker 실패 뒤 cleanup 부산물이며
+root cause가 아니다. MoE default config warning도 성능 경고일 뿐 attach 실패 원인이
 아니다.
 
 ## API Smoke Attempt 1
@@ -82,6 +117,12 @@ text generation을 모두 PASS로 닫는다.
 | 5 | Triton `.so`의 `failed to map segment` | `/tmp` executable mmap 제한으로 추정 | TorchInductor·Triton·CUDA cache를 실행 가능한 persistent 경로로 이동 | 해당 오류 해소 |
 | 6 | ZMQ `ipc path ... longer than 107 characters` | 긴 project `TMPDIR`이 Unix socket path 한계를 초과 | `TMPDIR/TMP/TEMP`만 짧은 사용자 경로로 분리 | IPC bind PASS |
 | 7 | CuTeDSL `TYPE_UNSTABLE_JOIN` | B200 SM100 FA4 split-KV warmup과 CUTLASS DSL 4.6.0의 알려진 조합 문제 | text-only에서 CuTeDSL warmup 비활성화 | API server startup PASS |
+
+2026-08-25 B200의 `scripts/check_serving.sh`가 이 성공 옵션을 포함하지 않은 구버전으로
+남아 있어 같은 7번 오류가 재발했다. GitHub 보존본과 비교해
+`--kernel-config '{"enable_cutedsl_warmup": false}'`, executable cache 분리와 짧은
+IPC temp가 빠진 것을 확인했다. 기존 script를 artifact에 백업하고 검증본 하나만
+역동기화했으며, script SHA-256과 `bash -n`을 재검증했다.
 
 # Cause and Solution Details
 
@@ -288,12 +329,14 @@ provenance를 함께 고정하고 기존 contract로 다시 평가한다.
 1. **완료**: base server의 Chat Completions에서 비어 있지 않은 non-reasoning 응답을
    확인한다.
 2. request/response와 server log를 secret·private path 없이 evidence로 보존한다.
-3. vLLM LoRA capability와 Mistral MoE expert parameter 지원 범위를 작은 요청으로 확인한다.
-4. local BF16 base와 official native FP8 base 중 adapter provenance에 맞는 serving 경로를
-   결정한다.
-5. adapter-enabled API가 열리면 새 held-out smoke를 실행한다. 기존 blind 500 gold는 다시
-   model selection에 사용하지 않는다.
-6. vision serving은 CUTLASS DSL/QuACK 호환 pin을 동결한 새 environment에서 별도로 검증한다.
+3. **BLOCK 확인**: vLLM 0.26 native executor가 G3의 split `q_a`·`kv_a` LoRA를
+   `fused_qkv_a_proj` target으로 받지 못한다.
+4. 빠른 보존 경로는 이미 PASS한 local BF16 base + Transformers/PEFT reload inference를
+   유지한다.
+5. vLLM이 반드시 필요하면 serving-only adapter pack 변환, split target을 지원하는 별도
+   vLLM runtime 또는 새 serving-compatible adapter 학습을 별도 Work Order로 비교한다.
+6. 변환·재학습 artifact는 새 hash와 새 held-out 평가 없이 기존 G3 PASS를 상속하지 않는다.
+7. vision serving은 CUTLASS DSL/QuACK 호환 pin을 동결한 새 environment에서 별도로 검증한다.
 
 # Related Concepts
 

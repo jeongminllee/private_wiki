@@ -13,6 +13,8 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 
 ## High-Signal Docs
 
+- [Mistral Source Decision 데이터셋 언어 분포](data/mistral_source_decision_language_distribution_20260825.md) - C 약 78%·C++ 약 22%, unknown·manifest join 누락 0인 provenance 감사
+- [Mistral Small 4 119B B200 소스 보존 및 GitHub 동기화](b200/mistral_standalone_source_sync_20260825.md) - B200 standalone 소스와 로컬의 SHA-256 일치, portable 보완, private GitHub 보존 완료 기록
 - [Mistral Small 4 B200 vLLM 0.26 서빙 트러블슈팅](../../errors/mistral-small4-b200-vllm-serving-troubleshooting-20260820.md) - native/HF checkpoint 경계와 B200 kernel·cache·IPC 문제를 해결해 official native FP8 base startup까지 통과한 기록
 - [Mistral 공식 FP8 체크포인트의 로컬 BF16 변환 이해](fundamentals/mistral_fp8_to_bf16_checkpoint_conversion.md) - 공식 FP8 checkpoint를 local BF16 shard로 변환한 과정의 수학, 파일 구조, 비가역적 정밀도 한계와 실무 검증 절차
 - [Mistral F5-X 첫 파인튜닝 실습 워크북](training/mistral_f5x_first_finetuning_workbook_20260809.md) - 처음 파인튜닝을 실행하는 사용자가 compatibility probe, runtime 동결, model·dataset 검증, QLoRA·LoRA 1-step과 GPU·loss·adapter 증거를 직접 관찰하는 단계별 교재

@@ -1,5 +1,6 @@
 ﻿# B200 Experiments
 
+- [Mistral Small 4 119B B200 소스 보존 및 GitHub 동기화](mistral_standalone_source_sync_20260825.md) - B200 standalone 소스 40개를 SHA-256으로 감사하고 private GitHub push 전 로컬 Git 기준선을 만든 기록
 - [AegisLM-B200 2-GPU 재구축](aegislm_b200_2gpu_rebuild.md) - Qwen3-Coder-Next 80B용 B200 2장 환경, full dataset, model, checkpoint, handoff 준비 기록
 - [B200 Server Fine-Tuning](B200_server.md) - B200 GPU 서버 기반 LLM fine-tuning 실행 환경 기록
 - [B200 Full-Size Training Queue](b200_full_size_training_queue.md) - Qwen2/72B를 제외하고 Qwen3-Coder-Next 80B부터 full dataset real training으로 전환하는 실행 큐
