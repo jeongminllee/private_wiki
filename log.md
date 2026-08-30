@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-08-30
+
+- **Big Data Analysis 2nd Written Exam Review 100% Complete (All 80 Questions Ingested)**: 빅데이터 분석기사 필기 제2회 기출문제 전 과목(1번~80번, 총 80문항)에 대한 정답/오답 심화 분석, 1타 강사 암기 공식 및 출제위원 족보를 [제2회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-02-review.md)에 집대성 완료했다.
+  - **제3과목 빅데이터 모델링 (41번~60번)**: Gartner 4대 분석성숙도, 머신러닝 학습유형, 모델링 4단계(마탐모평), Train-Val-Test 분할, K-Fold CV, 회귀오차가정 등분산성, 전진/후진/단계 변수선택, Lasso/Ridge 규제, 로지스틱 회귀, 신경망 파라미터 갱신, SVM 마진/커널, K-Means 엘보우, MDS 거리행렬, 시계열 AR/MA/ARIMA, 베이즈 정리 공식, CNN 특징맵 크기 공식, 앙상블 배깅/부스팅 완벽 수록.
+  - **제4과목 빅데이터 결과 해석 (61번~80번)**: ROC 곡선 최적점(0,1), 혼동행렬 지표(특이도, 민감도, FPR 보완관계), F1-Score 조화평균 계산, 회귀 영향력 진단(Cook, DFBETAS, DFFITS), 군집 모델 진단(단순계산법, 엘보우, 던지수, 실루엣), 정규성 진단(Q-Q Plot, Shapiro-Wilk), 가설검정 5단계(가유검피결), K-S 적합도 검정(누적분포 최대거리 D), 과적합 vs 과소적합 편향-분산, 파라미터 vs 하이퍼파라미터 및 학습률 영향, 모델 유형별 평가지표 매칭, 시각화 4대 기능(탐가설표), 시각화 5대 분류(비교 플로팅바/체르노프 vs 분포 트리맵), 인포그래픽 특성, 분석 결과 검증(Validation)의 절대적 필요성 수록.
+
 ## 2026-08-29
 
 - **Big Data Analysis 2nd Written Exam Review Ingest (Subject 2 Complete)**: 빅데이터 분석기사 필기 제2회 기출문제 제2과목 빅데이터 탐색(21번~40번) 전체 문항에 대한 정답/오답 심화 분석, 1타 강사 암기 공식(박스플롯 IQR, 차원축소, 확률표본추출, 베이즈 정리, 확률분포 체계, 점추정/구간추정, 가설검정 오류-혼동행렬 매핑)을 [제2회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-02-review.md)에 누적 수록 완료했다.
