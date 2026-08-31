@@ -1,7 +1,13 @@
 # Change Log
 
+## 2026-08-31
+
+- **Big Data Analysis 12th Written Exam Review (Subject 1 Complete)**: 2026년 상반기 시행 제12회 빅데이터 분석기사 필기 기출문제 제1과목 빅데이터 분석 기획(01번~20번, 20문항) 전체 복기 및 오답노트 작성을 완료했다.
+  - **주요 복기 내용**: MapReduce 조인 패턴, 데이터 품질 4대 요소(완전성/정확성/정합성/적시성), 프라이버시 보호 모델(k-익명성/l-다양성/t-근접성/m-유일성), 웹 파싱(Parsing)과 DOM, Scrapy/JDBC/Nutch 도구 매칭, 플랫폼 계층(소프트웨어 vs 자원할당), MongoDB BSON/샤딩, HDFS NameNode SPOF 및 128MB 블록, 하둡 생태계(Chukwa/Sqoop/Hive/Pig), 분석 과제 4대 유형(What vs How), KDD vs CRISP-DM 방법론, 도메인 이슈 도출과 요건정의서, ROI 4V 분할(3V 비용 vs Value 효과), 데이터 3법 및 신용정보법, 분석 마스터플랜 우선순위/로드맵, AI 모델 설계 요소, 빅데이터 활용 3요소(데·기·인), 시급성 vs 난이도 평가 축, 분석 조직 3대 구조(집중형/기능형/분산형), 데이터 레이크(Raw, Schema-on-Read, Data Swamp)를 [제12회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-12-review.md)에 수록 완료했다.
+
 ## 2026-08-30
 
+- **Big Data Analysis 12th Written Exam Review & Wrong-Answer Notes Started**: 2026년 상반기 시행 제12회 빅데이터 분석기사 필기 기출문제 오답노트 작성을 시작했다. [제12회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-12-review.md)를 생성하고 01번 맵리듀스(MapReduce) 디자인 패턴(조인 패턴 vs 필터링 vs 요약 패턴) 해설을 등록했다.
 - **Big Data Analysis 2nd Written Exam Review 100% Complete (All 80 Questions Ingested)**: 빅데이터 분석기사 필기 제2회 기출문제 전 과목(1번~80번, 총 80문항)에 대한 정답/오답 심화 분석, 1타 강사 암기 공식 및 출제위원 족보를 [제2회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-02-review.md)에 집대성 완료했다.
   - **제3과목 빅데이터 모델링 (41번~60번)**: Gartner 4대 분석성숙도, 머신러닝 학습유형, 모델링 4단계(마탐모평), Train-Val-Test 분할, K-Fold CV, 회귀오차가정 등분산성, 전진/후진/단계 변수선택, Lasso/Ridge 규제, 로지스틱 회귀, 신경망 파라미터 갱신, SVM 마진/커널, K-Means 엘보우, MDS 거리행렬, 시계열 AR/MA/ARIMA, 베이즈 정리 공식, CNN 특징맵 크기 공식, 앙상블 배깅/부스팅 완벽 수록.
   - **제4과목 빅데이터 결과 해석 (61번~80번)**: ROC 곡선 최적점(0,1), 혼동행렬 지표(특이도, 민감도, FPR 보완관계), F1-Score 조화평균 계산, 회귀 영향력 진단(Cook, DFBETAS, DFFITS), 군집 모델 진단(단순계산법, 엘보우, 던지수, 실루엣), 정규성 진단(Q-Q Plot, Shapiro-Wilk), 가설검정 5단계(가유검피결), K-S 적합도 검정(누적분포 최대거리 D), 과적합 vs 과소적합 편향-분산, 파라미터 vs 하이퍼파라미터 및 학습률 영향, 모델 유형별 평가지표 매칭, 시각화 4대 기능(탐가설표), 시각화 5대 분류(비교 플로팅바/체르노프 vs 분포 트리맵), 인포그래픽 특성, 분석 결과 검증(Validation)의 절대적 필요성 수록.
