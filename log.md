@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-09-02
+
+- **Big Data Analysis 12th Written Exam Review (Subject 3 Complete)**: 2026년 상반기 시행 제12회 빅데이터 분석기사 필기 기출문제 제3과목 빅데이터 모델링(41번~60번, 20문항) 전체 복기 및 오답노트 작성을 완료했다.
+  - **주요 복기 내용**: SVM 4대 커널 vs 하이퍼파라미터($C, \gamma$), 규제 회귀 목적함수(L2 릿지 vs L1 라쏘 vs 엘라스틱넷), 파생변수(열 추가) vs 행 축소, 척도별 거리 측도(명목형 자카드 Jaccard vs 연속형 유클리드/마할라노비스), XOR 단층 퍼셉트론 선형 분리 불가, 카이제곱 적합도 검정($df=3, \chi^2=4.64$), 어텐션 메커니즘(Softmax 동적 맥락 가중치), 로지스틱 회귀 4단계 변환($p \to \text{Odds} \to \text{Logit} \leftrightarrow \text{Sigmoid}$ 및 $p\to0 \Rightarrow -\infty$), HMM 3대 파라미터(전·방·초) vs 비터비 알고리즘, t-분포(모분산 미지 시 모평균 추론, 꼬리 두꺼움) vs 카이제곱(모분산 자체 추론), 비모수 검정 4총사(독립 2집단 맨-휘트니 vs 대응 2집단 윌콕슨 부호순위 vs 독립 3집단+ 크루스칼-왈리스), 순환 신경망(RNN, 이전 은닉상태 순환 전달) vs 트랜스포머(Self-Attention 병렬), 배깅(독립·병렬·분산감소) vs 부스팅(순차·편향감소), 나이브 베이즈(조건부 독립 가정) 및 라플라스 스무딩(0 확률 방지 분자+1), 인공신경망 손실함수 MSE 계산($\text{MSE}=0.04$) 및 MAE/RMSE 체계, 시계열 ACF(중간 시차 포함) vs PACF(중간 시차 제거 순수 상관) 및 AR-PACF/MA-ACF 절단 족보, 랜덤 포레스트(부트스트랩+무작위 특성선택) 및 트리 수 증가 시 성능 포화(Plateau), 딥러닝 역전파 기울기 소실(Vanishing Gradient) 및 4대 처방전(ReLU, He초기화, BatchNorm, ResNet 잔차연결), 선형 회귀 5대 기본 가정(선·독·등·정·비) 및 잔차 진단(0 중심 무작위 산포가 정상), 다중공선성(Multicollinearity, VIF 10 이상, 회귀계수 분산 증가 vs 예측력은 유지 가능, Ridge/PCA 해결)을 [제12회 기출문제 복기 노트](wiki/ml/bigdata_analysis/past-exam-12-review.md)에 수록 완료했다.
+
 ## 2026-09-01
 
 - **Big Data Analysis 12th Written Exam Review (Subject 2 Complete)**: 2026년 상반기 시행 제12회 빅데이터 분석기사 필기 기출문제 제2과목 빅데이터 탐색(21번~40번, 20문항) 전체 복기 및 오답노트 작성을 완료했다.

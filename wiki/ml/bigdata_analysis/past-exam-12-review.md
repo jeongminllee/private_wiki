@@ -1676,6 +1676,1033 @@ $$\boxed{\textbf{음의 상관}(r < 0) \Longrightarrow PC_1 = \frac{A - B}{\sqrt
 
 ---
 
+# 📖 제3과목: 빅데이터 모델링 (41번 ~ 60번)
+
+---
+
+## 📌 [41번] 지도학습 분류 모델 - SVM(서포트 벡터 머신)의 커널 함수 4총사 vs 하이퍼파라미터(Gamma, Cost)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 분류 분석 $\rightarrow$ SVM(Support Vector Machine)의 커널 트릭(Kernel Trick)과 하이퍼파라미터
+- **핵심 의도**: SVM에서 저차원 비선형 데이터를 고차원 공간으로 매핑하는 **커널 함수(Kernel Function) 4총사(선형, 다항, RBF, 시그모이드)**와, 커널의 곡률/영향 반경을 조절하는 **하이퍼파라미터인 감마(Gamma, $\gamma$)**를 구별할 수 있는지 평가.
+
+### 🎯 정답
+**② 감마 (Gamma, $\gamma$) ❌ (커널 함수가 아닌 하이퍼파라미터 $\rightarrow$ 정답)**
+
+### 📌 정답인 이유: [다항/RBF/시그모이드는 커널, 감마는 조절값!]
+- **SVM 4대 커널 함수 (Kernel Functions)**:
+  1. **선형 커널 (Linear)**: $K(x, z) = x^T z + c$
+  2. **다항식 커널 (Polynomial)**: $K(x, z) = (\gamma x^T z + r)^d$
+  3. **방사 기저 함수 (RBF / Gaussian)**: $K(x, z) = \exp(-\gamma \|x - z\|^2)$
+  4. **시그모이드 커널 (Sigmoid / Hyperbolic Tangent)**: $K(x, z) = \tanh(\gamma x^T z + r)$
+- **감마 (Gamma, $\gamma$)의 통계적 정체**:
+  - RBF, 다항, 시그모이드 커널 공식 내부에 포함되어 **개별 데이터 포인트가 결정 경계 형성에 미치는 영향 반경(Influence Radius)을 결정하는 핵심 하이퍼파라미터**임.
+
+### 🔎 선지 정밀 분석: [SVM 커널 vs 하이퍼파라미터 대조]
+1. **① 시그모이드 (Sigmoid)**: $\tanh(\gamma x^T z + r)$ 형태의 커널 함수 (⭕ 커널 함수).
+2. **② 감마 (Gamma)**: 커널의 곡률과 데이터 영향 범위를 결정하는 하이퍼파라미터 (❌ 비커널 $\rightarrow$ 정답).
+3. **③ 다항식 (Polynomial)**: 차수($d$)를 갖는 커널 함수 (⭕ 커널 함수).
+4. **④ 방사 기저 함수 (RBF)**: 가장 널리 쓰이는 가우시안 기반 비선형 커널 함수 (⭕ 커널 함수).
+
+### 📚 출제위원 시크릿 족보: [SVM 2대 핵심 하이퍼파라미터 $C$ & $\gamma$ 완벽 총정리표]
+$$\boxed{C \uparrow \Longrightarrow \text{오분류 절대 불용} \longrightarrow \text{마진 } \downarrow \text{ (하드마진)} \longrightarrow \textbf{과적합(Overfitting) 위험}}$$
+$$\boxed{\gamma \uparrow \Longrightarrow \text{데이터 영향 반경 } \downarrow \longrightarrow \text{결정경계 극도로 굴곡} \longrightarrow \textbf{과적합(Overfitting) 위험}}$$
+
+| 하이퍼파라미터 | 물리적/수학적 의미 | 값이 증가할 때 ($C \uparrow, \gamma \uparrow$) | 값이 감소할 때 ($C \downarrow, \gamma \downarrow$) |
+| :--- | :--- | :--- | :--- |
+| **비용 (Cost, $C$)** | **오분류 데이터에 부여하는 벌점(Penalty) 크기** | **오분류 엄단 $\rightarrow$ 마진 폭 축소 $\rightarrow$ 과적합 위험** | 오분류 관대 허용 $\rightarrow$ 소프트마진 $\rightarrow$ 과소적합 위험 |
+| **감마 (Gamma, $\gamma$)** | **개별 데이터 포인트의 영향력 반경의 역수 ($1/2\sigma^2$)** | **영향 반경 좁아짐 $\rightarrow$ 결정경계 굴곡/복잡 $\rightarrow$ 과적합 위험** | 영향 반경 넓어짐 $\rightarrow$ 결정경계 단순/완만 $\rightarrow$ 과소적합 위험 |
+
+### 🧠 빅분기 암기 팁
+- **“선·다·알·시 (선형, 다항, RBF, 시그모이드) = SVM 4대 커널 함수!”**
+- **“감마($\gamma$)와 비용($C$)은 커널이 아니라 조절값(하이퍼파라미터)이다!”**
+- **“$C$ 크면 오분류 못 참고, $\gamma$ 크면 가까운 놈만 본다 $\rightarrow$ 둘 다 커지면 과적합!”** 1초 컷!
+
+---
+
+## 📌 [42번] 회귀 분석 및 규제 - 규제 선형회귀(Ridge vs Lasso vs Elastic Net)와 $L_2$ 목적함수
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 회귀 분석 $\rightarrow$ 정규화/규제(Regularization) 회귀 모델 (Ridge vs Lasso vs Elastic Net)
+- **핵심 의도**: 오차제곱합($SSE$)에 회귀계수 제곱합 페널티($\lambda \sum \beta_j^2$)를 결합한 목적함수 형태를 보고, 이것이 **$L_2$ 규제를 적용한 릿지(Ridge) 회귀**임을 식별할 수 있는지 평가.
+
+### 🎯 정답
+**③ 릿지(Ridge) 회귀**
+
+### 📌 정답인 이유: [목적함수에 $\beta_j^2$ 제곱이 붙으면 릿지(Ridge)!]
+- **릿지 회귀 (Ridge Regression)의 목적함수**:
+  $$\text{Loss}_{\text{Ridge}} = \sum_{i=1}^n (y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^p \beta_j^2 = \text{SSE} + \lambda \|\beta\|_2^2 \quad (\lambda > 0)$$
+  - **$L_2$ 규제(Penalty)**: 회귀계수의 크기 제곱에 비례하여 페널티를 부과함.
+  - **계수 축소 (Shrinkage)**: $\lambda$가 커질수록 회귀계수를 0에 가깝게 지속적으로 축소시켜 모델의 복잡도와 분산을 낮추고 **과적합(Overfitting) 및 다중공선성(Multicollinearity) 문제를 효과적으로 완화**함.
+  - **특징**: 계수를 0에 극도로 가깝게 줄이지만 **일반적으로 정확히 0으로 만들지는 않으므로 변수 선택(Feature Selection) 효과는 없음**.
+
+### 🔎 선지 정밀 분석: [규제 선형회귀 모델 3총사 대조]
+1. **① 라쏘(Lasso) 회귀**: 회귀계수의 절댓값 합인 **$L_1$ 규제($\lambda \sum |\beta_j|$)**를 적용하여 일부 계수를 정확히 0으로 만들어 변수 선택 수행 (❌ 절댓값 페널티).
+2. **② 엘라스틱넷(Elastic Net) 회귀**: $L_1$ 페널티와 $L_2$ 페널티를 동시에 결합한 목적함수 ($\text{SSE} + \lambda_1 \sum |\beta_j| + \lambda_2 \sum \beta_j^2$, ❌).
+3. **③ 릿지(Ridge) 회귀**: 계수 제곱합인 **$L_2$ 페널티($\lambda \sum \beta_j^2$)** 적용 (⭕ 정답).
+4. **④ 로지스틱(Logistic) 회귀**: 종속변수가 범주형일 때 승산비(Odds Ratio)와 시그모이드 함수를 사용하는 분류 모델 (❌).
+
+### 📚 출제위원 시크릿 족보: [규제 선형회귀 3총사 완벽 비교 총정리표]
+$$\boxed{\textbf{릿지 (Ridge)} \longrightarrow L_2 \text{ 규제 } (\sum \beta_j^2) \longrightarrow \textbf{계수 축소, 다중공선성 해결 (계수 } \ne 0)}$$
+$$\boxed{\textbf{라쏘 (Lasso)} \longrightarrow L_1 \text{ 규제 } (\sum |\beta_j|) \longrightarrow \textbf{계수 0 축소, 변수 선택 (Feature Selection)}}$$
+$$\boxed{\textbf{엘라스틱넷 (Elastic Net)} \longrightarrow L_1 + L_2 \text{ 결합} \longrightarrow \textbf{상관관계 높은 변수군 동시 선택}}$$
+
+| 모델명 | 규제 유형 | 목적함수 페널티 항 | 계수를 0으로 만듦 | 핵심 기능 및 장점 |
+| :--- | :---: | :--- | :---: | :--- |
+| **릿지 (Ridge)** | **$L_2$** | **$\lambda \sum \beta_j^2$ (제곱)** | **❌ 불가** | **계수 크기 축소, 다중공선성 완화, 안정적 예측** |
+| **라쏘 (Lasso)** | **$L_1$** | **$\lambda \sum \|\beta_j\|$ (절댓값)** | **⭕ 가능 ($\beta_j=0$)** | **변수 선택(Feature Selection), 희소 모델 생성** |
+| **엘라스틱넷 (Elastic Net)** | **$L_1 + L_2$** | **$\lambda_1 \sum \|\beta_j\| + \lambda_2 \sum \beta_j^2$** | **⭕ 가능** | **다중공선성 변수 그룹 동시 선택, Lasso 한계 극복** |
+
+### 🧠 빅분기 암기 팁
+- **“제곱은 릿지 ($L_2, \beta^2$) / 절댓값은 라쏘 ($L_1, |\beta|$) / 둘 다 쓰면 엘라스틱넷!”**
+- **“회귀계수를 정확히 0으로 만들어 변수를 선택한다 $\rightarrow$ 1초 만에 라쏘(Lasso)!”**
+- **“$\lambda$ (규제 강도) $\uparrow \longrightarrow$ 계수 크기 $\downarrow \longrightarrow$ 모델 분산 $\downarrow$ (과적합 완화), 편향 $\uparrow$!”** 1초 컷!
+
+---
+
+## 📌 [43번] 데이터 전처리 및 특성공학 - 파생변수(Derived Variable)의 정의와 활용
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 데이터 전처리 및 특성 공학(Feature Engineering) $\rightarrow$ 파생변수(Derived Variable)의 개념 및 목적
+- **핵심 의도**: **파생변수(Derived Variable)**가 기존의 원시 변수들을 사칙연산, 도메인 지식, 날짜 분해 등으로 조합/변환하여 **새로운 열(Column)을 생성함으로써 데이터의 숨겨진 패턴을 드러내고 모델의 분석 성능을 극대화**하는 기법임을 알고 있는지 평가.
+
+### 🎯 정답
+**④ 기존 변수를 조합하거나 변환하여 새로운 변수를 생성함으로써 데이터에 숨어 있는 패턴을 드러내고 분석 성능을 높이는 것이다 ⭕**
+
+### 📌 정답인 이유: [기존 변수 조합 $\rightarrow$ 새로운 열(Column) 탄생!]
+- **파생변수 (Derived Variable)**:
+  - 이미 수집된 기존 변수(Feature)들을 바탕으로 계산, 결합, 조건 분기, 도메인 지식을 적용하여 **분석 목적에 맞는 새로운 의미와 설명력을 갖는 변수를 생성**하는 것.
+  - 대표 예시:
+    - $\text{키, 몸무게} \longrightarrow \mathbf{\text{BMI = 몸무게 / 키}^2}$
+    - $\text{매출액, 고객수} \longrightarrow \mathbf{\text{객단가(고객당 평균 매출)}}$
+    - $\text{가입일자(2026-09-02)} \longrightarrow \mathbf{\text{가입연도, 요일, 주말여부, 가입 후 경과일}}$
+    - $\text{총구매금액, 구매횟수} \longrightarrow \mathbf{\text{평균 결제 단가}}$
+- **오답 선지들의 개념 매칭**:
+  - **① 원시 데이터 그대로 사용**: 가공되지 않은 **원천 데이터(Raw Data)**에 대한 설명.
+  - **② 행(Row) 수를 줄여 저장공간 절약**: **데이터 축소(Data Reduction, 샘플링, 집계)**에 대한 설명.
+  - **③ 알고리즘이 자동으로 패턴 탐지**: **데이터 마이닝(Data Mining)** 및 머신러닝 학습 알고리즘에 대한 설명.
+
+### 🔎 선지 정밀 분석: [파생변수 vs 타 데이터 처리 개념 대조]
+1. **① 가공 없이 원시 데이터 그대로 사용**: 파생변수는 원시 데이터를 가공하여 새 변수를 만드는 것이므로 거짓 (❌).
+2. **② 행(레코드) 수를 줄여 저장 공간 절약**: 행을 줄이는 것은 데이터 축소(샘플링)이며, 파생변수는 열(Column)을 추가하는 것 (❌).
+3. **③ 알고리즘이 자동으로 패턴 탐지**: 데이터 마이닝의 정의 (❌).
+4. **④ 기존 변수 조합·변환으로 새 변수 생성 및 패턴 규명**: 파생변수의 완벽한 정의 (⭕ 정답).
+
+### 📚 출제위원 시크릿 족보: [특성 공학(Feature Engineering) 3대 핵심 영역 비교표]
+$$\boxed{\textbf{특성 공학} = \textbf{변수 선택}(Selection) + \textbf{변수 변환}(Transformation) + \textbf{파생변수 생성}(Construction)}$$
+
+| 특성 공학 세부 영역 | 핵심 메커니즘 | 데이터 차원의 변화 | 대표 기법 및 예시 |
+| :--- | :--- | :---: | :--- |
+| **파생변수 생성 (Construction)** | **기존 변수 조합 $\rightarrow$ 새 의미 변수 창출** | **열(Column) 추가 ($\uparrow$)** | **BMI, 객단가, 이용기간, 요일 추출** |
+| **변수 변환 (Transformation)** | **변수의 스케일/분포 형태 변경** | 열(Column) 유지 | **로그 변환($\log X$), 정규화(0~1), 표준화($Z$)** |
+| **변수 선택 (Selection)** | 중요도가 높은 유의미한 변수만 선별 | **열(Column) 감소 ($\downarrow$)** | **Filter(상관계수), Wrapper(RFE), Lasso($L_1$)** |
+| **데이터 축소 (Reduction)** | 분석 대상 표본/레코드 압축 | **행(Row) 감소 ($\downarrow$)** | **표본추출(Sampling), 집계(Aggregation)** |
+
+### 🧠 빅분기 암기 팁
+- **“행(Row)을 줄인다 $\rightarrow$ 데이터 축소(Reduction) / 열(Column)을 새로 만든다 $\rightarrow$ 파생변수!”**
+- **“기존 변수 조합 $\rightarrow$ 새 변수 생성 $\rightarrow$ 1초 만에 파생변수(Derived Variable)!”**
+- **“파생 = 부모 변수들로부터 새로운 자식 변수가 태어난다!”** 1초 컷!
+
+---
+
+## 📌 [44번] 비지도학습 군집분석 - 데이터 척도별 거리 측도(명목형/이진형: Jaccard vs 연속형: Euclidean, Mahalanobis)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 비지도학습 및 군집 분석 $\rightarrow$ 데이터 척도(Scale)에 따른 거리/유사도 측도 선정
+- **핵심 의도**: 수치적 크기나 간격의 차이(뺄셈 연산)가 무의미한 **명목형(Nominal) 또는 비대칭 이진형(Binary) 데이터**의 유사도 측정 시, 유클리드/마할라노비스가 아닌 **자카드 거리(Jaccard Distance)**를 사용해야 함을 알고 있는지 평가.
+
+### 🎯 정답
+**① 자카드 거리 (Jaccard Distance)**
+
+### 📌 정답인 이유: [명목형 변수는 뺄셈이 불가 $\rightarrow$ 집합 교집합 비율인 자카드!]
+- **명목형(Nominal) 변수의 본질과 한계**:
+  - 혈액형(A, B, O, AB)이나 지역(서울, 부산, 대구)처럼 숫자는 단순한 범주 식별 라벨일 뿐 크기나 차이의 의미가 없음.
+  - 따라서 $x_i - y_i$ 뺄셈 연산에 기반하는 **유클리드, 맨해튼, 민코프스키, 마할라노비스 거리는 명목형 데이터에 적용할 수 없음**.
+- **자카드 유사도 및 거리 (Jaccard Similarity & Distance)**:
+  - 두 객체가 공통으로 보유한 속성(교집합)의 비율을 측정함.
+  $$J(A, B) = \frac{|A \cap B|}{|A \cup B|} = \frac{a}{a+b+c}, \qquad d_J = 1 - J(A, B)$$
+  - **비대칭 이진 명목형 데이터(Asymmetric Binary)**에서 "둘 다 없는 경우($d=0$)"를 배제하고 **"둘 다 공통으로 보유한 특성($a=1$)"에만 초점을 맞추어** 쇼핑 바구니 분석, 질병 유무 비교 등에 가장 적합함.
+
+### 🔎 선지 정밀 분석: [거리 측도 4총사 척도별 판별]
+1. **① 자카드 거리 (Jaccard)**: 명목형, 비대칭 이진형, 집합 데이터 전용 유사도/거리 측도 (⭕ 정답).
+2. **② 마할라노비스 거리 (Mahalanobis)**: 연속형 수치 데이터에서 **변수 간의 상관관계 및 공분산 구조($S^{-1}$)**를 고려한 거리 (❌ 연속형 전용).
+3. **③ 유클리드 거리 (Euclidean)**: 연속형 수치 공간에서 두 점 사이의 최단 직선거리 ($L_2$ 노름, ❌).
+4. **④ 민코프스키 거리 (Minkowski)**: $p=1$(맨해튼), $p=2$(유클리드)를 포괄하는 연속형 거리의 일반화 수식 (❌).
+
+### 📚 출제위원 시크릿 족보: [데이터 척도별 최적 거리/유사도 측도 총정리표]
+$$\boxed{\textbf{명목형 / 이진형} \longrightarrow \textbf{자카드 (Jaccard)}, \textbf{단순일치계수 (SMC)} \quad (\text{일치 비율})}$$
+$$\boxed{\textbf{연속형 (독립 가정)} \longrightarrow \textbf{유클리드 (직선)}, \textbf{맨해튼 (격자)} \quad \longleftrightarrow \quad \textbf{연속형 (상관관계)} \longrightarrow \textbf{마할라노비스}}$$
+$$\boxed{\textbf{문서 / 텍스트 벡터} \longrightarrow \textbf{코사인 유사도 (Cosine Similarity)} \quad (\text{사잇각 } \theta)}$$
+
+| 데이터 척도 | 최적 거리/유사도 측도 | 수식 및 핵심 메커니즘 | 주요 특징 및 출제 키워드 |
+| :--- | :--- | :--- | :--- |
+| **명목형 / 비대칭 이진** | **자카드 (Jaccard)** | $J = \frac{a}{a+b+c}$ | **둘 다 0인 부정 일치($d$) 제외**, 장바구니/질병 유무 |
+| **명목형 / 대칭 이진** | **단순 일치 계수 (SMC)** | $SMC = \frac{a+d}{a+b+c+d}$ | **둘 다 0인 경우($d$)도 일치로 인정**, 성별 일치 |
+| **연속형 (독립/비상관)** | **유클리드 거리** | $d = \sqrt{\sum (x_i - y_i)^2}$ | 좌표평면 최단 직선거리 ($L_2$) |
+| **연속형 (상관관계 고려)** | **마할라노비스 거리** | $d = \sqrt{(x-y)^T S^{-1} (x-y)}$ | **공분산 행렬($S$) 반영, 통계적 거리** |
+| **텍스트/고차원 희소** | **코사인 유사도** | $\cos \theta = \frac{A \cdot B}{\|A\| \|B\|}$ | **단어 빈도 크기가 아닌 방향성(각도) 비교** |
+
+### 🧠 빅분기 암기 팁
+- **“거리 문제는 묻지도 따지지도 말고 데이터 '척도'부터 확인!”**
+- **“명목형/이진형/집합 $\rightarrow$ 1초 만에 자카드(Jaccard)!”**
+- **“공분산/상관관계 고려 $\rightarrow$ 1초 만에 마할라노비스(Mahalanobis)!”**
+- **“자카드는 0-0 일치($d$)를 버리고($\frac{a}{a+b+c}$), SMC는 0-0 일치도 챙긴다($\frac{a+d}{a+b+c+d}$)!”** 1초 컷!
+
+---
+
+## 📌 [45번] 인공신경망 및 머신러닝 기초 - XOR 문제와 선형 분리 불가능성(Linearly Inseparable)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 신경망 분석 $\rightarrow$ 선형 분리 가능성(Linearly Separable) 및 XOR(배타적 논리합) 문제
+- **핵심 의도**: 클래스 A: $(0,0), (1,1)$, 클래스 B: $(0,1), (1,0)$과 같이 대각선으로 마주 보는 좌표 배치가 **XOR(Exclusive OR)** 논리 연산이며, 이것이 **단일 직선(초평면)으로 분리 불가능한 비선형 문제(단층 퍼셉트론의 한계)**임을 알고 있는지 평가.
+
+### 🎯 정답
+**② XOR (Exclusive OR, 배타적 논리합)**
+
+### 📌 정답인 이유: [대각선 마주봄 = 직선 1개로 분리 불가능 = XOR!]
+- **XOR (배타적 논리합) 진리표와 좌표 매핑**:
+  - $x_1 \ne x_2$ (서로 다름) $\Longrightarrow 1$ $\longrightarrow \mathbf{(0, 1), (1, 0) \in \text{Class B}}$
+  - $x_1 = x_2$ (서로 같음) $\Longrightarrow 0$ $\longrightarrow \mathbf{(0, 0), (1, 1) \in \text{Class A}}$
+  - 동일한 클래스가 2차원 평면의 **대각선 반대편에 교차 배치**되어 있어, 어떠한 단일 직선($w_1x_1 + w_2x_2 + b = 0$)으로도 클래스 A와 B를 완벽히 가를 수 없음.
+- **머신러닝 역사에서의 핵심 의의**:
+  - **단층 퍼셉트론(Single-layer Perceptron)의 한계**: 민스키와 페퍼트(1969)가 단층 퍼셉트론으로는 XOR 문제를 풀 수 없음을 수학적으로 증명하여 제1차 AI 겨울(Winter) 도래.
+  - **해결책**: 은닉층(Hidden Layer)과 역전파(Backpropagation)를 도입한 **다층 퍼셉트론(MLP)** 또는 커널 트릭을 적용한 **SVM**을 통해 해결.
+
+### 🔎 선지 정밀 분석: [4대 논리 게이트 선형 분리성 대조]
+1. **① AND**: $(1,1)$만 1, 나머지 3개는 0 $\rightarrow$ 단일 직선 분리 가능 (⭕ 선형 분리 가능).
+2. **② XOR**: $(0,1), (1,0)$만 1, 대각선 교차 배치 $\rightarrow$ 단일 직선 분리 불가 (❌ 선형 분리 불가 $\rightarrow$ 정답).
+3. **③ OR**: $(0,0)$만 0, 나머지 3개는 1 $\rightarrow$ 단일 직선 분리 가능 (⭕ 선형 분리 가능).
+4. **④ NOR**: $(0,0)$만 1, 나머지 3개는 0 $\rightarrow$ 단일 직선 분리 가능 (⭕ 선형 분리 가능).
+
+### 📚 출제위원 시크릿 족보: [논리 게이트별 선형 분리 가능성 및 진리표 총정리]
+$$\boxed{\textbf{AND / OR / NAND / NOR} \longrightarrow \textbf{선형 분리 가능 (단층 퍼셉트론 해결 가능)}}$$
+$$\boxed{\textbf{XOR / XNOR} \longrightarrow \textbf{선형 분리 불가능 (다층 퍼셉트론 MLP / 커널 SVM 필수)}}$$
+
+| 논리 연산 | $(0,0)$ | $(0,1)$ | $(1,0)$ | $(1,1)$ | 선형 분리 가능 여부 | 단층 퍼셉트론 분류 |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **AND** | 0 | 0 | 0 | **1** | **⭕ 가능** | **해결 가능** |
+| **OR** | **0** | 1 | 1 | 1 | **⭕ 가능** | **해결 가능** |
+| **NAND** | 1 | 1 | 1 | **0** | **⭕ 가능** | **해결 가능** |
+| **NOR** | **1** | 0 | 0 | 0 | **⭕ 가능** | **해결 가능** |
+| **XOR** | **0** | **1** | **1** | **0** | **❌ 불가능 (비선형)** | **해결 불가 (MLP 필요)** |
+
+### 🧠 빅분기 암기 팁
+- **“대각선 마주봄 $(0,0)/(1,1)$ vs $(0,1)/(1,0) \rightarrow$ 1초 만에 XOR!”**
+- **“단층 퍼셉트론은 XOR을 못 푼다 $\rightarrow$ 다층 퍼셉트론(MLP)이나 커널 SVM으로 해결!”**
+- **“논리 게이트 족보: AND/OR/NAND/NOR는 선형 분리 O, XOR은 선형 분리 X!”** 1초 컷!
+
+---
+
+## 📌 [46번] 추론통계 및 가설검정 - 카이제곱 적합도 검정(Chi-square Goodness-of-Fit Test) 통계량 계산과 판정
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 (또는 제2과목 추론통계) $\rightarrow$ 비모수 및 범주형 데이터 분석 $\rightarrow$ 카이제곱 적합도 검정(Goodness-of-Fit Test)
+- **핵심 의도**: 4개 학년 총 참석자 200명의 관측도수($O$)로부터 **귀무가설 $H_0$에 기반한 기대도수($E=50$)**를 산출하고, **카이제곱 검정통계량($\chi^2 = 4.640$)**을 정확히 계산하여 임계값과의 비교를 통해 올바른 가설 기각 여부를 판정할 수 있는지 평가.
+
+### 🎯 정답
+**③ 카이제곱 검정통계량의 값은 4.740이다 ❌ (실제 계산값은 4.640 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [기대도수 $E=50$, 검정통계량 $\chi^2 = 4.640$]
+1. **1단계: 기대도수 ($E$) 산출**
+   - 귀무가설 $H_0$: "학년별 참석 비율에 차이가 없다 ($p_1 = p_2 = p_3 = p_4 = 0.25$)"
+   - 각 학년 기대도수: $E = 200 \times 0.25 = \mathbf{50\text{명}}$ (모든 학년 동일, ①은 참)
+2. **2단계: 카이제곱 검정통계량 ($\chi^2$) 계산**
+   $$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$$
+   - 1학년: $\frac{(60 - 50)^2}{50} = \frac{100}{50} = 2.00$
+   - 2학년: $\frac{(40 - 50)^2}{50} = \frac{100}{50} = 2.00$
+   - 3학년: $\frac{(54 - 50)^2}{50} = \frac{16}{50} = 0.32$
+   - 4학년: $\frac{(46 - 50)^2}{50} = \frac{16}{50} = 0.32$
+   - $\Longrightarrow \chi^2 = 2.00 + 2.00 + 0.32 + 0.32 = \mathbf{4.640}$ (선지 ③의 4.740은 명백한 계산 오류 $\rightarrow$ 정답 ③!)
+3. **3단계: 자유도 및 가설 판정**
+   - 자유도: $df = k - 1 = 4 - 1 = \mathbf{3}$ (②는 참)
+   - 통계량 판정: $\chi^2_{\text{계산}}(4.640) < \chi^2_{0.05, 3}(7.815) \Longrightarrow \mathbf{\text{귀무가설 } H_0 \text{ 기각 실패 (기각할 수 없음)}}$ (④는 참)
+
+### 🔎 선지 정밀 분석: [카이제곱 적합도 검정 4대 선지 판별]
+1. **① 각 학년의 기대도수는 모두 50으로 동일하다**: $200 / 4 = 50$ (⭕ 옳은 설명).
+2. **② 이 검정에 사용되는 자유도는 3이다**: $df = 4 - 1 = 3$ (⭕ 옳은 설명).
+3. **③ 카이제곱 검정통계량의 값은 4.740이다**: 실제 계산값은 $4.640$ (❌ 틀린 설명 $\rightarrow$ 정답).
+4. **④ 검정통계량이 임계값 7.815보다 작으므로 귀무가설을 기각할 수 없다**: $4.640 < 7.815 \rightarrow H_0$ 채택/기각 실패 (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [카이제곱 3대 검정 기법 및 공식 총정리표]
+$$\boxed{\chi^2 = \sum \frac{(O - E)^2}{E} \quad \longleftrightarrow \quad \chi^2_{\text{계산}} > \chi^2_{\text{임계}} \Longrightarrow H_0 \text{ 기각}}$$
+
+| 카이제곱 검정 유형 | 연구 질문 및 목적 | 기대도수($E$) 계산법 | 자유도 ($df$) |
+| :--- | :--- | :--- | :---: |
+| **적합도 검정 (Goodness of Fit)** | 관측 분포가 **이론적 특정 분포와 일치하는가?** | $E_i = N \times p_i$ | **$k - 1$** |
+| **독립성 검정 (Independence)** | **두 범주형 변수가 서로 독립인가?** | $E_{ij} = \frac{R_i \times C_j}{N}$ | **$(r - 1)(c - 1)$** |
+| **동질성 검정 (Homogeneity)** | **여러 모집단 간의 범주 분포가 동일한가?** | $E_{ij} = \frac{R_i \times C_j}{N}$ | **$(r - 1)(c - 1)$** |
+
+### 🧠 빅분기 암기 팁
+- **“카이제곱 공식 = 관측빼기 기대제곱을 기대로 나눈 합 ($\sum \frac{(O-E)^2}{E}$)!”**
+- **“기대도수($E$)는 실제 인원이 아니라 '귀무가설이 참일 때' 기대되는 이론치!”**
+- **“적합도 자유도 = $k-1$ / 독립성·동질성 자유도 = $(r-1)(c-1)$!”**
+- **“통계량이 임계값보다 작으면 귀무가설 기각 불가(기각 실패)!”** 1초 컷!
+
+---
+
+## 📌 [47번] 딥러닝 및 시퀀스 모델 - 어텐션 메커니즘(Attention Mechanism)과 맥락 벡터(Context Vector)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 딥러닝 및 시퀀스 모델 $\rightarrow$ 인코더-디코더(Seq2Seq) 및 어텐션 메커니즘(Attention Mechanism)
+- **핵심 의도**: 인코더-디코더 구조에서 고정 길이 벡터의 정보 손실(병목 현상)을 해결하기 위해, 디코더가 출력 단어를 예측할 때마다 **입력 시퀀스의 각 부분에 서로 다른 중요도(가중치)를 부여하여 선택적으로 집중 활용하는 기법이 어텐션(Attention)**임을 알고 있는지 평가.
+
+### 🎯 정답
+**① 어텐션 (Attention)**
+
+### 📌 정답인 이유: [중요도 가중치 부여 + 선택적 집중 = Attention!]
+- **어텐션 메커니즘 (Attention Mechanism)의 작동 원리**:
+  1. 디코더의 현재 시점 은닉 상태($s_t$)와 인코더의 모든 은닉 상태($h_1, h_2, \dots, h_n$) 사이의 유사도(Score)를 계산.
+  2. 유사도에 Softmax 함수를 취해 **어텐션 가중치($\alpha_{t,1}, \dots, \alpha_{t,n}$, 합=1)**를 산출.
+  3. 인코더 은닉 상태들의 가중합을 구해 동적 **맥락 벡터(Context Vector, $c_t = \sum \alpha_{t,i} h_i$)**를 생성하여 디코더 예측에 활용.
+  - $\Longrightarrow$ 디코더가 필요한 시점에 **가장 관련 있는 원문 단어에 선택적으로 집중(Focus)**할 수 있게 함.
+- **오답 선지들의 핵심 기능 매칭**:
+  - **② 드롭아웃 (Dropout)**: 학습 시 일부 뉴런을 무작위로 꺼서 특정 뉴런 의존성을 줄이는 **과적합(Overfitting) 방지 기법**.
+  - **③ 합성곱 (Convolution)**: 입력 데이터에 필터(커널)를 슬라이딩하여 공간적/지역적 특징을 추출하는 **CNN 핵심 연산**.
+  - **④ 풀링 (Pooling)**: 특징맵의 크기를 줄이고 불변성을 확보하는 **다운샘플링(Downsampling, Max/Avg) 기법**.
+
+### 🔎 선지 정밀 분석: [딥러닝 4대 핵심 연산 기법 판별]
+1. **① 어텐션 (Attention)**: 입력의 각 부분에 가중치를 주어 선택적 활용 (⭕ 정답).
+2. **② 드롭아웃 (Dropout)**: 과적합 방지를 위한 뉴런 무작위 비활성화 (❌).
+3. **③ 합성곱 (Convolution)**: 필터를 통한 지역적 특징맵 추출 (❌).
+4. **④ 풀링 (Pooling)**: 특징맵 차원 축소 다운샘플링 (❌).
+
+### 📚 출제위원 시크릿 족보: [딥러닝 4대 핵심 기법 완벽 비교 총정리표]
+$$\boxed{\textbf{어텐션 (Attention)} \longrightarrow \text{중요도 가중치(Softmax) 가중합} \longrightarrow \textbf{맥락 벡터(Context Vector) 생성}}$$
+$$\boxed{\textbf{트랜스포머 (Transformer)} \longrightarrow \textbf{Self-Attention} \longrightarrow \text{문장 내 모든 단어 간 상호 관계 직접 계산}}$$
+
+| 기법명 | 핵심 작동 방식 | 목적 및 효과 | 주요 적용 모델 |
+| :--- | :--- | :--- | :--- |
+| **어텐션 (Attention)** | **입력별 중요도 가중합 ($c = \sum \alpha_i h_i$)** | **시퀀스 병목 해소, 장기의존성 해결** | **Seq2Seq, Transformer, BERT, GPT** |
+| **드롭아웃 (Dropout)** | **학습 중 무작위 뉴런 비활성화** | **공동적응 방지, 과적합 완화** | 모든 심층 신경망 (MLP, CNN 등) |
+| **합성곱 (Convolution)** | **필터/커널 스트라이드 연산** | **지역적/공간적 특징맵 추출** | **CNN, 이미지 인식, 컴퓨터 비전** |
+| **풀링 (Pooling)** | **영역 내 최댓값/평균값 추출** | **특징맵 크기 축소, 연산량 절감** | CNN 서브샘플링 계층 |
+
+### 🧠 빅분기 암기 팁
+- **“중요도, 가중치, 집중(Focus), 선택적 활용 $\rightarrow$ 1초 만에 어텐션(Attention)!”**
+- **“뉴런 랜덤 끄기 = 드롭아웃 / 필터 특징 추출 = 합성곱 / 크기 줄이기 = 풀링!”**
+- **“트랜스포머의 핵심 엔진 = 셀프 어텐션(Self-Attention)!”** 1초 컷!
+
+---
+
+## 📌 [48번] 지도학습 분류 모델 - 로지스틱 회귀(Logistic Regression)의 확률·오즈·로짓·시그모이드 변환 체계
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 분류 분석 $\rightarrow$ 로지스틱 회귀(Logistic Regression)와 일반화 선형 모형(GLM)
+- **핵심 의도**: 성공 확률($p$), 승산비(Odds), 로짓(Logit), 시그모이드(Sigmoid) 간의 수학적 연계 관계와 극한값의 방향($p \to 0 \Rightarrow \text{Logit} \to -\infty$, $p \to 1 \Rightarrow \text{Logit} \to +\infty$)을 정확히 알고 있는지 평가.
+
+### 🎯 정답
+**④ 로짓 함수는 성공 확률 $p$가 0에 가까워질수록 양(+)의 무한대로 발산한다 ❌ (음의 무한대 $-\infty$로 발산 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [$p \to 0$이면 $\text{Odds} \to 0 \rightarrow \ln(0) \to -\infty$!]
+- **로지스틱 회귀의 4단계 변환 체계**:
+  1. **성공 확률 ($p$)**: $0 < p < 1$
+  2. **오즈 (Odds, 승산)**: $\text{Odds} = \frac{p}{1-p} \in (0, \infty)$
+  3. **로짓 함수 (Logit)**: 오즈에 자연로그를 취한 값으로 독립변수와 선형결합을 이룸.
+     $$\text{Logit}(p) = \ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + \dots + \beta_k x_k$$
+  4. **시그모이드 함수 (Sigmoid, 로짓의 역함수)**:
+     $$p = \frac{1}{1 + e^{-(\beta_0 + \sum \beta_i x_i)}} = \frac{1}{1 + e^{-z}}$$
+- **극한값 발산 방향 판정**:
+  - $p \to 0 \Longrightarrow \frac{p}{1-p} \to 0 \Longrightarrow \text{Logit}(p) = \ln(0) \longrightarrow \mathbf{-\infty}$ (음의 무한대 발산, ④는 정반대 오류!)
+  - $p \to 1 \Longrightarrow \frac{p}{1-p} \to \infty \Longrightarrow \text{Logit}(p) = \ln(\infty) \longrightarrow \mathbf{+\infty}$ (양의 무한대 발산)
+  - $p = 0.5 \Longrightarrow \text{Odds} = 1 \Longrightarrow \text{Logit}(p) = \ln(1) = \mathbf{0}$
+
+### 🔎 선지 정밀 분석: [로지스틱 회귀 4대 선지 판독]
+1. **① 독립변수들의 선형결합을 기반으로 하는 선형 모형에서 출발한다**: 로그오즈($\text{Logit}$)가 독립변수의 선형결합(GLM)임 (⭕ 옳은 설명).
+2. **② 오즈(Odds)는 0에서 무한대까지의 값을 가진다**: $\frac{p}{1-p} \in (0, \infty)$ (⭕ 옳은 설명).
+3. **③ 로짓 함수의 역함수는 시그모이드 함수이다**: $\text{Logit}^{-1}(z) = \frac{1}{1+e^{-z}} = p$ (⭕ 옳은 설명).
+4. **④ $p \to 0$일 때 로짓이 양의 무한대로 발산한다**: $\ln(0) \to -\infty$이므로 음의 무한대 발산 (❌ 틀린 설명 $\rightarrow$ 정답).
+
+### 📚 출제위원 시크릿 족보: [확률 $p$ vs Odds vs Logit 3대 핵심 기준점 비교표]
+$$\boxed{\text{확률 } p \xrightarrow{\quad \text{Odds} \quad} \frac{p}{1-p} \xrightarrow{\quad \ln \quad} \text{Logit} = X\beta \underset{\text{역함수}}{\overset{\text{Sigmoid}}{\longleftrightarrow}} p = \frac{1}{1 + e^{-X\beta}}}$$
+
+| 확률 ($p$) | 승산 (Odds, $\frac{p}{1-p}$) | 로짓 값 ($\text{Logit} = \ln \frac{p}{1-p}$) | 시그모이드 출력 ($p$) |
+| :---: | :---: | :---: | :---: |
+| **$p \to 0$** | **$0$에 수렴** | **$-\infty$ (음의 무한대)** | $z \to -\infty \Rightarrow 0$ |
+| **$p = 0.5$** | **$1$ (성공:실패 동률)** | **$0$ ($\ln 1 = 0$)** | **$z = 0 \Rightarrow 0.5$** |
+| **$p \to 1$** | **$+\infty$에 수렴** | **$+\infty$ (양의 무한대)** | $z \to +\infty \Rightarrow 1$ |
+
+### 🧠 빅분기 암기 팁
+- **“로짓 극한 암기: $p \to 0$이면 마이너스 무한대($-\infty$), $p \to 1$이면 플러스 무한대($+\infty$)!”**
+- **“$p=0.5$일 때 오즈는 1이고 로짓은 0이다!”**
+- **“로짓의 역함수는 시그모이드(Sigmoid)!”** 1초 컷!
+
+---
+
+## 📌 [49번] 확률 모형 및 시계열 - 은닉 마르코프 모델(HMM)의 3대 구성요소($A, B, \pi$) vs 비터비(Viterbi) 알고리즘
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 비지도/확률 모형 및 시계열 분석 $\rightarrow$ 은닉 마르코프 모델(HMM, Hidden Markov Model)의 구성요소
+- **핵심 의도**: HMM 모델 자체를 규정하는 **3대 핵심 파라미터($\lambda = (A, B, \pi)$)**인 상태 전이확률($A$), 방출/출력확률($B$), 초기상태확률($\pi$)과, HMM의 최적 상태열을 찾아내는 **추론 알고리즘인 비터비(Viterbi)**를 명확히 구별할 수 있는지 평가.
+
+### 🎯 정답
+**① 비터비 (Viterbi) ❌ (HMM의 구성요소가 아닌 최적 경로 탐색 알고리즘 $\rightarrow$ 정답)**
+
+### 📌 정답인 이유: [전이·방출·초기확률은 모델 요소, 비터비는 알고리즘!]
+- **HMM(은닉 마르코프 모델)의 3대 파라미터 ($\lambda = (A, B, \pi)$)**:
+  1. **전이확률 (Transition Probability, $A$)**: 은닉 상태 간의 이동 확률 ($a_{ij} = P(S_{t+1}=j \mid S_t=i)$).
+  2. **출력/방출확률 (Emission Probability, $B$)**: 특정 은닉 상태에서 특정 관측값이 나타날 확률 ($b_j(k) = P(O_t=k \mid S_t=j)$).
+  3. **초기확률 (Initial State Probability, $\pi$)**: 첫 시점 $t=1$에서 특정 은닉 상태로 시작할 확률 ($\pi_i = P(S_1=i)$).
+  - 그리고 은닉 상태들의 집합인 **상태 (State, $S$)**와 관측값 집합($O$)이 모델을 구성함.
+- **비터비(Viterbi) 알고리즘의 본질**:
+  - HMM의 파라미터가 아니라, 관측 데이터 시퀀스($O$)가 주어졌을 때 **이를 생성했을 가능성이 가장 높은 최적의 은닉 상태 경로(Hidden State Sequence)를 찾아내는 동적 계획법(DP) 기반 디코딩(Decoding) 알고리즘**임.
+
+### 🔎 선지 정밀 분석: [HMM 구성요소 vs 추론 알고리즘 판별]
+1. **① 비터비 (Viterbi)**: 최적 은닉 상태열 탐색용 디코딩 알고리즘 (❌ 구성요소 아님 $\rightarrow$ 정답).
+2. **② 상태 (State)**: 직접 관측되지 않는 숨겨진 시스템 상태 집합 $S$ (⭕ 핵심 구성요소).
+3. **③ 출력확률 (Emission Probability)**: 은닉 상태가 주어졌을 때 관측값이 방출될 확률 $B$ (⭕ 핵심 구성요소).
+4. **④ 전이확률 (Transition Probability)**: 은닉 상태 $i \to j$ 전이 확률 행렬 $A$ (⭕ 핵심 구성요소).
+
+### 📚 출제위원 시크릿 족보: [HMM 3대 파라미터 vs 3대 문제 해결 알고리즘 완벽 대조표]
+$$\boxed{\text{HMM 파라미터: } \lambda = (\mathbf{A: \text{전이}}, \ \mathbf{B: \text{방출/출력}}, \ \boldsymbol{\pi: \text{초기}})}$$
+$$\boxed{\text{상태 } \longrightarrow \text{상태 : } \textbf{전이확률}(A) \quad \longleftrightarrow \quad \text{상태 } \longrightarrow \text{관측 : } \textbf{방출/출력확률}(B)}$$
+
+| HMM 3대 핵심 문제 | 연구 질문 및 목표 | 해결 대표 알고리즘 |
+| :--- | :--- | :--- |
+| **1. 평가 (Evaluation)** | 관측열 $O$가 모델 $\lambda$에서 **발생할 확률 $P(O \mid \lambda)$ 계산** | **전방 알고리즘 (Forward Algorithm)** |
+| **2. 디코딩 (Decoding)** | 관측열 $O$를 설명하는 **가장 가능성 높은 최적 은닉 상태열 탐색** | **비터비 알고리즘 (Viterbi Algorithm)** |
+| **3. 학습 (Learning)** | 관측열 $O$로부터 **HMM 파라미터 $(A, B, \pi)$ 추정 및 최적화** | **바움-웰치 알고리즘 (Baum-Welch / EM)** |
+
+### 🧠 빅분기 암기 팁
+- **“HMM 3대 파라미터 = 전·방·초 (전이확률 A, 방출/출력확률 B, 초기확률 $\pi$)!”**
+- **“HMM 3대 알고리즘 = 포·비·바 (평가=Forward, 디코딩=Viterbi, 학습=Baum-Welch)!”**
+- **“비터비(Viterbi)는 구성요소가 아니라 최적 경로를 찾는 알고리즘이다!”** 1초 컷!
+
+---
+
+## 📌 [50번] 추론통계 및 표본분포 - t-분포(Student's t-distribution)의 특성과 모분산 추론($\chi^2$)의 명확한 구분
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 (또는 제2과목 추론통계) $\rightarrow$ 표본분포 및 모평균 추론 $\rightarrow$ t-분포(Student's t-distribution)의 성질과 적용 한계
+- **핵심 의도**: t-분포가 "모분산($\sigma^2$)을 알지 못할 때 **모평균($\mu$)을 추론**하기 위한 분포"이며, "모분산 자체에 대한 검정과 구간추정"은 **카이제곱($\chi^2$) 분포**를 사용해야 함을 명확히 구별할 수 있는지 평가.
+
+### 🎯 정답
+**③ 모분산을 알지 못하는 상황에서 모분산에 대한 검정과 구간추정을 수행하는 데 사용된다 ❌ (모분산 자체 추론은 카이제곱 분포 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [t는 '모평균 추론', 카이제곱은 '모분산 자체 추론'!]
+- **t-분포 (Student's t-Distribution)**:
+  - 정규모집단에서 모표준편차 $\sigma$를 알 수 없을 때, 이를 표본표준편차 $s$로 대체하여 **모평균 $\mu$를 추정/검정**하기 위해 사용하는 표본분포.
+  $$t = \frac{\bar{X} - \mu}{s / \sqrt{n}} \sim t(df = n-1)$$
+  - **분포 형태**: 평균 0을 중심으로 좌우대칭이며, 정규분포에 비해 중심 봉우리가 낮고 **꼬리가 두꺼운(Heavy-tailed) 형태**를 가짐.
+  - **정규분포 수렴**: 자유도($df = n-1$)가 무한대로 커질수록 표준정규분포 $N(0, 1)$에 점근적으로 수렴함.
+- **모분산($\sigma^2$) 자체의 추론**:
+  - 모분산 자체를 검정하거나 신뢰구간을 구할 때는 t-분포가 아니라 **카이제곱($\chi^2$) 분포**를 사용함.
+  $$\frac{(n-1)s^2}{\sigma^2} \sim \chi^2(df = n-1)$$
+
+### 🔎 선지 정밀 분석: [t-분포 4대 선지 판별]
+1. **① 소표본에서 모평균 추론에 주로 사용된다**: 모분산 미지 시 모평균 $\mu$ 추정 (⭕ 옳은 설명).
+2. **② 정규분포보다 중심이 낮고 꼬리가 두꺼운 완만한 형태를 가진다**: 표본분산 추정의 추가 불확실성 반영 (⭕ 옳은 설명).
+3. **③ 모분산에 대한 검정과 구간추정에 사용된다**: 모분산 자체 추론은 카이제곱($\chi^2$) 분포 (❌ 틀린 설명 $\rightarrow$ 정답).
+4. **④ 자유도가 커질수록 표준정규분포에 가까워진다**: $df \to \infty \Rightarrow t \to N(0, 1)$ (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [통계적 추론 4대 확률분포 완벽 매칭표]
+$$\boxed{\textbf{모평균 추론 (모분산 앎)} \longrightarrow \textbf{Z-분포}} \quad \longleftrightarrow \quad \boxed{\textbf{모평균 추론 (모분산 모름)} \longrightarrow \textbf{t-분포}}$$
+$$\boxed{\textbf{단일 모분산 자체 추론} \longrightarrow \boldsymbol{\chi^2}\textbf{-분포}} \quad \longleftrightarrow \quad \boxed{\textbf{두 모분산 비율 비교} \longrightarrow \textbf{F-분포}}$$
+
+| 추론 대상 모수 | 사전 조건 | 사용 검정통계량 | 적용 확률분포 |
+| :--- | :--- | :--- | :---: |
+| **모평균 ($\mu$)** | **모분산 $\sigma^2$ 알고 있음** | $Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}$ | **표준정규분포 ($Z$)** |
+| **모평균 ($\mu$)** | **모분산 $\sigma^2$ 모름 (소표본)** | $t = \frac{\bar{X} - \mu}{s / \sqrt{n}}$ | **t-분포 ($df = n-1$)** |
+| **단일 모분산 ($\sigma^2$)** | 정규모집단 가정 | $\chi^2 = \frac{(n-1)s^2}{\sigma^2}$ | **카이제곱 분포 ($\chi^2$)** |
+| **두 모분산 비율 ($\frac{\sigma_1^2}{\sigma_2^2}$)** | 두 독립 정규모집단 | $F = \frac{s_1^2}{s_2^2}$ | **F-분포 ($df_1, df_2$)** |
+
+### 🧠 빅분기 암기 팁
+- **“모분산 모르지만 모평균 추론 = t-분포 / 모분산 자체 추론 = 카이제곱($\chi^2$) / 분산 2개 비교 = F-분포!”**
+- **“t-분포 3대 특징: 평균 0 좌우대칭, 꼬리 두꺼움, 자유도 커지면 정규분포 수렴!”** 1초 컷!
+
+---
+
+## 📌 [51번] 비모수 가설검정 - 독립 2집단 비모수 검정(Mann-Whitney U) vs 대응 2집단(Wilcoxon Signed-Rank)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 (또는 제2과목 추론통계) $\rightarrow$ 비모수 통계적 가설검정 $\rightarrow$ 2집단 비교 비모수 검정 기법
+- **핵심 의도**: 정규성 가정을 만족하지 못하는 **서로 독립인 두 집단(Independent 2-samples)**의 위치 모수(중앙값)를 순위(Rank) 기반으로 비교하는 대표 비모수 검정이 **맨-휘트니 U 검정(Mann-Whitney U Test)**임을 알고, 짝지어진 대응표본에 쓰이는 **윌콕슨 부호순위 검정(Wilcoxon Signed-Rank)**과 명확히 구별할 수 있는지 평가.
+
+### 🎯 정답
+**② 맨-휘트니 U 검정 (Mann-Whitney U Test)**
+
+### 📌 정답인 이유: [독립된 2집단 + 순위 = 맨-휘트니 U 검정!]
+- **맨-휘트니 U 검정 (Mann-Whitney U Test / Wilcoxon Rank-Sum Test)**:
+  - 서로 독립인 두 집단(예: 남학생 그룹 vs 여학생 그룹)의 표본 데이터를 하나로 합쳐 크기순으로 **순위(Rank)**를 매긴 후, 각 집단의 순위합을 비교하여 두 모집단의 분포/중앙값 차이를 검정함.
+  - **모수적 대응**: **독립표본 t-검정(Independent two-sample t-test)**의 비모수적 대체 기법.
+- **오답 선지들의 핵심 성격 및 적용 조건**:
+  - **① 크루스칼-왈리스 검정 (Kruskal-Wallis)**: **독립된 3집단 이상**의 중앙값 차이를 비교하는 비모수 검정 (One-way ANOVA의 비모수 대응).
+  - **③ 윌콕슨 부호순위 검정 (Wilcoxon Signed-Rank)**: 동일인의 전/후 비교처럼 **짝지어진 대응 2집단(Paired samples)**에 사용하는 비모수 검정.
+  - **④ 대응표본 t-검정 (Paired t-test)**: 대응 2집단에 사용하는 **모수적(Parametric)** 검정.
+
+### 🔎 선지 정밀 분석: [모수 vs 비모수 2집단/다집단 검정 판별]
+1. **① 크루스칼-왈리스 검정**: 독립 3집단 이상 비교 비모수 검정 (❌ 3집단 이상).
+2. **② 맨-휘트니 U 검정**: 독립 2집단 순위 기반 비모수 검정 (⭕ 정답).
+3. **③ 윌콕슨 부호순위 검정**: 짝지어진 대응 2집단 비모수 검정 (❌ 대응표본).
+4. **④ 대응표본 t-검정**: 대응 2집단 모수 검정 (❌ 모수적 방법).
+
+### 📚 출제위원 시크릿 족보: [모수 검정 vs 비모수 검정 완벽 대응 총정리표]
+$$\boxed{\textbf{독립 2집단: } \text{독립표본 t-test} \quad \longleftrightarrow \quad \textbf{맨-휘트니 U 검정 (Mann-Whitney U)}}$$
+$$\boxed{\textbf{대응 2집단: } \text{대응표본 t-test} \quad \longleftrightarrow \quad \textbf{윌콕슨 부호순위 검정 (Wilcoxon Signed-Rank)}}$$
+$$\boxed{\textbf{독립 3집단+: } \text{일원분산분석 (One-way ANOVA)} \quad \longleftrightarrow \quad \textbf{크루스칼-왈리스 (Kruskal-Wallis)}}$$
+$$\boxed{\textbf{대응 3집단+: } \text{반복측정 분산분석 (RM-ANOVA)} \quad \longleftrightarrow \quad \textbf{프리드만 검정 (Friedman Test)}}$$
+
+| 연구 설계 및 표본 관계 | 집단 수 | 모수적 검정 (정규성 만족) | 비모수적 검정 (정규성 불만족) |
+| :--- | :---: | :--- | :--- |
+| **서로 독립인 집단 (Independent)** | **2개 집단** | **독립표본 t-검정 (Two-sample t)** | **맨-휘트니 U 검정 (Mann-Whitney U)** |
+| **짝지어진 대응 집단 (Paired)** | **2개 집단** | **대응표본 t-검정 (Paired t)** | **윌콕슨 부호순위 검정 (Wilcoxon Signed-Rank)** |
+| **서로 독립인 집단 (Independent)** | **3개 이상** | **일원분산분석 (One-way ANOVA)** | **크루스칼-왈리스 검정 (Kruskal-Wallis)** |
+| **짝지어진 대응 집단 (Paired)** | **3개 이상** | **반복측정 분산분석 (RM-ANOVA)** | **프리드만 검정 (Friedman Test)** |
+
+### 🧠 빅분기 암기 팁
+- **“맨-휘트니는 남남(독립 2집단), 윌콕슨 부호순위는 짝꿍(대응 2집단)!”**
+- **“독립 3집단 이상 비모수 $\rightarrow$ 1초 만에 크루스칼-왈리스(Kruskal-Wallis)!”**
+- **“대응 3집단 이상 비모수 $\rightarrow$ 1초 만에 프리드만(Friedman)!”** 1초 컷!
+
+---
+
+## 📌 [52번] 딥러닝 및 시퀀스 모델 - 순환 신경망(RNN)의 순환 은닉상태 구조 vs 트랜스포머(Transformer)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 딥러닝 및 시계열/텍스트 분석 $\rightarrow$ 순환 신경망(RNN, Recurrent Neural Network)의 작동 메커니즘
+- **핵심 의도**: 텍스트, 시계열 등 순차(Sequence) 데이터를 처리할 때 **"이전 시점의 은닉 상태($h_{t-1}$)를 기억하여 다음 단계로 순차적으로 전달하는 순환 구조"를 가진 모델이 순환 신경망(RNN)**임을 알고, Self-Attention 기반 병렬 처리를 수행하는 트랜스포머와 구별할 수 있는지 평가.
+
+### 🎯 정답
+**④ 순환 신경망 (RNN, Recurrent Neural Network)**
+
+### 📌 정답인 이유: [이전 상태 기억 $\to$ 다음 시점 전달 = 순환 신경망(RNN)!]
+- **순환 신경망 (RNN)의 수학적 작동 원리**:
+  $$h_t = f(W_{xh} x_t + W_{hh} h_{t-1} + b_h), \qquad y_t = g(W_{hy} h_t + b_y)$$
+  - 현재 시점 $t$의 입력($x_t$)과 함께 **직전 시점의 은닉 상태($h_{t-1}$, 과거의 기억)**를 재귀적(Recurrent)으로 전달받아 현재 상태($h_t$)를 갱신함.
+  - 문제 선지의 "이전 시점의 상태를 기억하여 다음 단계로 전달"과 정확히 1:1 일치함.
+- **오답 선지들의 핵심 개념 매칭**:
+  - **① GAN (생성적 적대 신경망)**: 생성자(Generator)와 판별자(Discriminator)가 상호 대립하며 학습하는 **데이터 생성 모델**.
+  - **② 트랜스포머 (Transformer)**: 순환 구조($h_{t-1} \to h_t$) 없이 **Self-Attention**을 이용해 시퀀스 전체의 관계를 **동시에 병렬 처리**하는 모델.
+  - **③ 오토인코더 (Autoencoder)**: 입력을 잠재 공간으로 압축(인코더) 후 다시 복원(디코더)하는 **비지도 차원 축소/특징 추출 모델**.
+
+### 🔎 선지 정밀 분석: [딥러닝 4대 아키텍처 판별]
+1. **① GAN**: 생성자 vs 판별자 적대적 학습 (❌).
+2. **② Transformer**: Self-Attention 기반 병렬 시퀀스 처리 (❌ 순환 구조 없음).
+3. **③ Autoencoder**: 입력 압축 및 재구성 비지도 학습 (❌).
+4. **④ RNN**: 이전 은닉 상태를 다음 시점으로 순환 전달하는 시퀀스 모델 (⭕ 정답).
+
+### 📚 출제위원 시크릿 족보: [RNN 계열 발전 계보 및 딥러닝 4대 모델 비교표]
+$$\boxed{\textbf{기본 RNN} \longrightarrow \textbf{LSTM (3개 게이트)} \longrightarrow \textbf{GRU (2개 게이트)} \longrightarrow \textbf{Transformer (Self-Attention)}}$$
+
+| 딥러닝 아키텍처 | 핵심 메커니즘 | 데이터 처리 방식 | 대표 출제 키워드 |
+| :--- | :--- | :--- | :--- |
+| **순환 신경망 (RNN)** | **은닉 상태 순환 전달 ($h_{t-1} \to h_t$)** | **시간축 순차 처리 (Sequential)** | **시계열/텍스트, BPTT, 기울기 소실** |
+| **LSTM** | **Cell State + 3 Gates (망각/입력/출력)** | 순차 처리 (장기의존성 해결) | **기울기 소실 완화, 메모리 셀** |
+| **GRU** | **2 Gates (Update Gate, Reset Gate)** | 순차 처리 (LSTM 경량화) | **연산 속도 개선, 은닉 상태 직접 갱신** |
+| **트랜스포머 (Transformer)** | **Self-Attention + Positional Encoding** | **전체 시퀀스 동시 병렬 처리** | **Attention Is All You Need, BERT/GPT** |
+| **생성적 적대망 (GAN)** | **생성자(가짜 생성) vs 판별자(진위 판별)** | 적대적 최적화 (Minimax Game) | **데이터 생성, 비지도 학습, 이미지 합성** |
+| **오토인코더 (Autoencoder)** | **Encoder(압축) $\to$ Latent $\to$ Decoder(복원)** | 입출력 동일 비지도 학습 | **차원 축소, 노이즈 제거, 이상치 탐지** |
+
+### 🧠 빅분기 암기 팁
+- **“이전 상태를 다음으로 넘긴다 $\rightarrow$ 1초 만에 RNN(순환 신경망)!”**
+- **“순환 없이 Self-Attention으로 한 방에 병렬 처리 $\rightarrow$ 트랜스포머(Transformer)!”**
+- **“생성자 vs 판별자 싸움 $\rightarrow$ GAN / 압축했다 복원 $\rightarrow$ 오토인코더!”** 1초 컷!
+
+---
+
+## 📌 [53번] 앙상블 학습(Ensemble Learning) - 배깅(Bagging, 병렬·분산감소) vs 부스팅(Boosting, 순차·편향감소)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 앙상블 학습 $\rightarrow$ 배깅(Bagging)과 부스팅(Boosting)의 비교
+- **핵심 의도**: **배깅(Bagging)**이 부트스트랩 복원추출 표본을 통해 개별 모델들을 상호 독립적으로 **병렬 학습(Parallel)**시키는 반면, **부스팅(Boosting)**은 앞 모델의 오차/가중치를 반영하여 **순차적(Sequential)으로 학습**함을 알고 있는지 평가.
+
+### 🎯 정답
+**② 배깅과 부스팅은 모두 개별 모델들을 동시에 학습시키는 병렬 처리가 가능하다 ❌ (부스팅은 순차 학습 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [배깅 = 독립·병렬 학습 vs 부스팅 = 종속·순차 학습!]
+- **배깅 (Bagging, Bootstrap Aggregating)**:
+  - 원본 데이터로부터 복원추출(Bootstrap)을 반복하여 생성된 복수의 데이터셋으로 개별 약분류기들을 **상호 독립적으로 동시에(병렬로) 학습**시킴.
+  - 예측 결과를 다수결 투표(Voting) 또는 평균(Averaging)으로 결합하여 **모델의 분산(Variance)을 대폭 감소**시킴 (대표: Random Forest).
+- **부스팅 (Boosting)**:
+  - 이전 단계 모델의 예측 결과에서 오분류된 데이터에 더 큰 가중치(AdaBoost)를 부여하거나 잔차(Gradient Boosting)를 학습하도록 하여 모델들을 **순차적(Sequential)으로 연결하여 학습**시킴.
+  - 앞선 모델의 출력이 다음 모델의 입력 조건이 되므로 **동시 병렬 학습이 불가능**하며, 점진적으로 오류를 줄여 **모델의 편향(Bias)을 효과적으로 감소**시킴 (대표: AdaBoost, GBM, XGBoost, LightGBM).
+
+### 🔎 선지 정밀 분석: [앙상블 2대 기법 선지 판별]
+1. **① 배깅은 복원추출을 반복하여 학습 데이터를 생성한다**: Bootstrap의 표준 정의 (⭕ 옳은 설명).
+2. **② 배깅과 부스팅 모두 병렬 처리가 가능하다**: 배깅은 병렬 가능하나 부스팅은 순차 학습 필수 (❌ 틀린 설명 $\rightarrow$ 정답).
+3. **③ 부스팅은 이전 모델의 오분류 데이터에 가중치를 부여한다**: AdaBoost의 핵심 원리 (⭕ 옳은 설명).
+4. **④ 배깅은 분산 감소, 부스팅은 편향 감소에 효과적이다**: 통계적 앙상블 효과 표준 매칭 (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [배깅 vs 부스팅 앙상블 2대 산맥 완벽 대조표]
+$$\boxed{\textbf{배깅 (Bagging)} \longrightarrow \text{복원추출(Bootstrap)} + \textbf{병렬 학습(Parallel)} \longrightarrow \textbf{분산(Variance) 감소}}$$
+$$\boxed{\textbf{부스팅 (Boosting)} \longrightarrow \text{오답 가중치/잔차 학습} + \textbf{순차 학습(Sequential)} \longrightarrow \textbf{편향(Bias) 감소}}$$
+
+| 비교 항목 | 배깅 (Bagging) | 부스팅 (Boosting) |
+| :--- | :--- | :--- |
+| **학습 방식** | **독립적 병렬 처리 (Parallel Training)** | **의존적 순차 처리 (Sequential Training)** |
+| **데이터 샘플링** | **부트스트랩 (Bootstrap, 복원추출)** | **이전 단계 오류 기반 가중치 재조정 / 잔차(Residual)** |
+| **결과 결합 방식** | 단순 투표(Voting) / 단순 평균(Averaging) | **성능 기반 가중 결합 (Weighted Combination)** |
+| **주요 개선 목표** | **분산(Variance) 감소 $\rightarrow$ 과적합 방지** | **편향(Bias) 감소 $\rightarrow$ 예측 성능 극대화** |
+| **이상치 민감도** | 상대적으로 덜 민감 (안정적) | **이상치/노이즈에 민감 (과적합 위험 주의)** |
+| **대표 알고리즘** | **Random Forest, Bagging Tree** | **AdaBoost, Gradient Boosting, XGBoost, LightGBM** |
+
+### 🧠 빅분기 암기 팁
+- **“배깅은 따로따로 동시(병렬), 부스팅은 앞사람 오답 보고 다음 사람(순차)!”**
+- **“배·분 (배깅 = 분산 감소) / 부·편 (부스팅 = 편향 감소)!”**
+- **“배깅 대표 = 랜덤 포레스트 / 부스팅 대표 = AdaBoost, XGBoost!”** 1초 컷!
+
+---
+
+## 📌 [54번] 지도학습 분류 모델 - 나이브 베이즈(Naive Bayes)의 조건부 독립 가정과 라플라스 스무딩(Laplace Smoothing)
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 확률적 분류 모형 $\rightarrow$ 나이브 베이즈(Naive Bayes) 분류기
+- **핵심 의도**: 나이브 베이즈가 "목표 클래스 $C$가 주어졌을 때 **모든 독립변수($X_1, X_2, \dots, X_n$)는 상호 조건부 독립(Conditionally Independent)**이다"라는 강력한 가정을 전제로 함을 알고 있는지, 그리고 미관측 단어의 0 확률 문제를 해결하는 **라플라스 스무딩(Laplace Smoothing)**의 개념을 정확히 이해하고 있는지 평가.
+
+### 🎯 정답
+**④ 독립변수들은 서로 종속적인 관계에 있으며, 종속변수는 오직 독립변수에 의해서만 발생한다고 가정한다 ❌ (조건부 독립 가정 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [나이브(Naive) = 클래스 조건부 독립 가정!]
+- **나이브 베이즈의 핵심 대전제 (조건부 독립)**:
+  - 원래 결합확률 $P(x_1, x_2, \dots, x_n \mid C)$를 계산하기 어렵기 때문에, **"클래스 $C$가 주어졌을 때 모든 특성 $x_i$는 서로 독립이다"**라는 순진한(Naive) 가정을 적용함.
+  $$P(X \mid C) = P(x_1 \mid C) \times P(x_2 \mid C) \times \dots \times P(x_n \mid C) = \prod_{i=1}^n P(x_i \mid C)$$
+  - 따라서 "독립변수들이 서로 종속적인 관계에 있다"는 선지 ④의 설명은 정반대 거짓임.
+- **라플라스 스무딩 (Laplace Smoothing)의 필요성**:
+  - 학습 데이터에 없는 단어가 등장하면 해당 조건부확률이 $P(x_i \mid C) = 0$이 되어, 전체 곱셈 확률이 모조리 0이 되는 **영확률 문제(Zero Frequency Problem)**가 발생함.
+  - 이를 해결하기 위해 분자에 1, 분모에 범주 수 $K$를 더해주는 **가산 평활화(Laplace Smoothing, $P = \frac{\text{count}+1}{\text{total}+K}$)**를 적용함 (선지 ③은 지극히 올바른 설명).
+
+### 🔎 선지 정밀 분석: [나이브 베이즈 4대 선지 판독]
+1. **① 베이즈 정리를 기반으로 사후확률을 계산하여 분류한다**: $P(C \mid X) \propto P(C) P(X \mid C)$ (⭕ 옳은 설명).
+2. **② 구조가 단순하고 빨라 스팸 메일 필터링 등 텍스트 분류에 널리 활용된다**: Multinomial NB 활용 (⭕ 옳은 설명).
+3. **③ 0 확률 문제는 라플라스 스무딩으로 보완할 수 있다**: 분자 +1 평활화 기법 (⭕ 옳은 설명).
+4. **④ 독립변수들이 서로 종속적인 관계에 있다고 가정한다**: 상호 '조건부 독립' 가정 (❌ 틀린 설명 $\rightarrow$ 정답).
+
+### 📚 출제위원 시크릿 족보: [나이브 베이즈 3대 확률 요소 및 변형 모델 총정리표]
+$$\boxed{\textbf{사후확률 (Posterior)} \propto \textbf{우도 (Likelihood)} \times \textbf{사전확률 (Prior)} \Longrightarrow P(C \mid X) \propto P(C) \prod_{i=1}^n P(x_i \mid C)}$$
+$$\boxed{\textbf{라플라스 스무딩 (Laplace Smoothing)}: \hat{P}(x_i \mid C) = \frac{\text{count}(x_i, C) + 1}{\text{count}(C) + K} \quad (\mathbf{0 \text{ 확률 방지}})}$$
+
+| 나이브 베이즈 모델 유형 | 주요 입력 데이터 특성 | 대표 활용 분야 |
+| :--- | :--- | :--- |
+| **가우시안 나이브 베이즈 (Gaussian NB)** | **연속형 수치 데이터 (정규분포 가정)** | 센서 데이터 분류, 수치형 예측 |
+| **다항 나이브 베이즈 (Multinomial NB)** | **이산형 카운트 데이터 (단어 빈도수)** | **스팸 메일 필터링, 뉴스 문서 분류** |
+| **베르누이 나이브 베이즈 (Bernoulli NB)** | **이진 데이터 (단어 출현 여부 0/1)** | 짧은 텍스트 분류, 감성 분석 |
+
+### 🧠 빅분기 암기 팁
+- **“나이브(Naive)의 뜻 = 클래스 조건부 독립 (변수 간 종속 아님)!”**
+- **“0 확률 문제 해결 $\rightarrow$ 1초 만에 라플라스 스무딩(Laplace Smoothing, 분자+1)!”**
+- **“사후확률 = 사전확률 $\times$ 우도(Likelihood)!”**
+- **“스팸 메일 단어 빈도 분류 $\rightarrow$ 다항 나이브 베이즈(Multinomial NB)!”** 1초 컷!
+
+---
+
+## 📌 [55번] 인공신경망 및 손실함수 - 출력 노드 2개에 대한 평균제곱오차(MSE) 계산
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 딥러닝 및 모델 평가 $\rightarrow$ 신경망 손실함수(Loss Function) 및 평균제곱오차(MSE, Mean Squared Error)
+- **핵심 의도**: 실제값 벡터 $y = (1, 0)$과 모델 출력 예측 벡터 $\hat{y} = (0.8, 0.2)$가 주어졌을 때, 2개 출력 노드에 대한 **평균제곱오차($MSE = \frac{1}{n}\sum (y_i - \hat{y}_i)^2$)**를 정확히 산출할 수 있는지 평가.
+
+### 🎯 정답
+**① 0.04**
+
+### 📌 정답인 이유: [각 노드 오차 제곱 후 평균 계산]
+1. **1단계: 출력 노드별 오차 및 제곱오차 계산**
+   - 1번 노드: 실제 $y_1 = 1$, 예측 $\hat{y}_1 = 0.8 \Longrightarrow (1 - 0.8)^2 = (0.2)^2 = \mathbf{0.04}$
+   - 2번 노드: 실제 $y_2 = 0$, 예측 $\hat{y}_2 = 0.2 \Longrightarrow (0 - 0.2)^2 = (-0.2)^2 = \mathbf{0.04}$
+2. **2단계: 오차제곱합(SSE) 및 평균(MSE) 산출**
+   - 오차제곱합(SSE): $0.04 + 0.04 = \mathbf{0.08}$
+   - 평균제곱오차(MSE, $n=2$): $\text{MSE} = \frac{\text{SSE}}{n} = \frac{0.08}{2} = \mathbf{0.04}$
+   - $\Longrightarrow$ 최종 정답: **① 0.04**
+
+### 🔎 선지 정밀 분석: [오차 지표별 계산값 대조]
+1. **① 0.04**: 정확한 평균제곱오차($MSE$) 계산값 (⭕ 정답).
+2. **② 0.02**: 연산 과정의 나눗셈 오류 (❌).
+3. **③ 0.20**: 제곱을 하지 않고 절댓값 평균을 구한 **평균절대오차(MAE)** 값 ($\frac{0.2 + 0.2}{2} = 0.20$, ❌).
+4. **④ 0.40**: 단순 오차 합산 오류 (❌).
+
+### 📚 출제위원 시크릿 족보: [오차 평가 지표 4총사 공식 및 동일 데이터 비교표]
+$$\boxed{\text{SSE} = \sum (y_i - \hat{y}_i)^2 \quad \longrightarrow \quad \text{MSE} = \frac{\text{SSE}}{n} \quad \longrightarrow \quad \text{RMSE} = \sqrt{\text{MSE}} \quad \longleftrightarrow \quad \text{MAE} = \frac{\sum |y_i - \hat{y}_i|}{n}}$$
+
+| 평가지표 | 공식 | 물리적 의미 | 본 문제 계산값 ($y=(1,0), \hat{y}=(0.8,0.2)$) |
+| :--- | :--- | :--- | :---: |
+| **SSE (Sum of Squared Errors)** | $\sum_{i=1}^n (y_i - \hat{y}_i)^2$ | 오차 제곱의 총합 | **$0.04 + 0.04 = 0.08$** |
+| **MSE (Mean Squared Error)** | $\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2$ | **오차 제곱의 산술평균** | **$\frac{0.08}{2} = \mathbf{0.04}$** |
+| **RMSE (Root Mean Squared Error)** | $\sqrt{\text{MSE}}$ | **MSE에 제곱근(원래 단위 복원)** | **$\sqrt{0.04} = \mathbf{0.20}$** |
+| **MAE (Mean Absolute Error)** | $\frac{1}{n} \sum_{i=1}^n \|y_i - \hat{y}_i\|$ | 오차 절댓값의 산술평균 (이상치 강건) | **$\frac{0.2 + 0.2}{2} = \mathbf{0.20}$** |
+
+### 🧠 빅분기 암기 팁
+- **“MSE 계산 4단계: 오차 $\to$ 제곱 $\to$ 합산(SSE) $\to$ 개수로 나누기(평균)!”**
+- **“MSE에 루트 씌우면 RMSE! / 오차에 절댓값 씌워 평균내면 MAE!”**
+- **“이름 그대로: Sum(합) $\to$ Mean(평균) $\to$ Squared(제곱) $\to$ Root(루트) $\to$ Absolute(절댓값)!”** 1초 컷!
+
+---
+
+## 📌 [56번] 시계열 분석(Time Series) - 자기상관함수(ACF) vs 편자기상관함수(PACF)와 AR/MA 모형 식별
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 (또는 제2과목 시계열 분석) $\rightarrow$ 시계열 분석 및 정상성 $\rightarrow$ ACF(자기상관함수)와 PACF(편자기상관함수)의 정의와 차이
+- **핵심 의도**: **ACF(Autocorrelation Function)**가 시차 $k$에 따른 전체 상관관계를 측정하며 중간 시차들의 간접적 영향도 포함하는 반면, **"중간 시차들의 영향을 모두 제거한 순수한 직접 상관관계"를 측정하는 것은 PACF(Partial Autocorrelation Function)**임을 정확히 알고 있는지 평가.
+
+### 🎯 정답
+**② 특정 시차에서 그 사이에 놓인 중간 시차들의 영향을 모두 제거한 순수한 상관관계를 측정한다 ❌ (PACF의 정의 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [중간 시차 영향 제거 = 편자기상관함수(PACF)!]
+- **자기상관함수 (ACF, Autocorrelation Function)**:
+  - 시차 $k$만큼 떨어진 두 시점 간의 상관계수로, 시차 0의 자기공분산(전체 분산 $\gamma_0$) 대비 시차 $k$의 자기공분산($\gamma_k$)의 비율임.
+  $$\rho_k = \frac{\gamma_k}{\gamma_0} = \text{Corr}(X_t, X_{t-k})$$
+  - $X_t$와 $X_{t-k}$ 사이에 존재하는 **중간 시차($X_{t-1}, \dots, X_{t-k+1}$)들을 통한 간접적인 영향(상관관계)까지 모두 포함**하여 측정됨.
+- **편자기상관함수 (PACF, Partial Autocorrelation Function)**:
+  - $X_t$와 $X_{t-k}$ 사이의 상관관계를 측정할 때, **중간 시차 변수들의 선형적 영향을 통제/제거(Partial out)한 순수한 직접적 상관관계만을 측정**함 (선지 ②는 완벽한 PACF의 정의임).
+
+### 🔎 선지 정밀 분석: [ACF 4대 선지 판별]
+1. **① 시차(lag)에 따른 상관관계의 변화를 측정한다**: lag 1, 2, 3...에 따른 상관성 추세 파악 (⭕ 옳은 설명).
+2. **② 중간 시차들의 영향을 제거한 순수한 상관관계를 측정한다**: 이것은 PACF의 정의 (❌ 틀린 설명 $\rightarrow$ 정답).
+3. **③ 현재 시점과 과거 시점 사이의 상관관계를 분석하는 데 사용된다**: $\text{Corr}(X_t, X_{t-k})$ (⭕ 옳은 설명).
+4. **④ 시차 $k$의 자기공분산을 전체 분산으로 나눈 형태로 계산된다**: $\rho_k = \frac{\gamma_k}{\gamma_0}$ (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [ACF vs PACF 및 ARIMA 모형 식별 절단 족보 총정리]
+$$\boxed{\textbf{AR(p) 모형} \longrightarrow \textbf{PACF: p 시차 이후 절단(Cut-off)} \quad \longleftrightarrow \quad \text{ACF: 지수적/점진적 감소(Tail-off)}}$$
+$$\boxed{\textbf{MA(q) 모형} \longrightarrow \textbf{ACF: q 시차 이후 절단(Cut-off)} \quad \longleftrightarrow \quad \text{PACF: 지수적/점진적 감소(Tail-off)}}$$
+$$\boxed{\textbf{ARMA(p, q) 모형} \longrightarrow \textbf{ACF, PACF 모두 지수적 감소 (둘 다 절단 없음)}}$$
+
+| 구분 | 자기상관함수 (ACF) | 편자기상관함수 (PACF) |
+| :--- | :--- | :--- |
+| **개념 정의** | 시차 $k$ 간의 **전체 상관관계 (간접 영향 포함)** | 중간 시차 영향을 통제한 **순수 직접 상관관계** |
+| **수식 형태** | $\rho_k = \frac{\text{Cov}(X_t, X_{t-k})}{\text{Var}(X_t)}$ | $\phi_{kk} = \text{Corr}(X_t, X_{t-k} \mid X_{t-1}, \dots, X_{t-k+1})$ |
+| **$AR(p)$ 모형 반응** | 서서히 점진적 감소 (Tail-off) | **🚨 $p$ 시차 이후 급격히 0으로 절단 (Cut-off)** |
+| **$MA(q)$ 모형 반응** | **🚨 $q$ 시차 이후 급격히 0으로 절단 (Cut-off)** | 서서히 점진적 감소 (Tail-off) |
+
+### 🧠 빅분기 암기 팁
+- **“중간 시차 영향 포함 = ACF / 중간 시차 걷어낸 순수 상관 = PACF!”**
+- **“AR은 PACF가 $p$에서 절단 / MA는 ACF가 $q$에서 절단!”**
+- **“AR-PACF / MA-ACF (알-팍, 마-악)!”** 1초 컷!
+
+---
+
+## 📌 [57번] 지도학습 앙상블 모델 - 랜덤 포레스트(Random Forest)의 원리와 트리 개수 증가의 한계
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 및 앙상블 학습 $\rightarrow$ 랜덤 포레스트(Random Forest)의 작동 원리 및 특성
+- **핵심 의도**: 랜덤 포레스트가 부트스트랩 샘플링과 무작위 변수 선택을 통해 트리를 결합하는 배깅 기반 모델임을 이해하고, **트리의 개수($n\_estimators$)를 늘릴 때 예측 안정성은 향상되나 일정 수준 이상에서는 성능 향상이 포화(Plateau)되어 '항상' 성능이 계속 향상되는 것은 아님**을 파악할 수 있는지 평가.
+
+### 🎯 정답
+**③ 생성하는 트리의 개수를 늘려 모델이 복잡해질수록 예측 성능은 항상 향상된다 ❌ (성능 향상 포화 및 비용 증가 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [트리 수 증가 $\ne$ 무한정 성능 향상 (포화 Plateau 발생)]
+- **랜덤 포레스트 (Random Forest)의 핵심 메커니즘**:
+  1. **부트스트랩 샘플링 (Bootstrap)**: 원본 데이터로부터 복원추출을 반복하여 다수의 결정트리를 생성.
+  2. **무작위 변수 선택 (Random Feature Subsampling)**: 각 노드 분할 시 전체 변수 $p$개 중 무작위로 일부 특성($\sqrt{p}$ 또는 $\log_2 p$)만 후보로 고려하여 **트리 간 상관관계(Correlation)를 대폭 축소**.
+  3. **앙상블 결합**: 다수결 투표(Voting) 또는 평균(Averaging)으로 **모델의 분산(Variance)을 획기적으로 낮춤**.
+- **트리 개수($n\_estimators$) 증가의 통계적 본질**:
+  - 트리의 개수를 늘리면 대수의 법칙에 따라 예측 분산이 감소하여 일반화 오차가 안정화되지만, **어느 수준에 도달하면 성능 개선이 한계(Plateau)에 수렴**하며 학습/추론 시간과 메모리만 소모됨. 따라서 "예측 성능이 항상 향상된다"는 서술은 명백한 오류임.
+- **스케일링 및 이상치 강건성**:
+  - 의사결정나무 기반 모델은 거리(Distance)가 아닌 기준값 대소 분기($X \le c$)를 사용하므로, **정규화/표준화 같은 스케일링 전처리가 불필요**하며 이상치에 매우 강건함 (선지 ②, ④는 참).
+
+### 🔎 선지 정밀 분석: [랜덤 포레스트 4대 선지 판독]
+1. **① 다수의 의사결정나무를 결합하는 앙상블 모델이다**: Bagging + Random Feature Subspace (⭕ 옳은 설명).
+2. **② 스케일 조정 없이도 안정적 분석이 가능하다**: 분기 기준 대소 비교이므로 스케일링 불필요 (⭕ 옳은 설명).
+3. **③ 트리를 늘릴수록 성능이 항상 향상된다**: 일정 트리 수 이상에서는 성능 포화 발생 (❌ 틀린 설명 $\rightarrow$ 정답).
+4. **④ 과적합을 완화하고 이상치에 비교적 강건하다**: 다수결/평균화로 분산 감소 (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [단일 의사결정나무 vs 랜덤 포레스트 vs 그래디언트 부스팅 비교표]
+$$\boxed{\textbf{랜덤 포레스트} = \textbf{부트스트랩 샘플링} + \textbf{무작위 특성 선택(Feature Subsampling)} \longrightarrow \textbf{트리 간 상관성 축소}}$$
+
+| 비교 항목 | 단일 의사결정나무 (Decision Tree) | 랜덤 포레스트 (Random Forest) | 그래디언트 부스팅 (GBM / XGBoost) |
+| :--- | :--- | :--- | :--- |
+| **앙상블 방식** | 단일 모델 (Non-ensemble) | **배깅 (Bagging, 병렬 처리)** | **부스팅 (Boosting, 순차 처리)** |
+| **편향 / 분산** | 낮은 편향, **높은 분산 (과적합 취약)** | 낮은 편향, **낮은 분산 (과적합 완화)** | **극도로 낮은 편향 (과적합 주의)** |
+| **특성 선택** | 모든 특성 중 최적 분할 탐색 | **노드마다 특성 무작위 부분집합 선택** | 잔차 기반 점진적 트리 구축 |
+| **트리 수 증가 영향** | 깊이 깊어지면 과적합 심화 | **과적합 위험 없으나 성능 포화** | 트리 너무 많으면 **과적합 발생** |
+| **스케일링 필요성** | 불필요 | **불필요** | **불필요** |
+
+### 🧠 빅분기 암기 팁
+- **“랜덤 포레스트 = 배깅(부트스트랩) + 무작위 특성 선택($\sqrt{p}$)!”**
+- **“트리 개수($n\_estimators$) 늘리면 성능 좋아지다 멈춘다(포화) $\rightarrow$ '항상 향상'은 오답!”**
+- **“트리 모델 3대 불필요: 스케일링 불필요, 정규성 불필요, 결측치에 관대!”** 1초 컷!
+
+---
+
+## 📌 [58번] 딥러닝 최적화 - 오차역전파와 기울기 소실(Vanishing Gradient)의 원인 및 4대 해결책
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 딥러닝 및 신경망 최적화 $\rightarrow$ 역전파(Backpropagation)와 기울기 소실(Vanishing Gradient)
+- **핵심 의도**: 심층 신경망에서 역전파 수행 시 연쇄 법칙(Chain Rule)에 의해 미분값이 계속 곱해지면서 **출력층에서 멀어질수록(입력층에 가까워질수록) 기울기가 0에 수렴하여 가중치가 업데이트되지 않는 현상이 기울기 소실(Vanishing Gradient)**임을 알고 있는지 평가.
+
+### 🎯 정답
+**① 기울기 소실 (Vanishing Gradient)**
+
+### 📌 정답인 이유: [연쇄 곱셈으로 $\frac{\partial L}{\partial w} \to 0 \Longrightarrow$ 입력층 가중치 학습 불능!]
+- **기울기 소실 (Vanishing Gradient)의 메커니즘**:
+  - 가중치 갱신 공식: $w_{\text{new}} = w_{\text{old}} - \eta \frac{\partial L}{\partial w}$
+  - 역전파는 출력층의 오차를 입력층 방향으로 거슬러 올라가며 연쇄법칙(Chain Rule)으로 각 층의 활성화 함수 도함수를 누적 곱함.
+  - Sigmoid($\sigma' \le 0.25$)나 Tanh($\tanh' \le 1.0$) 같은 포화(Saturation) 활성화 함수를 깊은 층에 적용하면, $0.25 \times 0.25 \times \dots$ 형태로 미분값이 기하급수적으로 축소되어 **$\frac{\partial L}{\partial w} \approx 0$으로 소멸함 $\longrightarrow$ 입력층 근처 가중치 학습 정지**.
+- **오답 선지들의 핵심 개념**:
+  - **② 과적합 (Overfitting)**: 학습 데이터는 완벽히 맞추나 테스트 데이터 성능이 급락하는 현상 (Dropout, L1/L2 규제로 해결).
+  - **③ 다중공선성 (Multicollinearity)**: 회귀분석에서 독립변수들 간 높은 선형상관관계 (VIF 10 이상 진단).
+  - **④ 경사하강법 (Gradient Descent)**: 손실함수 기울기를 이용해 가중치를 갱신하는 **최적화 알고리즘 자체**.
+
+### 🔎 선지 정밀 분석: [딥러닝 학습 장애 현상 판별]
+1. **① 기울기 소실 (Vanishing Gradient)**: 깊은 층에서 오차 기울기가 0으로 사라져 학습 불능 (⭕ 정답).
+2. **② 과적합 (Overfitting)**: 일반화 오차 증가 문제 (❌).
+3. **③ 다중공선성 (Multicollinearity)**: 회귀분석 독립변수 상관 문제 (❌).
+4. **④ 경사하강법 (Gradient Descent)**: 최적화 기법의 명칭 (❌).
+
+### 📚 출제위원 시크릿 족보: [기울기 소실(Vanishing Gradient) 4대 핵심 해결책 총정리표]
+$$\boxed{\textbf{원인: Sigmoid 미분 최댓값 } 0.25 \longrightarrow \text{연쇄법칙 누적 곱} \longrightarrow \frac{\partial L}{\partial w} \to 0}$$
+$$\boxed{\textbf{해결책: ReLU} (\text{미분값 } 1) + \textbf{He 초기화} + \textbf{배치 정규화(BatchNorm)} + \textbf{잔차 연결(ResNet)}}$$
+
+| 해결 영역 | 핵심 해결 기법 | 작동 원리 및 특징 |
+| :--- | :--- | :--- |
+| **활성화 함수 교체** | **ReLU 계열 ($\max(0, x)$)** | 양수 영역($x>0$)에서 **도함수 값이 항상 1**로 유지되어 기울기 보존 |
+| **가중치 초기화 개선** | **He 초기화 (He Normal/Uniform)** | ReLU 전용 분산 정규화 ($\text{Var}(W) = 2/n_{\text{in}}$), Xavier는 Sigmoid용 |
+| **내부 공변량 정규화** | **배치 정규화 (Batch Normalization)** | 미니배치 단위로 평균 0, 분산 1 정규화하여 활성화 분포 안정화 |
+| **네트워크 구조 혁신** | **잔차 연결 (Residual Connection, ResNet)** | 지름길(Skip Connection, $F(x)+x$)을 통해 **기울기가 직접 입력층으로 전달** |
+| **시계열 RNN 개선** | **LSTM, GRU 도입** | 게이트(Gate) 구조와 셀 상태(Cell State)로 **장기 의존성 보존** |
+
+### 🧠 빅분기 암기 팁
+- **“앞쪽 층으로 갈수록 기울기가 사라진다 $\rightarrow$ 1초 만에 기울기 소실(Vanishing Gradient)!”**
+- **“기울기 소실 4대 처방전: ReLU, He초기화, BatchNorm, ResNet 잔차연결!”**
+- **“ReLU는 He초기화, Sigmoid는 Xavier초기화!”** 1초 컷!
+
+---
+
+## 📌 [59번] 선형 회귀분석 - 선형 회귀의 5대 기본 가정과 잔차(Residual) 진단 패턴
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 (또는 제2과목 회귀분석) $\rightarrow$ 회귀분석 및 모형 진단 $\rightarrow$ 선형 회귀의 기본 가정과 잔차(Residual) 분석
+- **핵심 의도**: 선형 회귀모형의 이상적인 잔차는 **0을 중심으로 아무런 추세나 패턴 없이 무작위(Random)로 흩어져 있어야 하며(선형성/독립성 만족)**, 잔차가 예측값에 따라 일정한 방향으로 증가하거나 감소하는 경향을 보이면 모형 적합에 심각한 오류가 있음을 아는지 평가.
+
+### 🎯 정답
+**③ 잔차는 예측값이 커짐에 따라 일정한 방향으로 점점 증가하거나 감소하는 경향을 보여야 한다 ❌ (무작위 흩어짐이 정상 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [잔차는 무작위(Random)로 흩어져야 정상!]
+- **이상적인 잔차($e_i = y_i - \hat{y}_i$)의 분포**:
+  - 예측값($\hat{y}$)이나 설명변수($x$)와 무관하게 **0을 중심으로 상하 대칭이며 일정한 대역 폭(등분산)을 가지며 무작위(Random)로 고르게 분포**해야 함.
+  - 만약 잔차가 일정한 방향으로 증가/감소하는 선형 추세를 보이거나 U자/역U자 곡선 형태를 보인다면, **중요 변수 누락 또는 비선형 관계 미반영 등 선형성 가정이 위배**된 것임 (선지 ③은 명백한 오류).
+- **선형 회귀의 4대 기본 가정 판별**:
+  - **① 선형성 (Linearity)**: 종속변수와 독립변수의 관계가 선형적이어야 함 (⭕ 참).
+  - **② 독립성 (Independence)**: 잔차 간에 자기상관(Autocorrelation)이 없어야 함 ($\text{Cov}(e_i, e_j) = 0$, 더빈-왓슨 검정 $\approx 2$) (⭕ 참).
+  - **④ 등분산성 (Homoscedasticity)**: 모든 관측치에서 잔차의 분산이 $\sigma^2$으로 일정해야 함 (깔때기 모양 없어야 함) (⭕ 참).
+
+### 🔎 선지 정밀 분석: [회귀 진단 4대 선지 판별]
+1. **① 독립변수와 종속변수는 선형 관계를 가져야 한다**: 선형성 가정 (⭕ 옳은 설명).
+2. **② 오차항들은 서로 독립이어야 하며 자기상관이 없어야 한다**: 독립성 가정 (⭕ 옳은 설명).
+3. **③ 잔차가 일정한 방향으로 증가/감소해야 한다**: 방향성/패턴이 없어야 정상 (❌ 틀린 설명 $\rightarrow$ 정답).
+4. **④ 오차항의 분산은 모든 관측치에서 일정해야 한다**: 등분산성 가정 (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [선형 회귀 5대 기본 가정 및 잔차 플롯 진단 총정리표]
+$$\boxed{\textbf{선형 회귀 5대 가정: 선·독·등·정·비 (선형성, 독립성, 등분산성, 정규성, 비다중공선성)}}$$
+$$\boxed{\textbf{잔차 플롯 핵심: } \text{“잔차 플롯에 그림(곡선, 깔때기, 대각선)이 보이면 모형 위반! 0 주변 무작위 산포가 100점!”}}$$
+
+| 기본 가정 | 개념 및 수학적 정의 | 잔차 플롯($\hat{y} \text{ vs } e$) 이상 징후 | 주요 통계적 검정 방법 |
+| :--- | :--- | :--- | :--- |
+| **1. 선형성 (Linearity)** | $E(Y \mid X) = X\beta$ (선형결합) | **U자형 또는 역U자형 곡선 패턴** | 산점도, 잔차도 곡선 검토 |
+| **2. 독립성 (Independence)** | $\text{Cov}(\epsilon_i, \epsilon_j) = 0 \ (i \ne j)$ | 특정 주기성 또는 연속된 부호 패턴 | **더빈-왓슨 검정 (Durbin-Watson $\approx 2$)** |
+| **3. 등분산성 (Homoscedasticity)** | $\text{Var}(\epsilon_i \mid X) = \sigma^2$ (일정) | **부채꼴 / 깔때기(Funnel) 모양 확장** | 브로이슈-파간(Breusch-Pagan) 검정 |
+| **4. 정규성 (Normality)** | $\epsilon_i \sim N(0, \sigma^2)$ (정규분포) | Q-Q Plot에서 대각선 이탈 | **샤피로-윌크(Shapiro-Wilk), Q-Q Plot** |
+| **5. 비다중공선성** | 독립변수 간 강한 상관관계 없음 | 설명변수 간 상관계수 $> 0.9$ | **분산팽창지수 (VIF $\ge 10$이면 다중공선성)** |
+
+### 🧠 빅분기 암기 팁
+- **“회귀 5대 가정 = 선·독·등·정·비 (선형성, 독립성, 등분산성, 정규성, 비다중공선성)!”**
+- **“잔차에 그림이나 방향성이 생기면 무조건 망한 모형 $\rightarrow$ 0 중심 무작위 흩어짐이 정상!”**
+- **“깔때기 모양 = 등분산 위배 / 곡선 모양 = 선형성 위배 / 독립성 검정 = 더빈-왓슨!”** 1초 컷!
+
+---
+
+## 📌 [60번] 다중 회귀분석 - 다중공선성(Multicollinearity)의 본질, VIF 진단 및 해결 기법
+
+### ✅ 문제 분석
+- **출제 파트**: 제3과목 빅데이터 모델링 $\rightarrow$ 지도학습 회귀 분석 $\rightarrow$ 다중공선성(Multicollinearity)의 진단과 해결
+- **핵심 의도**: 다중공선성이 독립변수 간의 강한 선형상관으로 인해 **개별 회귀계수의 분산($\text{Var}(\hat{\beta})$)과 표준오차를 팽창시켜 계수 추정을 극도로 불안정하게 만들지만, 모델 전체의 예측력($R^2$)이나 예측 정확도가 반드시 크게 하락하는 것은 아님**을 파악할 수 있는지 평가.
+
+### 🎯 정답
+**② 회귀계수의 분산을 크게 만들어 계수를 불안정하게 할 뿐 아니라, 모델 전체의 예측 정확도 또한 반드시 크게 하락시킨다 ❌ (예측력 하락은 필수가 아님 $\rightarrow$ 틀린 설명 정답)**
+
+### 📌 정답인 이유: [다중공선성은 '계수 해석'을 흔들지, '예측력'을 반드시 망치진 않는다!]
+- **다중공선성 (Multicollinearity)의 정의와 영향**:
+  - 독립변수들($X_1, X_2, \dots, X_p$) 간에 강한 선형상관관계가 존재할 때 발생함 (선지 ①은 참).
+  - **계수 추정의 불안정**: 회귀계수의 분산($\text{Var}(\hat{\beta}_j) = \frac{\sigma^2}{(n-1)S_j^2} \times \text{VIF}_j$)이 급증하여 표준오차가 커지고, $t$-검정 $p$-value가 커져 유의한 변수도 비유의하게 판정되거나 계수 부호가 반대로 뒤집힘.
+  - **예측력 보존**: 상관된 변수들이 가진 정보가 타깃 $Y$를 예측하는 데 여전히 기여하므로, **모형 전체의 설명력($R^2$)과 예측값($\hat{Y}$) 자체는 높게 유지될 수 있음** $\longrightarrow$ 선지 ②의 "예측 정확도 또한 반드시 크게 하락"은 명백한 오류임.
+- **다중공선성 진단 및 해결**:
+  - **진단 지표**: 분산팽창요인($\text{VIF}_j = \frac{1}{1-R_j^2}$), 일반적으로 **$\text{VIF} \ge 10$ ($R_j^2 \ge 0.9$)일 때 다중공선성 존재로 판정** (선지 ③은 참).
+  - **해결 방안**: 1) 상관이 높은 변수 제거(변수 선택), 2) 주성분분석(PCA)으로 직교 변환, 3) 릿지(Ridge, $L_2$ 규제) 회귀 적용 (선지 ④는 참).
+
+### 🔎 선지 정밀 분석: [다중공선성 4대 선지 판독]
+1. **① 독립변수들 사이에 강한 상관관계가 존재할 때 발생한다**: 다중공선성의 표준 정의 (⭕ 옳은 설명).
+2. **② 회귀계수를 불안정하게 하고 예측 정확도도 반드시 크게 낮춘다**: 예측력은 유지될 수 있음 (❌ 틀린 설명 $\rightarrow$ 정답).
+3. **③ VIF가 10 이상이면 다중공선성이 존재한다고 판단한다**: $\text{VIF} \ge 10$ 판정 기준 (⭕ 옳은 설명).
+4. **④ 변수 제거, PCA, 릿지(Ridge) 회귀로 완화할 수 있다**: 3대 대표 해결책 (⭕ 옳은 설명).
+
+### 📚 출제위원 시크릿 족보: [다중공선성 진단 공식 및 3대 해결책 총정리표]
+$$\boxed{\textbf{다중공선성 핵심 공식: } \textbf{VIF}_j = \frac{1}{1 - R_j^2} \ge 10 \quad (R_j^2 \ge 0.9 \iff \text{다른 변수들이 } 90\% \text{ 이상 설명})}$$
+$$\boxed{\textbf{다중공선성 3대 해결책: } \textbf{변수 제거} \ + \ \textbf{PCA (직교 변환)} \ + \ \textbf{릿지 회귀 (Ridge, } L_2 \text{ 규제로 계수 축소)}}$$
+
+| 구분 | 주요 내용 및 특징 | 시험 출제 포인트 |
+| :--- | :--- | :--- |
+| **이상 현상 (징후)** | 전체 모형의 $F$-검정 및 $R^2$는 매우 높으나, **개별 독립변수의 $t$-검정 $p$-value는 비유의**함 | 모델은 유의한데 변수가 비유의 |
+| **분산팽창요인 (VIF)** | $X_j$를 나머지 변수들로 회귀분석했을 때의 결정계수 $R_j^2$ 기반 산출 | $\text{VIF} \ge 10$ (또는 5) 이상이면 의심 |
+| **공차한계 (Tolerance)** | $\text{Tolerance} = 1 - R_j^2 = \frac{1}{\text{VIF}_j}$ | **$\text{Tolerance} \le 0.1$이면 다중공선성** |
+| **해결 1: 릿지 (Ridge)** | $\sum (y_i - \hat{y}_i)^2 + \lambda \sum \beta_j^2$ ($L_2$ 규제) | **계수를 0으로 축소하여 분산 안정화** |
+| **해결 2: PCA** | 서로 상관된 변수들을 **상호 직교(비상관)하는 주성분으로 압축** | 다중공선성 원천 해소 |
+
+### 🧠 빅분기 암기 팁
+- **“다중공선성은 '계수 추정'을 흔드는 것이지, '예측력'을 반드시 망치진 않는다!”**
+- **“VIF 10 이상이면 다중공선성 / Tolerance 0.1 이하이면 다중공선성!”**
+- **“다중공선성 3대 치료제 = 변수 제거, PCA, 릿지(Ridge)!”** 1초 컷!
+
+---
+
+## 🏆 [제3과목 빅데이터 모델링 (41번 ~ 60번)] 1타 강사 초압축 족보 맵 완주
+
+| 문항 | 출제 핵심 주제 | 1타 강사 3초 컷 정답 공식 & 족보 |
+| :---: | :--- | :--- |
+| **41번** | **SVM 커널 vs 파라미터** | **선형/다항/RBF/시그모이드 = 커널 vs $C, \gamma$ = 조절 파라미터 ($C\uparrow, \gamma\uparrow \to$ 과적합)** |
+| **42번** | **규제 회귀 목적함수** | **$L_2$ 제곱합 $\lambda\sum\beta^2 \to$ 릿지(Ridge) / $L_1$ 절댓값 $\to$ 라쏘(Lasso) / 둘 다 $\to$ 엘라스틱넷** |
+| **43번** | **파생변수(Derived Variable)** | **기존 변수 조합/변환으로 새로운 열(Column) 생성 $\to$ BMI, 객단가, 요일 (행 축소 아님)** |
+| **44번** | **척도별 거리 측도** | **명목형/비대칭 이진 $\to$ 자카드(Jaccard) / 연속형 비상관 $\to$ 유클리드 / 연속형 상관 $\to$ 마할라노비스** |
+| **45번** | **XOR과 선형 분리 불가** | **$(0,0)/(1,1)$ vs $(0,1)/(1,0)$ 대각선 $\to$ 단일 직선 분리 불가 $\to$ 다층 퍼셉트론/커널 SVM 해결** |
+| **46번** | **카이제곱 적합도 검정** | **기대도수 $E=50$, 검정통계량 $\chi^2 = 4.640 \ne 4.740$, 자유도 $df=3$, $H_0$ 기각 실패** |
+| **47번** | **어텐션(Attention)** | **입력별 Softmax 가중치 동적 맥락 벡터 $c=\sum\alpha_i h_i \to$ 선택적 집중 (트랜스포머)** |
+| **48번** | **로지스틱 회귀 변환** | **$p \to \text{Odds} = \frac{p}{1-p} \to \text{Logit} = \ln\text{Odds} \overset{\text{역함수}}{\longleftrightarrow} \text{Sigmoid}$ / $p\to0 \Rightarrow \text{logit}\to-\infty$** |
+| **49번** | **HMM 파라미터 vs 알고리즘** | **파라미터 = 전·방·초 (전이 A, 방출 B, 초기 $\pi$) vs 비터비(Viterbi) = 최적 상태 경로 디코딩 알고리즘** |
+| **50번** | **t-분포 vs 모분산 추론** | **모분산 미지 시 모평균 추론 $\to t$-분포 / 모분산 자체 추론 $\to \chi^2$-분포 / 2개 분산 비교 $\to F$-분포** |
+| **51번** | **비모수 가설검정 4총사** | **맨-휘트니는 남남(독립 2집단), 윌콕슨 부호순위는 짝꿍(대응 2집단), 크루스칼은 독립 3집단+** |
+| **52번** | **순환 신경망(RNN)** | **이전 은닉 상태 순차 전달($h_{t-1} \to h_t$) $\to$ RNN / 순환 없이 Self-Attention 병렬 $\to$ 트랜스포머** |
+| **53번** | **배깅 vs 부스팅** | **배깅 = 독립·병렬·분산감소 (랜덤포레스트) vs 부스팅 = 순차·편향감소 (AdaBoost, XGBoost)** |
+| **54번** | **나이브 베이즈(Naive Bayes)** | **클래스 조건부 독립 가정 / 0 확률 문제 해결 $\to$ 라플라스 스무딩(Laplace Smoothing, 분자+1)** |
+| **55번** | **신경망 MSE 손실함수 계산** | **$(1-0.8)^2=0.04$, $(0-0.2)^2=0.04 \to \text{SSE}=0.08 \to \text{MSE} = \frac{0.08}{2} = \mathbf{0.04}$** |
+| **56번** | **시계열 ACF vs PACF** | **중간 시차 포함 = ACF / 중간 시차 제거 순수 상관 = PACF / AR은 PACF 절단, MA는 ACF 절단** |
+| **57번** | **랜덤 포레스트 트리 수 한계** | **트리 개수($n\_estimators$) 늘리면 분산 감소하나 성능 향상은 포화(Plateau) $\to$ '항상 향상' 오답** |
+| **58번** | **기울기 소실(Vanishing Gradient)**| **역전파 연쇄곱으로 $\frac{\partial L}{\partial w} \to 0$ 소멸 $\to$ 처방: ReLU, He초기화, BatchNorm, ResNet 잔차연결** |
+| **59번** | **회귀 기본가정 & 잔차진단** | **회귀 5대 가정(선·독·등·정·비) / 잔차는 0 중심 무작위 흩어짐이 정상 $\to$ 일정한 방향성은 오류** |
+| **60번** | **다중공선성(VIF, Ridge)** | **독립변수 간 강한 상관 $\to$ 회귀계수 분산 증가(불안정) / 예측력은 유지 가능 / 해결: 변수제거, PCA, Ridge** |
+
+---
+
+# 제4과목: 빅데이터 결과 해석 (61번 ~ 80번)
+
+## 📌 [61번] 모델 평가 및 검증 - 데이터 누수(Data Leakage)의 발생 원인과 올바른 전처리 파이프라인
+
+### ✅ 문제 분석
+- **출제 파트**: 제4과목 빅데이터 결과 해석 $\rightarrow$ 모델 평가 및 검증 절차 $\rightarrow$ 데이터 누수(Data Leakage)의 개념 및 발생 사례
+- **핵심 의도**: 모델 학습 시 검증/테스트 데이터의 정보가 전처리 과정에 유입되는 **데이터 누수(Data Leakage)**가 발생하는 잘못된 사례를 식별하고, **"데이터 분할(Split)을 먼저 수행한 후, 학습 데이터(Train)만으로 파라미터를 추정(Fit)하여 검증/평가 데이터에 적용(Transform)"**하는 올바른 워크플로우를 알고 있는지 평가.
+
+### 🎯 정답
+**③ 전체 데이터를 대상으로 표준화(평균 0, 분산 1)를 먼저 수행한 뒤, 학습·검증·평가 데이터로 분할하였다 ❌ (데이터 누수 발생 사례 $\rightarrow$ 정답)**
+
+### 📌 정답인 이유: [전체 데이터로 스케일링 후 분할 = 전형적인 데이터 누수!]
+- **데이터 누수 (Data Leakage)의 본질**:
+  - 모델이 학습 단계에서 알 수 없어야 하는 미래 데이터나 평가/검증 데이터(Test/Validation)의 정보(통계량, 분포)가 학습 과정에 침투(Contamination)하는 현상.
+  - 선지 ③처럼 **전체 데이터셋을 대상으로 평균($\mu$)과 표준편차($\sigma$)를 계산하여 표준화를 수행하면, 아직 보지 않아야 할 테스트 데이터의 분포 정보가 전처리 파라미터에 반영**되므로 심각한 데이터 누수가 발생함 $\longrightarrow$ 실제 배포 시 성능 급락 초래.
+- **올바른 전처리 워크플로우 (Split First, Fit Later)**:
+  1. 원본 데이터를 **먼저 Train / Validation / Test 세트로 분할(Split)**.
+  2. **오직 Train 데이터만을 사용하여 스케일러를 학습(Fit)** ($\mu_{\text{train}}, \sigma_{\text{train}}$ 산출).
+  3. 학습된 기준값($\mu_{\text{train}}, \sigma_{\text{train}}$)을 Train, Validation, Test에 **그대로 적용(Transform)**.
+- **정상적인 사례들의 판별**:
+  - **① 학습 데이터만으로 결측값 대치 평균을 구하고 이를 평가 데이터에 동일 적용**: 정석적인 전처리 방식 (⭕ 정상).
+  - **② 시계열에서 과거 데이터로 학습하고 이후 미래 시점으로 평가**: 시간 순서를 준수한 올바른 평가 (⭕ 정상).
+  - **④ 층화 추출(Stratified Sampling)로 클래스 비율을 유지하며 분할**: 대표적인 불균형 데이터 분할법 (⭕ 정상).
+
+### 🔎 선지 정밀 분석: [데이터 누수 vs 정상 전처리 판별]
+1. **① Train 평균으로 결측치를 채우고 Test에도 동일 적용**: Train 통계량만 사용하므로 정상 (⭕ 옳은 절차).
+2. **② 시계열 과거 학습 $\to$ 미래 평가**: 시간 누수(Look-ahead Bias) 방지 정상 절차 (⭕ 옳은 절차).
+3. **③ 전체 데이터 표준화 후 분할**: Test 정보가 전처리에 유입되어 데이터 누수 발생 (❌ 누수 발생 $\rightarrow$ 정답).
+4. **④ 층화 추출로 검증 데이터 분리**: 정상적인 데이터 분할 기법 (⭕ 옳은 절차).
+
+### 📚 출제위원 시크릿 족보: [데이터 누수 3대 유형 및 Scikit-learn 파이프라인 공식]
+$$\boxed{\textbf{전처리 황금률: Split First, Fit Later!} \quad \Longrightarrow \quad \text{먼저 분할하고, Fit은 무조건 Train에서만!}}$$
+$$\boxed{\text{Train Data: } \textbf{fit\_transform()} \quad \longleftrightarrow \quad \text{Validation/Test Data: } \textbf{transform() 만 적용!}}$$
+
+| 데이터 누수 유형 | 발생 원인 및 잘못된 사례 | 방지 및 올바른 해결책 |
+| :--- | :--- | :--- |
+| **1. 전처리 누수 (Preprocessing)** | 전체 데이터로 표준화/정규화/결측대치/PCA/변수선택 후 Split | **데이터 분할 후 Train에서만 `fit()`, Test에는 `transform()`** |
+| **2. 타깃 누수 (Target Leakage)** | 사건 발생 이후에만 알 수 있는 사후 변수(예: 연체 후 추심 여부) 입력 | **예측 시점에 수집 가능한 변수만 모델 입력으로 사용** |
+| **3. 시간 누수 (Look-ahead)** | 시계열 데이터에서 미래 데이터를 학습에 사용하거나 랜덤 K-Fold 분할 | **Time-series Split (과거 학습 $\to$ 미래 검증 순서 준수)** |
+
+### 🧠 빅분기 암기 팁
+- **“전체 데이터로 먼저 전처리하고 쪼갰다 $\rightarrow$ 1초 만에 데이터 누수(Data Leakage)!”**
+- **“Train에서 통계량 구해서 Test에 그대로 적용했다 $\rightarrow$ 100점짜리 정상 전처리!”**
+- **“Fit은 Train만, Transform은 모두 다!”** 1초 컷!
+
+---
+
+## 📌 [62번] 분류 모델 평가지표 - 혼동행렬(Confusion Matrix)과 F1-Score(조화평균) 계산
+
+### ✅ 문제 분석
+- **출제 파트**: 제4과목 빅데이터 결과 해석 $\rightarrow$ 분류 평가 지표 $\rightarrow$ 혼동행렬(Confusion Matrix), 정밀도(Precision), 재현율(Recall), F1-Score 계산
+- **핵심 의도**: 혼동행렬의 $2 \times 2$ 분할표에서 $TP, FP, FN, TN$ 값을 정확히 추출하고, 불균형 데이터 평가의 핵심 지표인 **F1-Score($\text{Precision}$과 $\text{Recall}$의 조화평균)**를 정확히 산출할 수 있는지 평가.
+
+### 🎯 정답
+**④ 0.80**
+
+### 📌 정답인 이유: [Precision $\to$ Recall $\to$ 조화평균 3단계 산출]
+- **혼동행렬 데이터 분석**:
+  - 실제 Positive / 예측 Positive ($TP$) = $80$
+  - 실제 Positive / 예측 Negative ($FN$) = $20$
+  - 실제 Negative / 예측 Positive ($FP$) = $20$
+  - 실제 Negative / 예측 Negative ($TN$) = $80$
+- **1단계: 정밀도 (Precision) 산출**
+  $$\text{Precision} = \frac{TP}{TP + FP} = \frac{80}{80 + 20} = \frac{80}{100} = \mathbf{0.80}$$
+- **2단계: 재현율 (Recall / 민감도 Sensitivity) 산출**
+  $$\text{Recall} = \frac{TP}{TP + FN} = \frac{80}{80 + 20} = \frac{80}{100} = \mathbf{0.80}$$
+- **3단계: F1-Score (정밀도와 재현율의 조화평균) 산출**
+  $$\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 2 \times \frac{0.80 \times 0.80}{0.80 + 0.80} = \frac{1.28}{1.60} = \mathbf{0.80}$$
+  - $\Longrightarrow$ 최종 정답: **④ 0.80**
+
+### 🔎 선지 정밀 분석: [오답 함정 연산 검토]
+1. **① 0.64**: $P \times R = 0.8 \times 0.8 = 0.64$ 단순 곱셈만 수행한 오답 (❌).
+2. **② 0.75**: 분모/분자 혼동 오류 (❌).
+3. **③ 0.85**: 산술평균 계산 오류 (❌).
+4. **④ 0.80**: 정확한 조화평균 계산 결과 (⭕ 정답).
+
+### 📚 출제위원 시크릿 족보: [혼동행렬 4대 핵심 지표 공식 및 초고속 풀이 팁]
+$$\boxed{\textbf{정밀도 (Precision)} = \frac{TP}{TP + FP} \quad (\text{예측 Positive 중 정답 비율, } \mathbf{FP \text{ 최소화}})}$$
+$$\boxed{\textbf{재현율 (Recall)} = \frac{TP}{TP + FN} \quad (\text{실제 Positive 중 검출 비율, } \mathbf{FN \text{ 최소화}})}$$
+$$\boxed{\textbf{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = \frac{2TP}{2TP + FP + FN}}$$
+$$\boxed{\mathbf{FP = FN \text{ 이면 } \Longrightarrow \text{Precision} = \text{Recall} \Longrightarrow \text{F1-Score} = \text{Precision} = \text{Recall} \ (\text{3초 컷!})}}$$
+
+| 평가지표 | 분모의 기준 | 핵심 비즈니스 적용 사례 |
+| :--- | :--- | :--- |
+| **정밀도 (Precision)** | **모델이 Positive로 예측한 전체 ($TP+FP$)** | **스팸 메일 필터링 (일반 메일을 스팸으로 오분류 $FP$ 방지)** |
+| **재현율 (Recall)** | **실제 Positive인 전체 ($TP+FN$)** | **암 진단, 금융 사기 탐지 (환자를 정상으로 오분류 $FN$ 방지)** |
+| **F1-Score** | 정밀도와 재현율의 균형 (조화평균) | 클래스 불균형 데이터셋 모델 종합 평가 |
+
+### 🧠 빅분기 암기 팁
+- **“F1-Score 공식: $\text{F1} = 2 \frac{P \times R}{P + R}$ (조화평균)!”**
+- **“$FP=FN$이면 계산할 것도 없이 $\text{F1} = P = R$!”**
+- **“스팸 메일 = 정밀도(FP 방지), 암 진단 = 재현율(FN 방지)!”** 1초 컷!
+
+---
+
+## 📌 [63번] 모델 최적화 및 튜닝 - 그리드 서치(Grid Search)와 K-Fold 교차검증(CV) 총 학습 횟수 계산
+
+### ✅ 문제 분석
+- **출제 파트**: 제4과목 빅데이터 결과 해석 $\rightarrow$ 모델 최적화 및 튜닝 $\rightarrow$ 하이퍼파라미터 튜닝 기법(Grid Search)과 K-Fold 교차검증(CV)
+- **핵심 의도**: 하이퍼파라미터 $\lambda_1$ 후보 5개, $\lambda_2$ 후보 10개가 주어졌을 때 **모든 조합을 탐색하는 그리드 서치(Grid Search, $5 \times 10 = 50$개)**와 **5-Fold 교차검증(CV, 조합당 5회 학습)**이 결합된 총 모델 학습 횟수를 정확히 계산할 수 있는지 평가.
+
+### 🎯 정답
+**① 250회**
+
+### 📌 정답인 이유: [총 학습 횟수 = (하이퍼파라미터 조합 수) $\times$ K-Fold]
+1. **1단계: 하이퍼파라미터 격자(Grid) 총 조합 수 산출**
+   - $\lambda_1$ 후보 수 = $5$개, $\lambda_2$ 후보 수 = $10$개
+   - 전체 파라미터 조합 수 = $5 \times 10 = \mathbf{50\text{개 조합}}$
+2. **2단계: 5-Fold 교차검증(CV) 적용 총 학습 횟수 산출**
+   - 각 파라미터 조합 1개당 5번의 분할 데이터셋(Fold)에 대해 모델 학습 및 검증 반복
+   - 전체 모델 학습 횟수 = $50\text{개 조합} \times 5\text{회} = \mathbf{250\text{회}}$
+   - $\Longrightarrow$ 최종 정답: **① 250회**
+
+### 🔎 선지 정밀 분석: [오답 함정 수식 검토]
+1. **① 250회**: 정확한 Grid Search CV 총 학습 횟수 ($5 \times 10 \times 5 = 250$) (⭕ 정답).
+2. **② 75회**: 덧셈 후 Fold 곱셈 오류 ($(5 + 10) \times 5 = 75$, ❌).
+3. **③ 50회**: K-Fold 반복을 누락하고 단순 '조합의 수'만 계산한 함정 ($5 \times 10 = 50$, ❌).
+4. **④ 15회**: 후보 개수만 단순 합산한 값 ($5 + 10 = 15$, ❌).
+
+### 📚 출제위원 시크릿 족보: [하이퍼파라미터 튜닝 3대 탐색 기법 비교 총정리표]
+$$\boxed{\textbf{Grid Search CV 총 학습 횟수} = (\text{후보}_1 \times \text{후보}_2 \times \dots \times \text{후보}_m) \times K}$$
+$$\boxed{\textbf{조합의 개수(50개)} \quad \ne \quad \textbf{실제 모델 학습 횟수(250회)} \quad (\text{구분 필수!})}$$
+
+| 튜닝 탐색 기법 | 작동 원리 및 특징 | 장점 및 한계 |
+| :--- | :--- | :--- |
+| **그리드 서치 (Grid Search)** | 설정한 모든 하이퍼파라미터 격자 조합을 **전수 탐색** | 최적 조합 보장 / **차원의 저주 및 연산 비용 폭증** |
+| **랜덤 서치 (Random Search)** | 지정된 범위 내에서 하이퍼파라미터를 **무작위 샘플링** | **연속형 파라미터에 유리, 불필요한 연산 대폭 절감** |
+| **베이지안 최적화 (Bayesian)** | 이전 탐색 결과(사후확률)를 반영하여 **유망한 영역 집중 탐색** | 가우시안 프로세스/TPE 활용, **최소 반복으로 전역 최적점 도달** |
+
+### 🧠 빅분기 암기 팁
+- **“그리드 서치 학습 횟수 = (후보1 $\times$ 후보2 $\times$ ...) $\times$ K-Fold!”**
+- **“5개 $\times$ 10개 $\times$ 5-Fold = 1초 만에 250회!”**
+- **“조합 수 묻는지(50), 학습 횟수 묻는지(250) 문제 끝까지 읽기!”** 1초 컷!
+
+---
+
 # Related Concepts
 - [01. 데이터와 정보](01-data-and-information.md)
 - [04. 분석 기획 및 과제 발굴](04-analysis-planning-directions.md)
