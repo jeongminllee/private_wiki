@@ -1,0 +1,380 @@
+{"kind":"deck","id":"pr/g3awe4","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"subtitle","type":"subtitle","textPreview":"Click to edit Master subtitle style"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"Title and Content","type":"obj","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"content placeholder 2","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"Section Header","type":"secHead","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout4.xml","name":"Two Content","type":"twoObj","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"content placeholder 2","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"content placeholder 3","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout5.xml","name":"Comparison","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"content placeholder 3","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"content placeholder 5","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout6.xml","name":"Title Only","type":"titleOnly","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout7.xml","name":"Blank","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout8.xml","name":"Content with Caption","type":"objTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"content placeholder 2","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout9.xml","name":"Picture with Caption","type":"picTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"picture","type":"picture"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout10.xml","name":"Title and Vertical Text","type":"vertTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout11.xml","name":"Vertical Title and Text","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"8/1/2011"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"목재 물리학|  시스템 개발  |  LLM  | AutoML","textShapes":19}
+{"kind":"shape","id":"sh/k3yl0zql","slide":1,"name":"Freeform 3","bbox":[1284.92,-1,636.08,1082]}
+{"kind":"shape","id":"sh/65g3298r","slide":1,"name":"Freeform 5","bbox":[108,95.04,1094.4,54.21]}
+{"kind":"textbox","id":"sh/ts7md4r2","slide":1,"name":"TextBox 6","text":"목재 물리학|  시스템 개발  |  LLM  | AutoML ","textPreview":"목재 물리학|  시스템 개발  |  LLM  | AutoML","textChars":34,"textLines":1,"bbox":[108,93.54,1094.4,55.71]}
+{"kind":"shape","id":"sh/sryl4zqx","slide":1,"name":"AutoShape 7","bbox":[106.44,182.76,581.81,0]}
+{"kind":"shape","id":"sh/utg3698n","slide":1,"name":"Freeform 9","bbox":[100.8,263.52,1137.6,203.83]}
+{"kind":"textbox","id":"sh/wn6dc7eh","slide":1,"name":"TextBox 10","text":"포트폴리오","textPreview":"포트폴리오","textChars":5,"textLines":1,"bbox":[100.8,259.02,1137.6,208.33]}
+{"kind":"shape","id":"sh/ul4vaxgb","slide":1,"name":"Freeform 12","bbox":[110.88,426.24,950.4,67.68]}
+{"kind":"textbox","id":"sh/vmdcj2xw","slide":1,"name":"TextBox 13","text":"이정민","textPreview":"이정민","textChars":3,"textLines":1,"bbox":[110.88,423.24,950.4,70.68]}
+{"kind":"shape","id":"sh/5sfepcfe","slide":1,"name":"Freeform 15","bbox":[112.32,596.16,1058.4,167.04]}
+{"kind":"textbox","id":"sh/ipovexwn","slide":1,"name":"TextBox 16","text":"실험 데이터 분석에서\n로컬 LLM 개발·검증까지","textPreview":"실험 데이터 분석에서 | 로컬 LLM 개발·검증까지","textChars":26,"textLines":2,"bbox":[112.32,590.91,1058.4,172.29]}
+{"kind":"shape","id":"sh/sfqdkrep","slide":1,"name":"Freeform 18","bbox":[113.76,921.6,1051.2,41.76]}
+{"kind":"textbox","id":"sh/dgzetcfa","slide":1,"name":"TextBox 19","text":"임산공학 · 목재 물리학 석사","textPreview":"임산공학 · 목재 물리학 석사","textChars":16,"textLines":1,"bbox":[113.76,920.1,1051.2,43.26]}
+{"kind":"shape","id":"sh/0bmd476t","slide":1,"name":"Freeform 21","bbox":[113.76,982.08,1051.2,49.09]}
+{"kind":"textbox","id":"sh/zadcv2p8","slide":1,"name":"TextBox 22","text":"연구 · 시스템 구현 · 모델 개선, 프레임워크 개발","textPreview":"연구 · 시스템 구현 · 모델 개선, 프레임워크 개발","textChars":29,"textLines":1,"bbox":[113.76,980.58,1051.2,50.59]}
+{"kind":"shape","id":"sh/90ve1w7q","slide":1,"name":"Freeform 24","bbox":[1368,99.36,468,116.64]}
+{"kind":"textbox","id":"sh/ozmd8r65","slide":1,"name":"TextBox 25","text":"RESEARCH &\nENGINEERING","textPreview":"RESEARCH & | ENGINEERING","textChars":22,"textLines":2,"bbox":[1368,97.86,468,118.14]}
+{"kind":"shape","id":"sh/mx4v6hoz","slide":1,"name":"Freeform 27","bbox":[1369.31,227.42,417.6,87.84]}
+{"kind":"textbox","id":"sh/p4bu5s76","slide":1,"name":"TextBox 28","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1369.31,225.17,417.6,90.09]}
+{"kind":"shape","id":"sh/uxgjq907","slide":1,"name":"Freeform 30","bbox":[1369.31,291.66,468,74.02]}
+{"kind":"textbox","id":"sh/vyp0je1s","slide":1,"name":"TextBox 31","text":"목재 물리학 연구","textPreview":"목재 물리학 연구","textChars":9,"textLines":1,"bbox":[1369.31,290.16,468,75.52]}
+{"kind":"shape","id":"sh/h072l4jy","slide":1,"name":"Freeform 33","bbox":[1369.31,356.78,468,47.45]}
+{"kind":"textbox","id":"sh/i1gje90j","slide":1,"name":"TextBox 34","text":"수분 분포 · 회귀분석","textPreview":"수분 분포 · 회귀분석","textChars":12,"textLines":1,"bbox":[1369.31,355.28,468,48.95]}
+{"kind":"shape","id":"sh/j2pkne14","slide":1,"name":"AutoShape 35","bbox":[1368.61,400.94,467.96,1.31]}
+{"kind":"shape","id":"sh/54r2poju","slide":1,"name":"Freeform 37","bbox":[1369.31,421.77,417.6,87.84]}
+{"kind":"textbox","id":"sh/y5wjip0z","slide":1,"name":"TextBox 38","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1369.31,419.52,417.6,90.09]}
+{"kind":"shape","id":"sh/z2xgf6to","slide":1,"name":"Freeform 40","bbox":[1369.31,491.49,468,74.02]}
+{"kind":"textbox","id":"sh/e1oz61c3","slide":1,"name":"TextBox 41","text":"로컬 LLM 시스템","textPreview":"로컬 LLM 시스템","textChars":10,"textLines":1,"bbox":[1369.31,489.99,468,75.52]}
+{"kind":"shape","id":"sh/036h8but","slide":1,"name":"Freeform 43","bbox":[1369.31,556.6,468,47.45]}
+{"kind":"textbox","id":"sh/nqxgjqtk","slide":1,"name":"TextBox 44","text":"악성 코드 분석 · 프로토타입","textPreview":"악성 코드 분석 · 프로토타입","textChars":16,"textLines":1,"bbox":[1369.31,555.1,468,48.95]}
+{"kind":"shape","id":"sh/mpozalcz","slide":1,"name":"AutoShape 45","bbox":[1368.61,600.76,467.96,1.31]}
+{"kind":"shape","id":"sh/or6hcvu5","slide":1,"name":"Freeform 47","bbox":[1369.31,621.59,417.6,87.84]}
+{"kind":"textbox","id":"sh/buh0nqtg","slide":1,"name":"TextBox 48","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1369.31,619.34,417.6,90.09]}
+{"kind":"shape","id":"sh/8zqx4vq9","slide":1,"name":"Freeform 50","bbox":[1369.31,691.31,468,74.02]}
+{"kind":"textbox","id":"sh/t0jyd0ru","slide":1,"name":"TextBox 51","text":"보안 LLM 파인튜닝","textPreview":"보안 LLM 파인튜닝","textChars":11,"textLines":1,"bbox":[1369.31,689.81,468,75.52]}
+{"kind":"shape","id":"sh/7yhgbq9o","slide":1,"name":"Freeform 53","bbox":[1369.31,756.43,468,47.45]}
+{"kind":"textbox","id":"sh/kvqx0vqd","slide":1,"name":"TextBox 54","text":"실험 평가 · 데이터 재설계","textPreview":"실험 평가 · 데이터 재설계","textChars":15,"textLines":1,"bbox":[1369.31,754.93,468,48.95]}
+{"kind":"shape","id":"sh/lwzy90ry","slide":1,"name":"AutoShape 55","bbox":[1369.31,820.73,467.96,1.31]}
+{"kind":"shape","id":"sh/juhg7q9s","slide":1,"name":"Freeform 57","bbox":[1370.01,841.56,417.6,87.84]}
+{"kind":"textbox","id":"sh/wr6xwbq1","slide":1,"name":"TextBox 58","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1370.01,839.31,417.6,90.09]}
+{"kind":"shape","id":"sh/dc7md8fe","slide":1,"name":"Freeform 60","bbox":[1370.01,911.28,468,74.02]}
+{"kind":"textbox","id":"sh/cby5k3yt","slide":1,"name":"TextBox 61","text":"GUAM","textPreview":"GUAM","textChars":4,"textLines":1,"bbox":[1370.01,909.78,468,75.52]}
+{"kind":"shape","id":"sh/q9wnidgn","slide":1,"name":"Freeform 63","bbox":[1370.01,976.39,468,47.45]}
+{"kind":"textbox","id":"sh/5onm98f2","slide":1,"name":"TextBox 64","text":"모듈 구현, 문서 최신화, 테스트","textPreview":"모듈 구현, 문서 최신화, 테스트","textChars":18,"textLines":1,"bbox":[1370.01,974.89,468,48.95]}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":"구성 자료: 이정민 전공소개서 원본(표지·프로필·석사 연구·시스템 개발·모델 실험).\n1"}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"01  /  PROFILE","textShapes":29}
+{"kind":"shape","id":"sh/ozy1ofad","slide":2,"name":"Freeform 3","bbox":[86.4,51.84,1742.4,31.68]}
+{"kind":"textbox","id":"sh/b29kza94","slide":2,"name":"TextBox 4","text":"01  /  PROFILE","textPreview":"01  /  PROFILE","textChars":14,"textLines":1,"bbox":[86.4,51.09,1742.4,32.43]}
+{"kind":"shape","id":"sh/x4r21kru","slide":2,"name":"Freeform 6","bbox":[86.4,118.08,1742.4,72]}
+{"kind":"textbox","id":"sh/w3i1sfa9","slide":2,"name":"TextBox 7","text":"연구 경험을 AI 시스템 개발로 연결합니다","textPreview":"연구 경험을 AI 시스템 개발로 연결합니다","textChars":23,"textLines":1,"bbox":[86.4,115.08,1742.4,75]}
+{"kind":"shape","id":"sh/q5wjelsz","slide":2,"name":"Freeform 9","bbox":[89.28,201.6,1728,43.2]}
+{"kind":"textbox","id":"sh/ove9o7yd","slide":2,"name":"TextBox 10","text":"실험 데이터의 해석, 분석 시스템 구현, 데이터·모델 개선으로 이어지는 경험","textPreview":"실험 데이터의 해석, 분석 시스템 구현, 데이터·모델 개선으로 이어지는 경험","textChars":42,"textLines":1,"bbox":[89.28,200.85,1728,43.95]}
+{"kind":"shape","id":"sh/mtwrmxg7","slide":2,"name":"Freeform 12","bbox":[85.4,282.68,547.76,703.28]}
+{"kind":"shape","id":"sh/wjy9sry9","slide":2,"name":"Freeform 14","bbox":[122.66,319.68,156.44,208.8]}
+{"kind":"shape","id":"sh/ahwrqhgj","slide":2,"name":"Freeform 16","bbox":[305.28,339.84,286.56,56.16]}
+{"kind":"textbox","id":"sh/bip8jmho","slide":2,"name":"TextBox 17","text":"이정민","textPreview":"이정민","textChars":3,"textLines":1,"bbox":[305.28,337.59,286.56,58.41]}
+{"kind":"shape","id":"sh/do3q9szq","slide":2,"name":"Freeform 19","bbox":[306.72,420.48,282.24,83.52]}
+{"kind":"textbox","id":"sh/t8byxkn2","slide":2,"name":"TextBox 20","text":"임산공학 석사\n목재 물리학","textPreview":"임산공학 석사 | 목재 물리학","textChars":14,"textLines":2,"bbox":[306.72,418.23,282.24,85.77]}
+{"kind":"shape","id":"sh/s72xofmh","slide":2,"name":"AutoShape 21","bbox":[124.48,566.86,466.72,0]}
+{"kind":"shape","id":"sh/65kfmpor","slide":2,"name":"Freeform 23","bbox":[125.28,597.6,452.16,34.56]}
+{"kind":"textbox","id":"sh/hcvy14ne","slide":2,"name":"TextBox 24","text":"학력 및 현재 교육","textPreview":"학력 및 현재 교육","textChars":10,"textLines":1,"bbox":[125.28,596.1,452.16,36.06]}
+{"kind":"shape","id":"sh/fadgzu58","slide":2,"name":"Freeform 26","bbox":[125.28,650.88,465.12,38.88]}
+{"kind":"textbox","id":"sh/u94fqp4n","slide":2,"name":"TextBox 27","text":"경북대학교 대학원 · 석사","textPreview":"경북대학교 대학원 · 석사","textChars":14,"textLines":1,"bbox":[125.28,649.38,465.12,40.38]}
+{"kind":"shape","id":"sh/4zmxwzmp","slide":2,"name":"Freeform 29","bbox":[125.28,708.48,462.24,70.56]}
+{"kind":"textbox","id":"sh/mlgvq147","slide":2,"name":"TextBox 30","text":"임산공학(목재 물리학)\n2017.03–2019.02","textPreview":"임산공학(목재 물리학) | 2017.03–2019.02","textChars":28,"textLines":2,"bbox":[125.28,706.98,462.24,72.06]}
+{"kind":"shape","id":"sh/onydsbmd","slide":2,"name":"Freeform 32","bbox":[125.28,800.64,465.12,38.88]}
+{"kind":"textbox","id":"sh/9o7ulg3y","slide":2,"name":"TextBox 33","text":"경북대학교 · 학사","textPreview":"경북대학교 · 학사","textChars":10,"textLines":1,"bbox":[125.28,799.14,465.12,40.38]}
+{"kind":"shape","id":"sh/ba9cn6l4","slide":2,"name":"Freeform 35","bbox":[125.28,855.36,465.12,31.68]}
+{"kind":"textbox","id":"sh/wbidwb29","slide":2,"name":"TextBox 36","text":"임산공학  |  2011.03–2017.02","textPreview":"임산공학  |  2011.03–2017.02","textChars":24,"textLines":1,"bbox":[125.28,854.61,465.12,32.43]}
+{"kind":"shape","id":"sh/id0vylkf","slide":2,"name":"Freeform 38","bbox":[125.28,915.84,465.12,59.04]}
+{"kind":"textbox","id":"sh/je9crql0","slide":2,"name":"TextBox 39","text":"한국폴리텍대학 대구캠퍼스\nAI 엔지니어링 과정 수강 중","textPreview":"한국폴리텍대학 대구캠퍼스 | AI 엔지니어링 과정 수강 중","textChars":30,"textLines":2,"bbox":[125.28,915.09,465.12,59.79]}
+{"kind":"shape","id":"sh/69wbilcj","slide":2,"name":"Freeform 41","bbox":[685.44,299.52,253.44,70.56]}
+{"kind":"textbox","id":"sh/tw7ud0va","slide":2,"name":"TextBox 42","text":"3편","textPreview":"3편","textChars":2,"textLines":1,"bbox":[685.44,296.52,253.44,73.56]}
+{"kind":"shape","id":"sh/fypcfqdg","slide":2,"name":"Freeform 44","bbox":[686.88,390.24,324,31.68]}
+{"kind":"textbox","id":"sh/exgvmlcv","slide":2,"name":"TextBox 45","text":"논문 · 학위논문 포함","textPreview":"논문 · 학위논문 포함","textChars":12,"textLines":1,"bbox":[686.88,389.49,324,32.43]}
+{"kind":"shape","id":"sh/107uh0v6","slide":2,"name":"AutoShape 46","bbox":[975.62,360.94,116.61,0]}
+{"kind":"shape","id":"sh/v2lc36dw","slide":2,"name":"Freeform 48","bbox":[1077.12,299.52,228.96,70.56]}
+{"kind":"textbox","id":"sh/a1cba1wb","slide":2,"name":"TextBox 49","text":"1회","textPreview":"1회","textChars":2,"textLines":1,"bbox":[1077.12,296.52,228.96,73.56]}
+{"kind":"shape","id":"sh/1wzix87i","slide":2,"name":"Freeform 51","bbox":[1078.56,390.24,256.32,31.68]}
+{"kind":"textbox","id":"sh/et8zmto7","slide":2,"name":"TextBox 52","text":"국제학회 발표","textPreview":"국제학회 발표","textChars":7,"textLines":1,"bbox":[1078.56,389.49,256.32,32.43]}
+{"kind":"shape","id":"sh/zuh0vypc","slide":2,"name":"AutoShape 53","bbox":[1325.54,360.94,116.61,0]}
+{"kind":"shape","id":"sh/d8zit87m","slide":2,"name":"Freeform 55","bbox":[1428.48,316.8,378.72,43.2]}
+{"kind":"textbox","id":"sh/q5ozitov","slide":2,"name":"TextBox 56","text":"연구실 운영","textPreview":"연구실 운영","textChars":6,"textLines":1,"bbox":[1428.48,314.55,378.72,45.45]}
+{"kind":"shape","id":"sh/w3a1wn65","slide":2,"name":"Freeform 58","bbox":[1428.48,390.24,401.76,33.12]}
+{"kind":"textbox","id":"sh/xoji5s7q","slide":2,"name":"TextBox 59","text":"방장 · 학부생 졸업논문 지도","textPreview":"방장 · 학부생 졸업논문 지도","textChars":16,"textLines":1,"bbox":[1428.48,389.49,401.76,33.87]}
+{"kind":"shape","id":"sh/kj6hgny9","slide":2,"name":"Freeform 61","bbox":[685.44,483.84,979.2,34.56]}
+{"kind":"textbox","id":"sh/jix0niho","slide":2,"name":"TextBox 62","text":"핵심 역량과 수행 근거","textPreview":"핵심 역량과 수행 근거","textChars":12,"textLines":1,"bbox":[685.44,482.34,979.2,36.06]}
+{"kind":"shape","id":"sh/xgfil8zy","slide":2,"name":"Freeform 64","bbox":[685.44,568.8,60.48,34.56]}
+{"kind":"textbox","id":"sh/wf6hcnyd","slide":2,"name":"TextBox 65","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[685.44,568.05,60.48,35.31]}
+{"kind":"shape","id":"sh/ad4zadg7","slide":2,"name":"Freeform 67","bbox":[766.08,561.6,254.88,54.72]}
+{"kind":"textbox","id":"sh/9svih8zm","slide":2,"name":"TextBox 68","text":"연구·분석","textPreview":"연구·분석","textChars":5,"textLines":1,"bbox":[766.08,560.1,254.88,56.22]}
+{"kind":"shape","id":"sh/yxkfi9wz","slide":2,"name":"Freeform 70","bbox":[1036.8,554.4,662.4,82.08]}
+{"kind":"textbox","id":"sh/zytgbexk","slide":2,"name":"TextBox 71","text":"함수율 분포·경사 비교\n회귀분석을 통한 연구 결과 해석","textPreview":"함수율 분포·경사 비교 | 회귀분석을 통한 연구 결과 해석","textChars":30,"textLines":2,"bbox":[1036.8,552.15,662.4,84.33]}
+{"kind":"shape","id":"sh/0j2xkje5","slide":2,"name":"AutoShape 72","bbox":[684.74,654.7,1147.64,0]}
+{"kind":"shape","id":"sh/qt0fepw3","slide":2,"name":"Freeform 74","bbox":[685.44,691.2,60.48,34.56]}
+{"kind":"textbox","id":"sh/bu9w7uxo","slide":2,"name":"TextBox 75","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[685.44,690.45,60.48,35.31]}
+{"kind":"shape","id":"sh/dwbe94fe","slide":2,"name":"Freeform 77","bbox":[766.08,684,254.88,54.72]}
+{"kind":"textbox","id":"sh/2p0fapwr","slide":2,"name":"TextBox 78","text":"구현·검증","textPreview":"구현·검증","textChars":5,"textLines":1,"bbox":[766.08,682.5,254.88,56.22]}
+{"kind":"shape","id":"sh/ret8r2dk","slide":2,"name":"Freeform 80","bbox":[1036.8,676.8,662.4,82.08]}
+{"kind":"textbox","id":"sh/6tk7yxcz","slide":2,"name":"TextBox 81","text":"정적 분석과 로컬 LLM 연계\nPython 코드 분석 프로토타입 시험","textPreview":"정적 분석과 로컬 LLM 연계 | Python 코드 분석 프로토타입 시험","textChars":38,"textLines":2,"bbox":[1036.8,674.55,662.4,84.33]}
+{"kind":"shape","id":"sh/tgvqtcva","slide":2,"name":"AutoShape 82","bbox":[684.74,777.1,1147.64,0]}
+{"kind":"shape","id":"sh/jqt8nid8","slide":2,"name":"Freeform 84","bbox":[685.44,813.6,60.48,34.56]}
+{"kind":"textbox","id":"sh/ipk7udcn","slide":2,"name":"TextBox 85","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[685.44,812.85,60.48,35.31]}
+{"kind":"shape","id":"sh/4r2pwnut","slide":2,"name":"Freeform 87","bbox":[766.08,806.4,254.88,54.72]}
+{"kind":"textbox","id":"sh/3md8zmtc","slide":2,"name":"TextBox 88","text":"데이터·학습","textPreview":"데이터·학습","textChars":6,"textLines":1,"bbox":[766.08,804.9,254.88,56.22]}
+{"kind":"shape","id":"sh/kry50jap","slide":2,"name":"Freeform 90","bbox":[1036.8,799.2,662.4,82.08]}
+{"kind":"textbox","id":"sh/ls7mtobu","slide":2,"name":"TextBox 91","text":"파인튜닝 결과 분석\n학습·평가 데이터셋 재구축","textPreview":"파인튜닝 결과 분석 | 학습·평가 데이터셋 재구축","textChars":25,"textLines":2,"bbox":[1036.8,796.95,662.4,84.33]}
+{"kind":"shape","id":"sh/zqp4ret4","slide":2,"name":"Freeform 93","bbox":[683,933.56,1149.68,52.4]}
+{"kind":"shape","id":"sh/9w76xob6","slide":2,"name":"Freeform 95","bbox":[709.92,946.08,159.84,24.48]}
+{"kind":"textbox","id":"sh/mtgn29sf","slide":2,"name":"TextBox 96","text":"사용 도구","textPreview":"사용 도구","textChars":5,"textLines":1,"bbox":[709.92,945.33,159.84,25.23]}
+{"kind":"shape","id":"sh/wzi583ah","slide":2,"name":"Freeform 98","bbox":[891.36,943.2,905.76,52.15]}
+{"kind":"textbox","id":"sh/hkr618b2","slide":2,"name":"TextBox 99","text":"Python  ·  PyTorch  ·  vLLM · Nvidia Rapids · GPU-based ML","textPreview":"Python  ·  PyTorch  ·  vLLM · Nvidia Rapids · GPU-based ML","textChars":58,"textLines":1,"bbox":[891.36,941.7,905.76,53.65]}
+{"kind":"shape","id":"sh/uxwf6xgz","slide":2,"name":"AutoShape 100","bbox":[85.7,1019.02,1748.12,0]}
+{"kind":"notes","id":"nt/hwbqtkby","slide":2,"text":"학력·연구 실적·현재 교육: 전공소개서 원본 2p. 연구실 활동·Python·PyTorch 경험: 기존 Notion 포트폴리오.\nhttps://momentous-loaf-283.notion.site/ML-bc41a73cf20b833c85b90151bffc455d\n2"}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"02  /  MASTER’S RESEARCH","textShapes":14}
+{"kind":"shape","id":"sh/d0jax03i","slide":3,"name":"Freeform 3","bbox":[86.4,51.84,1742.4,31.68]}
+{"kind":"textbox","id":"sh/298ryl4v","slide":3,"name":"TextBox 4","text":"02  /  MASTER’S RESEARCH","textPreview":"02  /  MASTER’S RESEARCH","textChars":24,"textLines":1,"bbox":[86.4,51.09,1742.4,32.43]}
+{"kind":"shape","id":"sh/obq90bml","slide":3,"name":"Freeform 6","bbox":[86.4,118.08,1742.4,72]}
+{"kind":"textbox","id":"sh/pcjqtg36","slide":3,"name":"TextBox 7","text":"섬유포화점 이하에서의 목재 내 함수율 분포","textPreview":"섬유포화점 이하에서의 목재 내 함수율 분포","textChars":23,"textLines":1,"bbox":[86.4,115.08,1742.4,75]}
+{"kind":"shape","id":"sh/n6ls3alk","slide":3,"name":"Freeform 9","bbox":[89.28,201.6,1728,43.2]}
+{"kind":"textbox","id":"sh/n2l4fq98","slide":3,"name":"TextBox 10","text":"경북대학교 대학원 · 임산공학(목재 물리학) · 석사 연구","textPreview":"경북대학교 대학원 · 임산공학(목재 물리학) · 석사 연구","textChars":32,"textLines":1,"bbox":[89.28,200.85,1728,43.95]}
+{"kind":"shape","id":"sh/943mhgre","slide":3,"name":"Freeform 12","bbox":[93.6,295.2,439.2,34.56]}
+{"kind":"textbox","id":"sh/83ulovat","slide":3,"name":"TextBox 13","text":"연구 질문","textPreview":"연구 질문","textChars":5,"textLines":1,"bbox":[93.6,293.7,439.2,36.06]}
+{"kind":"shape","id":"sh/a5c3ql8z","slide":3,"name":"Freeform 15","bbox":[93.6,354.24,436.32,158.4]}
+{"kind":"textbox","id":"sh/x8nml0ra","slide":3,"name":"TextBox 16","text":"목재 내 수분 이동의 구동력에 대해서 발견할 수 있을까?","textPreview":"목재 내 수분 이동의 구동력에 대해서 발견할 수 있을까?","textChars":31,"textLines":1,"bbox":[93.6,351.99,436.32,160.65]}
+{"kind":"shape","id":"sh/ja54na9g","slide":3,"name":"Freeform 18","bbox":[93.6,555.84,440.64,34.56]}
+{"kind":"textbox","id":"sh/i9w3u58v","slide":3,"name":"TextBox 19","text":"분석 접근","textPreview":"분석 접근","textChars":5,"textLines":1,"bbox":[93.6,554.34,440.64,36.06]}
+{"kind":"shape","id":"sh/f29gbyx0","slide":3,"name":"Freeform 21","bbox":[93.6,609.12,444.96,129.6]}
+{"kind":"textbox","id":"sh/03ix43e5","slide":3,"name":"TextBox 22","text":"함수율·수증기압·화학 포텐셜\n에너지 경사를 비교하고,\n회귀분석을 통해 구동력 규명","textPreview":"함수율·수증기압·화학 포텐셜 | 에너지 경사를 비교하고, | 회귀분석을 통해 구동력 규명","textChars":45,"textLines":3,"bbox":[93.6,606.87,444.96,131.85]}
+{"kind":"shape","id":"sh/6d0fytg3","slide":3,"name":"Freeform 24","bbox":[111.03,761.76,408.67,131.04]}
+{"kind":"shape","id":"sh/sfix03y9","slide":3,"name":"Freeform 26","bbox":[103.68,902.88,452.16,34.56]}
+{"kind":"textbox","id":"sh/tgry9ofu","slide":3,"name":"TextBox 27","text":"D_c: 확산계수  ·  dc/dx: 농도경사","textPreview":"D_c: 확산계수  ·  dc/dx: 농도경사","textChars":25,"textLines":1,"bbox":[103.68,901.38,452.16,36.06]}
+{"kind":"shape","id":"sh/batgjixs","slide":3,"name":"Freeform 29","bbox":[578.18,271.99,401.72,528.44]}
+{"kind":"shape","id":"sh/k3m1g7yp","slide":3,"name":"Freeform 31","bbox":[591.84,301.49,374.4,46.08]}
+{"kind":"textbox","id":"sh/z2d07mh4","slide":3,"name":"TextBox 32","text":"함수율","textPreview":"함수율","textChars":3,"textLines":1,"bbox":[591.84,298.49,374.4,49.08]}
+{"kind":"shape","id":"sh/x0vi5czy","slide":3,"name":"Freeform 34","bbox":[593.28,433.07,371.52,278.29]}
+{"kind":"shape","id":"sh/byd032h8","slide":3,"name":"Freeform 36","bbox":[1002.98,271.99,401.72,528.44]}
+{"kind":"shape","id":"sh/hwzihwzi","slide":3,"name":"Freeform 38","bbox":[1016.64,301.49,374.4,46.08]}
+{"kind":"textbox","id":"sh/wv61obyx","slide":3,"name":"TextBox 39","text":"수증기압","textPreview":"수증기압","textChars":4,"textLines":1,"bbox":[1016.64,298.49,374.4,49.08]}
+{"kind":"shape","id":"sh/po3ilcvm","slide":3,"name":"Freeform 41","bbox":[1018.08,434.8,371.52,274.81]}
+{"kind":"shape","id":"sh/32l0j2dw","slide":3,"name":"Freeform 43","bbox":[1427.78,271.99,401.72,528.44]}
+{"kind":"shape","id":"sh/ds3ipcvy","slide":3,"name":"Freeform 45","bbox":[1441.44,301.49,374.4,46.08]}
+{"kind":"textbox","id":"sh/qpczuhc7","slide":3,"name":"TextBox 46","text":"화학 포텐셜 에너지","textPreview":"화학 포텐셜 에너지","textChars":10,"textLines":1,"bbox":[1441.44,299.99,374.4,47.58]}
+{"kind":"shape","id":"sh/0ve10ru9","slide":3,"name":"Freeform 48","bbox":[1442.88,389.43,371.52,365.57]}
+{"kind":"shape","id":"sh/v29cfu18","slide":3,"name":"Freeform 50","bbox":[85.4,958.04,1748.72,45.2]}
+{"kind":"shape","id":"sh/xoruhkje","slide":3,"name":"Freeform 52","bbox":[110.88,966.96,161.28,23.04]}
+{"kind":"textbox","id":"sh/w3it8zit","slide":3,"name":"TextBox 53","text":"핵심 결과","textPreview":"핵심 결과","textChars":5,"textLines":1,"bbox":[110.88,965.46,161.28,24.54]}
+{"kind":"shape","id":"sh/mxgb250r","slide":3,"name":"Freeform 55","bbox":[290.88,965.52,1509.12,28.8]}
+{"kind":"textbox","id":"sh/90rudkji","slide":3,"name":"TextBox 56","text":"수분 이동의 구동력 규명을 회귀분석으로 설명 시도.","textPreview":"수분 이동의 구동력 규명을 회귀분석으로 설명 시도.","textChars":28,"textLines":1,"bbox":[290.88,964.77,1509.12,29.55]}
+{"kind":"shape","id":"sh/8zit4fix","slide":3,"name":"AutoShape 57","bbox":[85.7,1019.02,1748.12,0]}
+{"kind":"shape","id":"sh/6tkve90v","slide":3,"name":"Freeform 59","bbox":[578.88,807.84,1249.92,129.6]}
+{"kind":"textbox","id":"sh/2p4f6dk3","slide":3,"name":"TextBox 60","text":"정상 상태 (steady-state) 에서 상대 습도 조건이 수분 분포 형태를 표현하는 데 중요한 요인이었다.\n정상 상태에서 정확한 확산 계수를 얻는다면, 비정상 상태(non-steady state) 조건에서 확산 계수를 확보할 수 있을 것이고, 확산계수를 활용해서 구동력을 규명할 수 있다.\n이 과정을 위해서 더욱 치밀한 실험 설계와 더 많은 데이터를 확보하는 것이 요구된다.","textPreview":"정상 상태 (steady-state) 에서 상대 습도 조건이 수분 분포 형태를 표현하는 데 중요한 요인이었다. | 정상 상태에서 정확한 확산 계수를 얻는다면, 비정상 상태(non-steady state) 조건에서 확산 계수를 확보할 수 있을 것이...","textChars":211,"textLines":3,"bbox":[578.88,805.59,1249.92,131.85]}
+{"kind":"notes","id":"nt/ofy9wn61","slide":3,"text":"자료: 전공소개서 원본 3p의 석사 연구 제목, 설명, 확산식, 세 가지 물리량의 분포 그래프. 그래프의 축·데이터점·회귀선은 원본과 동일함.\n3"}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"03  /  SYSTEM DEVELOPMENT","textShapes":38}
+{"kind":"shape","id":"sh/0ba143al","slide":4,"name":"Freeform 3","bbox":[86.4,51.84,1742.4,31.68]}
+{"kind":"textbox","id":"sh/rm1k7yt4","slide":4,"name":"TextBox 4","text":"03  /  SYSTEM DEVELOPMENT","textPreview":"03  /  SYSTEM DEVELOPMENT","textChars":25,"textLines":1,"bbox":[86.4,51.09,1742.4,32.43]}
+{"kind":"shape","id":"sh/doj29oba","slide":4,"name":"Freeform 6","bbox":[86.4,118.08,1742.4,72]}
+{"kind":"textbox","id":"sh/sna103ap","slide":4,"name":"TextBox 7","text":"로컬 LLM 기반 악성 코드 분석 시스템","textPreview":"로컬 LLM 기반 악성 코드 분석 시스템","textChars":22,"textLines":1,"bbox":[86.4,115.08,1742.4,75]}
+{"kind":"shape","id":"sh/ih8ju9sn","slide":4,"name":"Freeform 9","bbox":[89.28,201.6,1728,43.2]}
+{"kind":"textbox","id":"sh/kbm987y5","slide":4,"name":"TextBox 10","text":"공개 프로젝트 구조를 프로젝트 요구에 맞게 재구성하고, 임의의 Python code를 테스트하는 프로토타입 구현","textPreview":"공개 프로젝트 구조를 프로젝트 요구에 맞게 재구성하고, 임의의 Python code를 테스트하는 프로토타입 구현","textChars":62,"textLines":1,"bbox":[89.28,200.85,1728,43.95]}
+{"kind":"shape","id":"sh/i94r6xgz","slide":4,"name":"Freeform 12","bbox":[85.7,288.74,1103,695.48]}
+{"kind":"shape","id":"sh/w72947yt","slide":4,"name":"Freeform 14","bbox":[125.28,321.12,1005.12,36]}
+{"kind":"textbox","id":"sh/x8vaxsfe","slide":4,"name":"TextBox 15","text":"개발 구조  |  핵심 처리 흐름","textPreview":"개발 구조  |  핵심 처리 흐름","textChars":18,"textLines":1,"bbox":[125.28,319.62,1005.12,37.5]}
+{"kind":"shape","id":"sh/v6tsv2xo","slide":4,"name":"Freeform 17","bbox":[126.02,409.7,272.12,97.88]}
+{"kind":"shape","id":"sh/h4fa9wfy","slide":4,"name":"Freeform 19","bbox":[138.24,423.36,247.68,38.88]}
+{"kind":"textbox","id":"sh/p0batw72","slide":4,"name":"TextBox 20","text":"코드 · 기준 PDF","textPreview":"코드 · 기준 PDF","textChars":11,"textLines":1,"bbox":[138.24,421.11,247.68,41.13]}
+{"kind":"shape","id":"sh/3ytsrmpw","slide":4,"name":"Freeform 22","bbox":[136.8,468,250.56,28.8]}
+{"kind":"textbox","id":"sh/2xkrih8b","slide":4,"name":"TextBox 23","text":"입력 자료","textPreview":"입력 자료","textChars":5,"textLines":1,"bbox":[136.8,466.5,250.56,30.3]}
+{"kind":"shape","id":"sh/gv29g7q5","slide":4,"name":"Freeform 25","bbox":[455.78,409.7,259.16,97.88]}
+{"kind":"shape","id":"sh/et0reh8f","slide":4,"name":"Freeform 27","bbox":[468,423.36,234.72,38.88]}
+{"kind":"textbox","id":"sh/tsrqlc7u","slide":4,"name":"TextBox 28","text":"MCP Server","textPreview":"MCP Server","textChars":10,"textLines":1,"bbox":[468,421.11,234.72,41.13]}
+{"kind":"shape","id":"sh/ilwf69kv","slide":4,"name":"Freeform 30","bbox":[466.56,468,237.6,28.8]}
+{"kind":"textbox","id":"sh/jm5gze1g","slide":4,"name":"TextBox 31","text":"Jadx-ai-mcp","textPreview":"Jadx-ai-mcp","textChars":11,"textLines":1,"bbox":[466.56,466.5,237.6,30.3]}
+{"kind":"shape","id":"sh/5ony1oj6","slide":4,"name":"Freeform 33","bbox":[772.58,409.7,355.64,97.88]}
+{"kind":"shape","id":"sh/vy5gbe14","slide":4,"name":"Freeform 35","bbox":[784.8,423.36,331.2,38.88]}
+{"kind":"textbox","id":"sh/wzex4z2p","slide":4,"name":"TextBox 36","text":"Remediation Service","textPreview":"Remediation Service","textChars":19,"textLines":1,"bbox":[784.8,421.11,331.2,41.13]}
+{"kind":"shape","id":"sh/mtcfypkn","slide":4,"name":"Freeform 38","bbox":[783.36,468,334.08,28.8]}
+{"kind":"textbox","id":"sh/nulw7u18","slide":4,"name":"TextBox 39","text":"호출 · 결과 조정","textPreview":"호출 · 결과 조정","textChars":10,"textLines":1,"bbox":[783.36,466.5,334.08,30.3]}
+{"kind":"shape","id":"sh/fm5c3q54","slide":4,"name":"AutoShape 40","bbox":[400.42,457.42,44.44,0]}
+{"kind":"shape","id":"sh/elwba54j","slide":4,"name":"AutoShape 41","bbox":[717.22,457.42,44.44,0]}
+{"kind":"shape","id":"sh/18nu50nu","slide":4,"name":"AutoShape 42","bbox":[929.11,527.98,39.7,0]}
+{"kind":"shape","id":"sh/0netcvm9","slide":4,"name":"AutoShape 43","bbox":[240.82,546.7,775.48,0]}
+{"kind":"shape","id":"sh/qhcb6l47","slide":4,"name":"Freeform 45","bbox":[145.44,512.64,338.4,24.48]}
+{"kind":"textbox","id":"sh/dknu10ny","slide":4,"name":"TextBox 46","text":"A2A / gRPC","textPreview":"A2A / gRPC","textChars":10,"textLines":1,"bbox":[145.44,511.89,338.4,25.23]}
+{"kind":"shape","id":"sh/sjut8vmd","slide":4,"name":"AutoShape 47","bbox":[226.49,561.1,30.86,0]}
+{"kind":"shape","id":"sh/idcb2lob","slide":4,"name":"Freeform 49","bbox":[126.02,581.06,230.36,106.52]}
+{"kind":"shape","id":"sh/tkjq5c3e","slide":4,"name":"Freeform 51","bbox":[138.24,594.72,205.92,38.88]}
+{"kind":"textbox","id":"sh/6x8rahk3","slide":4,"name":"TextBox 52","text":"Quick","textPreview":"Quick","textChars":5,"textLines":1,"bbox":[138.24,592.47,205.92,41.13]}
+{"kind":"shape","id":"sh/gna9gr25","slide":4,"name":"Freeform 54","bbox":[136.8,639.36,208.8,28.8]}
+{"kind":"textbox","id":"sh/hoja9w3q","slide":4,"name":"TextBox 55","text":"패턴 검사","textPreview":"패턴 검사","textChars":5,"textLines":1,"bbox":[136.8,637.86,208.8,30.3]}
+{"kind":"shape","id":"sh/ulsrehkz","slide":4,"name":"AutoShape 56","bbox":[226.59,702.22,30.65,0]}
+{"kind":"shape","id":"sh/vm1s7mlk","slide":4,"name":"AutoShape 57","bbox":[484.25,561.1,30.86,0]}
+{"kind":"shape","id":"sh/xsfqxs36","slide":4,"name":"Freeform 59","bbox":[383.78,581.06,230.36,106.52]}
+{"kind":"shape","id":"sh/cnyp8jep","slide":4,"name":"Freeform 61","bbox":[396,594.72,205.92,38.88]}
+{"kind":"textbox","id":"sh/bmpozed4","slide":4,"name":"TextBox 62","text":"Secrets","textPreview":"Secrets","textChars":7,"textLines":1,"bbox":[396,592.47,205.92,41.13]}
+{"kind":"shape","id":"sh/lcr658v6","slide":4,"name":"Freeform 64","bbox":[394.56,639.36,208.8,28.8]}
+{"kind":"textbox","id":"sh/0bipc3el","slide":4,"name":"TextBox 65","text":"시크릿 탐지","textPreview":"시크릿 탐지","textChars":6,"textLines":1,"bbox":[394.56,637.86,208.8,30.3]}
+{"kind":"shape","id":"sh/zq9o3ydg","slide":4,"name":"AutoShape 66","bbox":[484.35,702.22,30.65,0]}
+{"kind":"shape","id":"sh/yp07atwv","slide":4,"name":"AutoShape 67","bbox":[742.01,561.1,30.86,0]}
+{"kind":"shape","id":"sh/8fipg3ex","slide":4,"name":"Freeform 69","bbox":[641.54,581.06,230.36,106.52]}
+{"kind":"shape","id":"sh/7a1cn6po","slide":4,"name":"Freeform 71","bbox":[653.76,594.72,205.92,38.88]}
+{"kind":"textbox","id":"sh/8badgbq9","slide":4,"name":"TextBox 72","text":"Static","textPreview":"Static","textChars":6,"textLines":1,"bbox":[653.76,592.47,205.92,41.13]}
+{"kind":"shape","id":"sh/udcvil8z","slide":4,"name":"Freeform 74","bbox":[652.32,639.36,208.8,28.8]}
+{"kind":"textbox","id":"sh/velcrqpk","slide":4,"name":"TextBox 75","text":"정적 분석","textPreview":"정적 분석","textChars":5,"textLines":1,"bbox":[652.32,637.86,208.8,30.3]}
+{"kind":"shape","id":"sh/gfudkvq5","slide":4,"name":"AutoShape 76","bbox":[742.11,702.22,30.65,0]}
+{"kind":"shape","id":"sh/hg3et07q","slide":4,"name":"AutoShape 77","bbox":[999.77,561.1,30.86,0]}
+{"kind":"shape","id":"sh/3ilwvqpw","slide":4,"name":"Freeform 79","bbox":[899.3,581.06,230.36,106.52]}
+{"kind":"shape","id":"sh/29srixcr","slide":4,"name":"Freeform 81","bbox":[911.52,594.72,205.92,38.88]}
+{"kind":"textbox","id":"sh/pcjadsb2","slide":4,"name":"TextBox 82","text":"Criteria","textPreview":"Criteria","textChars":8,"textLines":1,"bbox":[911.52,592.47,205.92,41.13]}
+{"kind":"shape","id":"sh/bylsf2t8","slide":4,"name":"Freeform 84","bbox":[910.08,639.36,208.8,28.8]}
+{"kind":"textbox","id":"sh/axsrmxcn","slide":4,"name":"TextBox 85","text":"PDF 기준 추출","textPreview":"PDF 기준 추출","textChars":9,"textLines":1,"bbox":[910.08,637.86,208.8,30.3]}
+{"kind":"shape","id":"sh/x03ahcbe","slide":4,"name":"AutoShape 86","bbox":[999.87,702.22,30.65,0]}
+{"kind":"shape","id":"sh/czu9o7ut","slide":4,"name":"AutoShape 87","bbox":[241.02,716.62,775.08,0]}
+{"kind":"shape","id":"sh/z2lsjmtk","slide":4,"name":"AutoShape 88","bbox":[260.22,731.74,32.51,0]}
+{"kind":"shape","id":"sh/w7e9grqx","slide":4,"name":"Freeform 90","bbox":[126.02,755.3,305.24,112.29]}
+{"kind":"shape","id":"sh/u5wreh8r","slide":4,"name":"Freeform 92","bbox":[138.24,768.96,280.8,38.88]}
+{"kind":"textbox","id":"sh/v6587m9c","slide":4,"name":"TextBox 93","text":"로컬 LLM","textPreview":"로컬 LLM","textChars":6,"textLines":1,"bbox":[138.24,766.71,280.8,41.13]}
+{"kind":"shape","id":"sh/943q5crm","slide":4,"name":"Freeform 95","bbox":[136.8,813.6,283.68,28.8]}
+{"kind":"textbox","id":"sh/m1c7ah8v","slide":4,"name":"TextBox 96","text":"종합 분석 · 수정","textPreview":"종합 분석 · 수정","textChars":10,"textLines":1,"bbox":[136.8,812.1,283.68,30.3]}
+{"kind":"shape","id":"sh/kzup87qp","slide":4,"name":"Freeform 98","bbox":[488.9,755.3,305.24,112.29]}
+{"kind":"shape","id":"sh/yl0b2t47","slide":4,"name":"Freeform 100","bbox":[501.12,768.96,280.8,38.88]}
+{"kind":"textbox","id":"sh/j6tsbyls","slide":4,"name":"TextBox 101","text":"Summary Agent","textPreview":"Summary Agent","textChars":13,"textLines":1,"bbox":[501.12,766.71,280.8,41.13]}
+{"kind":"shape","id":"sh/l8bad83y","slide":4,"name":"Freeform 103","bbox":[499.68,813.6,283.68,28.8]}
+{"kind":"textbox","id":"sh/ah0byt4b","slide":4,"name":"TextBox 104","text":"리포트 생성","textPreview":"리포트 생성","textChars":6,"textLines":1,"bbox":[499.68,812.1,283.68,30.3]}
+{"kind":"shape","id":"sh/wjit0jmh","slide":4,"name":"Freeform 106","bbox":[850.34,755.3,276.44,112.29]}
+{"kind":"shape","id":"sh/udkbadkf","slide":4,"name":"Freeform 108","bbox":[862.56,768.96,252,38.88]}
+{"kind":"textbox","id":"sh/vedcjil0","slide":4,"name":"TextBox 109","text":"결과 반환","textPreview":"결과 반환","textChars":5,"textLines":1,"bbox":[862.56,766.71,252,41.13]}
+{"kind":"shape","id":"sh/476d076h","slide":4,"name":"Freeform 111","bbox":[861.12,813.6,254.88,28.8]}
+{"kind":"textbox","id":"sh/36xw7m5c","slide":4,"name":"TextBox 112","text":"요약 · 코드 · 경로","textPreview":"요약 · 코드 · 경로","textChars":12,"textLines":1,"bbox":[861.12,812.1,254.88,30.3]}
+{"kind":"shape","id":"sh/i5ovyhor","slide":4,"name":"AutoShape 113","bbox":[433.54,810.22,44.44,0]}
+{"kind":"shape","id":"sh/h4ve5cn6","slide":4,"name":"AutoShape 114","bbox":[796.42,810.22,44.44,0]}
+{"kind":"shape","id":"sh/v2dw3250","slide":4,"name":"Freeform 116","bbox":[126.72,917.28,1000.8,31.68]}
+{"kind":"textbox","id":"sh/u14vuxof","slide":4,"name":"TextBox 117","text":"구조 참고: A2A-MCP / Code_Vulnerability","textPreview":"구조 참고: A2A-MCP / Code_Vulnerability","textChars":35,"textLines":1,"bbox":[126.72,916.53,1000.8,32.43]}
+{"kind":"shape","id":"sh/0zqd8rmp","slide":4,"name":"Freeform 119","bbox":[1229.76,302.4,600.48,48.96]}
+{"kind":"textbox","id":"sh/kfip0zyd","slide":4,"name":"TextBox 120","text":"프로토타입 시험","textPreview":"프로토타입 시험","textChars":8,"textLines":1,"bbox":[1229.76,300.15,600.48,51.21]}
+{"kind":"shape","id":"sh/ytg7ypg7","slide":4,"name":"Freeform 122","bbox":[1227.32,390.68,187.76,163.28]}
+{"kind":"shape","id":"sh/wrypwzy1","slide":4,"name":"Freeform 124","bbox":[1239.84,417.6,162.72,63.36]}
+{"kind":"textbox","id":"sh/xs76p4zm","slide":4,"name":"TextBox 125","text":"23/23","textPreview":"23/23","textChars":5,"textLines":1,"bbox":[1239.84,415.35,162.72,65.61]}
+{"kind":"shape","id":"sh/bqponuhg","slide":4,"name":"Freeform 127","bbox":[1234.08,504,174.24,25.92]}
+{"kind":"textbox","id":"sh/onypsfy5","slide":4,"name":"TextBox 128","text":"분석 파일","textPreview":"분석 파일","textChars":5,"textLines":1,"bbox":[1234.08,502.5,174.24,27.42]}
+{"kind":"shape","id":"sh/ri58ba1c","slide":4,"name":"Freeform 130","bbox":[1436.12,390.68,187.76,163.28]}
+{"kind":"shape","id":"sh/dknqdkji","slide":4,"name":"Freeform 132","bbox":[1448.64,417.6,162.72,63.36]}
+{"kind":"textbox","id":"sh/cjep4f2x","slide":4,"name":"TextBox 133","text":"3,524","textPreview":"3,524","textChars":5,"textLines":1,"bbox":[1448.64,415.35,162.72,65.61]}
+{"kind":"shape","id":"sh/elw76pk3","slide":4,"name":"Freeform 135","bbox":[1442.88,504,174.24,25.92]}
+{"kind":"textbox","id":"sh/1o7qhkje","slide":4,"name":"TextBox 136","text":"코드 줄 수","textPreview":"코드 줄 수","textChars":6,"textLines":1,"bbox":[1442.88,502.5,174.24,27.42]}
+{"kind":"shape","id":"sh/nqp8ju1k","slide":4,"name":"Freeform 138","bbox":[1644.92,390.68,187.76,163.28]}
+{"kind":"shape","id":"sh/mtor6d8b","slide":4,"name":"Freeform 140","bbox":[1657.44,417.6,162.72,63.36]}
+{"kind":"textbox","id":"sh/7uxsfy9w","slide":4,"name":"TextBox 141","text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1657.44,415.35,162.72,65.61]}
+{"kind":"shape","id":"sh/9wfah8rm","slide":4,"name":"Freeform 143","bbox":[1651.68,504,174.24,25.92]}
+{"kind":"textbox","id":"sh/uxobad87","slide":4,"name":"TextBox 144","text":"정적 분석 신호","textPreview":"정적 분석 신호","textChars":8,"textLines":1,"bbox":[1651.68,502.5,174.24,27.42]}
+{"kind":"shape","id":"sh/wjqtcnqd","slide":4,"name":"Freeform 146","bbox":[1229.76,590.4,600.48,40.32]}
+{"kind":"textbox","id":"sh/hkzalsry","slide":4,"name":"TextBox 147","text":"위험 호출 8건 · Secret 후보 10건","textPreview":"위험 호출 8건 · Secret 후보 10건","textChars":24,"textLines":1,"bbox":[1229.76,588.9,600.48,41.82]}
+{"kind":"shape","id":"sh/a14ryt83","slide":4,"name":"AutoShape 148","bbox":[1229.06,660.46,600.44,0]}
+{"kind":"shape","id":"sh/ds3mtgfi","slide":4,"name":"Freeform 150","bbox":[1229.76,699.84,600.48,48.96]}
+{"kind":"textbox","id":"sh/srul0bex","slide":4,"name":"TextBox 151","text":"로컬 LLM 리뷰 18개 생성","textPreview":"로컬 LLM 리뷰 18개 생성","textChars":16,"textLines":1,"bbox":[1229.76,698.34,600.48,50.46]}
+{"kind":"shape","id":"sh/qpc3ylwr","slide":4,"name":"Freeform 153","bbox":[1229.76,771.84,600.48,76.32]}
+{"kind":"textbox","id":"sh/1wnmx0fe","slide":4,"name":"TextBox 154","text":"LLM 리뷰에서 이 코드가 치명적인 이유, 권고사항까지는 Rule + LLM 추론을 통하여 도출 가능.\n그러나 이 코드는 임의의 테스트 코드라는 점을 명시. ","textPreview":"LLM 리뷰에서 이 코드가 치명적인 이유, 권고사항까지는 Rule + LLM 추론을 통하여 도출 가능. | 그러나 이 코드는 임의의 테스트 코드라는 점을 명시.","textChars":88,"textLines":2,"bbox":[1229.76,769.59,600.48,78.57]}
+{"kind":"shape","id":"sh/zul4vqx8","slide":4,"name":"Freeform 156","bbox":[1227.32,880.28,605.36,102.8]}
+{"kind":"shape","id":"sh/h0jmlwfa","slide":4,"name":"Freeform 158","bbox":[1254.24,898.56,550.08,28.8]}
+{"kind":"textbox","id":"sh/gzalsrep","slide":4,"name":"TextBox 159","text":"별도 검증 과제","textPreview":"별도 검증 과제","textChars":8,"textLines":1,"bbox":[1254.24,897.81,550.08,29.55]}
+{"kind":"shape","id":"sh/94nm1wn6","slide":4,"name":"Freeform 161","bbox":[1254.24,940.32,550.08,27.36]}
+{"kind":"textbox","id":"sh/mhw361of","slide":4,"name":"TextBox 162","text":"설명 근거의 타당성 · 권고사항의 적절성","textPreview":"설명 근거의 타당성 · 권고사항의 적절성","textChars":22,"textLines":1,"bbox":[1254.24,939.57,550.08,28.11]}
+{"kind":"shape","id":"sh/7i54z650","slide":4,"name":"AutoShape 163","bbox":[85.7,1019.02,1748.12,0]}
+{"kind":"notes","id":"nt/jyx0ra1s","slide":4,"text":"구조 참고: A2A-MCP / Code_Vulnerability. 수치 출처: 전공소개서 원본 4p의 프로토타입 시험 기록. 분석 23/23개 파일, 3,524줄, 정적 분석 신호 18개(위험 호출 8·Secret 후보 10), 로컬 LLM 리뷰 18개. 개발 구조 요약과 프로토타입 시험 결과는 구분하여 제시함.\n4"}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"04  /  MODEL EXPERIMENTS","textShapes":31}
+{"kind":"shape","id":"sh/cf2tcr61","slide":5,"name":"Freeform 3","bbox":[86.4,51.84,1742.4,31.68]}
+{"kind":"textbox","id":"sh/z2tcnm5s","slide":5,"name":"TextBox 4","text":"04  /  MODEL EXPERIMENTS","textPreview":"04  /  MODEL EXPERIMENTS","textChars":24,"textLines":1,"bbox":[86.4,51.09,1742.4,32.43]}
+{"kind":"shape","id":"sh/l4bupwny","slide":5,"name":"Freeform 6","bbox":[86.4,118.08,1742.4,72]}
+{"kind":"textbox","id":"sh/032tgr6d","slide":5,"name":"TextBox 7","text":"LLM 파인튜닝: 평가 결과에서 데이터 설계로","textPreview":"LLM 파인튜닝: 평가 결과에서 데이터 설계로","textChars":25,"textLines":1,"bbox":[86.4,115.08,1742.4,75]}
+{"kind":"shape","id":"sh/m5kbi1oj","slide":5,"name":"Freeform 9","bbox":[89.28,201.6,1728,43.2]}
+{"kind":"textbox","id":"sh/w32dkbuh","slide":5,"name":"TextBox 10","text":"1차 실험 데이터셋 : DiverseVul, BigVul, Cybersecurity QA v2, 2차 실험 데이터셋 : NIST SARD/Juliet C/C++ 1.3 ","textPreview":"1차 실험 데이터셋 : DiverseVul, BigVul, Cybersecurity QA v2, 2차 실험 데이터셋 : NIST SARD/Juliet C/C++ 1.3","textChars":94,"textLines":1,"bbox":[89.28,200.85,1728,43.95]}
+{"kind":"shape","id":"sh/x4vedgvm","slide":5,"name":"AutoShape 11","bbox":[570.88,630.22,658.24,0]}
+{"kind":"shape","id":"sh/v2twb6dw","slide":5,"name":"Freeform 13","bbox":[92.16,299.52,758.88,48.96]}
+{"kind":"textbox","id":"sh/k7mxovud","slide":5,"name":"TextBox 14","text":"1차 실험  /  한계 확인","textPreview":"1차 실험  /  한계 확인","textChars":15,"textLines":1,"bbox":[92.16,297.27,758.88,51.21]}
+{"kind":"shape","id":"sh/i54fmlc7","slide":5,"name":"Freeform 16","bbox":[93.6,371.52,751.68,33.12]}
+{"kind":"textbox","id":"sh/j6dwfqds","slide":5,"name":"TextBox 17","text":"DiverseVul 기반 · 취약 250 / 정상 250","textPreview":"DiverseVul 기반 · 취약 250 / 정상 250","textChars":31,"textLines":1,"bbox":[93.6,370.02,751.68,34.62]}
+{"kind":"shape","id":"sh/tcfel0vu","slide":5,"name":"Freeform 19","bbox":[91.16,432.44,753.68,69.68]}
+{"kind":"shape","id":"sh/gfi5grih","slide":5,"name":"Freeform 21","bbox":[118.08,452.16,699.84,27.36]}
+{"kind":"textbox","id":"sh/fe94nm1w","slide":5,"name":"TextBox 22","text":"학습 332,807개 · 10,401 step · B200 × 2","textPreview":"학습 332,807개 · 10,401 step · B200 × 2","textChars":36,"textLines":1,"bbox":[118.08,451.41,699.84,28.11]}
+{"kind":"shape","id":"sh/pkr6tgjy","slide":5,"name":"Freeform 24","bbox":[118.08,548.64,433.44,37.44]}
+{"kind":"textbox","id":"sh/4ji5kbid","slide":5,"name":"TextBox 25","text":"Precision","textPreview":"Precision","textChars":9,"textLines":1,"bbox":[118.08,547.14,433.44,38.94]}
+{"kind":"shape","id":"sh/2h0ni107","slide":5,"name":"Freeform 27","bbox":[554.4,548.64,262.08,37.44]}
+{"kind":"textbox","id":"sh/5o7mhcju","slide":5,"name":"TextBox 28","text":"42.00%","textPreview":"42.00%","textChars":6,"textLines":1,"bbox":[554.4,547.14,262.08,38.94]}
+{"kind":"shape","id":"sh/kny587i9","slide":5,"name":"AutoShape 29","bbox":[115.94,601.42,701.24,0]}
+{"kind":"shape","id":"sh/vu5kbihc","slide":5,"name":"Freeform 31","bbox":[118.08,619.2,433.44,37.44]}
+{"kind":"textbox","id":"sh/wve1knyx","slide":5,"name":"TextBox 32","text":"Recall","textPreview":"Recall","textChars":6,"textLines":1,"bbox":[118.08,617.7,433.44,38.94]}
+{"kind":"shape","id":"sh/ihw3mxg3","slide":5,"name":"Freeform 34","bbox":[554.4,619.2,262.08,37.44]}
+{"kind":"textbox","id":"sh/ji5kf2ho","slide":5,"name":"TextBox 35","text":"33.60%","textPreview":"33.60%","textChars":6,"textLines":1,"bbox":[554.4,617.7,262.08,38.94]}
+{"kind":"shape","id":"sh/kjelony9","slide":5,"name":"AutoShape 36","bbox":[115.94,671.98,701.24,0]}
+{"kind":"shape","id":"sh/e1sjatgz","slide":5,"name":"Freeform 38","bbox":[118.08,689.76,433.44,37.44]}
+{"kind":"textbox","id":"sh/zmlk3yhk","slide":5,"name":"TextBox 39","text":"JSON 파싱 실패","textPreview":"JSON 파싱 실패","textChars":10,"textLines":1,"bbox":[118.08,688.26,433.44,38.94]}
+{"kind":"shape","id":"sh/ehkzepsn","slide":5,"name":"Freeform 41","bbox":[554.4,689.76,262.08,37.44]}
+{"kind":"textbox","id":"sh/1kvi94re","slide":5,"name":"TextBox 42","text":"222 / 500","textPreview":"222 / 500","textChars":9,"textLines":1,"bbox":[554.4,688.26,262.08,38.94]}
+{"kind":"shape","id":"sh/gjmhgzqt","slide":5,"name":"AutoShape 43","bbox":[115.94,742.54,701.24,0]}
+{"kind":"shape","id":"sh/2l4zip8j","slide":5,"name":"Freeform 45","bbox":[116.64,799.2,720,93.6]}
+{"kind":"textbox","id":"sh/povid4ra","slide":5,"name":"TextBox 46","text":"과적합 가능성 의심\n응답 형식 실패를 함께 확인","textPreview":"과적합 가능성 의심 | 응답 형식 실패를 함께 확인","textChars":26,"textLines":2,"bbox":[116.64,796.95,720,95.85]}
+{"kind":"shape","id":"sh/bqx0fe9g","slide":5,"name":"Freeform 48","bbox":[116.64,911.52,722.88,61.92]}
+{"kind":"textbox","id":"sh/qp4jm98v","slide":5,"name":"TextBox 49","text":"낮은 학습 loss만으로 품질을 판단하지 않고\n데이터 구성과 출력 형식을 재검토","textPreview":"낮은 학습 loss만으로 품질을 판단하지 않고 | 데이터 구성과 출력 형식을 재검토","textChars":44,"textLines":2,"bbox":[116.64,910.02,722.88,63.42]}
+{"kind":"shape","id":"sh/9gfy5o7e","slide":5,"name":"Freeform 51","bbox":[956.16,299.52,875.52,48.96]}
+{"kind":"textbox","id":"sh/mdoza9o3","slide":5,"name":"TextBox 52","text":"재설계  /  데이터·학습 목표","textPreview":"재설계  /  데이터·학습 목표","textChars":17,"textLines":1,"bbox":[956.16,297.27,875.52,51.21]}
+{"kind":"shape","id":"sh/0r6h8z6x","slide":5,"name":"Freeform 54","bbox":[957.6,368.64,872.64,93.6]}
+{"kind":"textbox","id":"sh/lcfy147i","slide":5,"name":"TextBox 55","text":"Qwen3-Coder-Next 80B · B200 × 2\n학습/검증 구성 10,000 / 1,000개\n정제 후 학습 사용 9,975 / 996개","textPreview":"Qwen3-Coder-Next 80B · B200 × 2 | 학습/검증 구성 10,000 / 1,000개 | 정제 후 학습 사용 9,975 / 996개","textChars":80,"textLines":3,"bbox":[957.6,367.14,872.64,95.1]}
+{"kind":"shape","id":"sh/zqxgzupc","slide":5,"name":"Freeform 57","bbox":[959.78,483.14,266.36,70.52]}
+{"kind":"shape","id":"sh/dovyx476","slide":5,"name":"Freeform 59","bbox":[969.12,502.56,247.68,28.8]}
+{"kind":"textbox","id":"sh/t8n6lwvy","slide":5,"name":"TextBox 60","text":"취약점 판단","textPreview":"취약점 판단","textChars":6,"textLines":1,"bbox":[969.12,501.81,247.68,29.55]}
+{"kind":"shape","id":"sh/s7u5crud","slide":5,"name":"AutoShape 61","bbox":[1230.05,516.46,23.9,0]}
+{"kind":"shape","id":"sh/65cnahc7","slide":5,"name":"Freeform 63","bbox":[1260.74,483.14,266.36,70.52]}
+{"kind":"shape","id":"sh/43u587uh","slide":5,"name":"Freeform 65","bbox":[1270.08,502.56,247.68,28.8]}
+{"kind":"textbox","id":"sh/j2lofmdw","slide":5,"name":"TextBox 66","text":"근거 line 선택","textPreview":"근거 line 선택","textChars":10,"textLines":1,"bbox":[1270.08,501.81,247.68,29.55]}
+{"kind":"shape","id":"sh/i1cn6hcb","slide":5,"name":"AutoShape 67","bbox":[1531.01,516.46,23.9,0]}
+{"kind":"shape","id":"sh/ozepkbul","slide":5,"name":"Freeform 69","bbox":[1561.7,483.14,266.36,70.52]}
+{"kind":"shape","id":"sh/76hk7ito","slide":5,"name":"Freeform 71","bbox":[1571.04,502.56,247.68,28.8]}
+{"kind":"textbox","id":"sh/87qlgna9","slide":5,"name":"TextBox 72","text":"원문 span 추출","textPreview":"원문 span 추출","textChars":10,"textLines":1,"bbox":[1571.04,501.81,247.68,29.55]}
+{"kind":"shape","id":"sh/yho3atsr","slide":5,"name":"Freeform 74","bbox":[960.48,578.88,866.88,31.68]}
+{"kind":"textbox","id":"sh/zihk3ytc","slide":5,"name":"TextBox 75","text":"판단과 근거 추출의 학습 목표 분리","textPreview":"판단과 근거 추출의 학습 목표 분리","textChars":19,"textLines":1,"bbox":[960.48,577.38,866.88,33.18]}
+{"kind":"shape","id":"sh/lkz258bi","slide":5,"name":"Freeform 77","bbox":[956.6,639.8,873.2,245.36]}
+{"kind":"shape","id":"sh/je14f2tw","slide":5,"name":"Freeform 79","bbox":[987.84,666.72,807.84,36]}
+{"kind":"textbox","id":"sh/ruxkz2l0","slide":5,"name":"TextBox 80","text":"2차 평가 기록","textPreview":"2차 평가 기록","textChars":8,"textLines":1,"bbox":[987.84,664.47,807.84,38.25]}
+{"kind":"shape","id":"sh/dwz21s36","slide":5,"name":"Freeform 82","bbox":[987.84,717.12,807.84,28.8]}
+{"kind":"textbox","id":"sh/sv6l8n2l","slide":5,"name":"TextBox 83","text":"NIST SARD/Juliet · C/C++ 함수 · 지정 CWE · 500건","textPreview":"NIST SARD/Juliet · C/C++ 함수 · 지정 CWE · 500건","textChars":43,"textLines":1,"bbox":[987.84,716.37,807.84,29.55]}
+{"kind":"shape","id":"sh/ipo32dk3","slide":5,"name":"Freeform 85","bbox":[987.84,770.4,250.56,57.6]}
+{"kind":"textbox","id":"sh/5sf2xs3u","slide":5,"name":"TextBox 86","text":"98.81%","textPreview":"98.81%","textChars":6,"textLines":1,"bbox":[987.84,766.65,250.56,61.35]}
+{"kind":"shape","id":"sh/v2dkrils","slide":5,"name":"Freeform 88","bbox":[987.84,848.16,250.56,23.04]}
+{"kind":"textbox","id":"sh/u14jydk7","slide":5,"name":"TextBox 89","text":"Precision","textPreview":"Precision","textChars":9,"textLines":1,"bbox":[987.84,847.41,250.56,23.79]}
+{"kind":"shape","id":"sh/lwrqlkfe","slide":5,"name":"Freeform 91","bbox":[1261.44,770.4,250.56,57.6]}
+{"kind":"textbox","id":"sh/yt0ra5wn","slide":5,"name":"TextBox 92","text":"100%","textPreview":"100%","textChars":4,"textLines":1,"bbox":[1261.44,766.65,250.56,61.35]}
+{"kind":"shape","id":"sh/8z29gfep","slide":5,"name":"Freeform 94","bbox":[1261.44,848.16,250.56,23.04]}
+{"kind":"textbox","id":"sh/9kbqpkfa","slide":5,"name":"TextBox 95","text":"Recall","textPreview":"Recall","textChars":6,"textLines":1,"bbox":[1261.44,847.41,250.56,23.79]}
+{"kind":"shape","id":"sh/ny98nuxk","slide":5,"name":"Freeform 97","bbox":[1535.04,770.4,250.56,57.6]}
+{"kind":"textbox","id":"sh/o3yp4vel","slide":5,"name":"TextBox 98","text":"1.20%","textPreview":"1.20%","textChars":5,"textLines":1,"bbox":[1535.04,766.65,250.56,61.35]}
+{"kind":"shape","id":"sh/e1w7y5w7","slide":5,"name":"Freeform 100","bbox":[1535.04,848.16,250.56,23.04]}
+{"kind":"textbox","id":"sh/f25oraxs","slide":5,"name":"TextBox 101","text":"FPR","textPreview":"FPR","textChars":3,"textLines":1,"bbox":[1535.04,847.41,250.56,23.79]}
+{"kind":"shape","id":"sh/14n6tkfy","slide":5,"name":"Freeform 103","bbox":[959.04,905.76,865.44,30.24]}
+{"kind":"textbox","id":"sh/25w725wj","slide":5,"name":"TextBox 104","text":"모델 단독 평가 · HF 최초 blind 평가","textPreview":"모델 단독 평가 · HF 최초 blind 평가","textChars":25,"textLines":1,"bbox":[959.04,905.01,865.44,30.99]}
+{"kind":"shape","id":"sh/o7yp4fe9","slide":5,"name":"Freeform 106","bbox":[959.04,951.84,866.88,31.68]}
+{"kind":"textbox","id":"sh/ps76xkfu","slide":5,"name":"TextBox 107","text":"진행 상태: 데이터셋 구축 · 실증 테스트 예정","textPreview":"진행 상태: 데이터셋 구축 · 실증 테스트 예정","textChars":26,"textLines":1,"bbox":[959.04,951.09,866.88,32.43]}
+{"kind":"shape","id":"sh/jalojqxk","slide":5,"name":"Freeform 109","bbox":[93.6,990.72,1728,24.48]}
+{"kind":"textbox","id":"sh/lorapoz2","slide":5,"name":"TextBox 110","text":"※ 1차를 진행하면서 정답 + 근거의 필요성을 느꼈고, 데이터셋을 재설계하면서 취약점 판단 + 근거 선택을 할 수 있도록 학습 데이터셋을 재구축함. 그 과정에서 원천 데이터셋 교체가 이루어짐.","textPreview":"※ 1차를 진행하면서 정답 + 근거의 필요성을 느꼈고, 데이터셋을 재설계하면서 취약점 판단 + 근거 선택을 할 수 있도록 학습 데이터셋을 재구축함. 그 과정에서 원천 데이터셋 교체가 이루어짐.","textChars":107,"textLines":1,"bbox":[93.6,989.22,1728,25.98]}
+{"kind":"shape","id":"sh/0ni9wjyh","slide":5,"name":"AutoShape 111","bbox":[85.7,1019.02,1748.12,0]}
+{"kind":"notes","id":"nt/i107q5of","slide":5,"text":"수치 출처: 전공소개서 원본 5p의 1차·재설계·2차 실험 기록. 1차는 DiverseVul 기반 평가, 2차는 NIST SARD/Juliet 기반 C/C++ 함수 및 지정 CWE 평가. 평가 데이터셋이 달라 직접적인 향상률 비교가 아님. 재설계 화면의 모델은 Qwen3-Coder-Next 80B, B200 2장. 원본의 진행 상태 문구는 데이터셋 구축 후 실증 테스트 예정으로 기재되어 있음.\n5"}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"05  /  FrameWork Development","textShapes":14}
+{"kind":"shape","id":"sh/zi98nu94","slide":6,"name":"Freeform 3","bbox":[86.4,51.84,1742.4,46.03]}
+{"kind":"textbox","id":"sh/87ipkzal","slide":6,"name":"TextBox 4","text":"05  /  FrameWork Development","textPreview":"05  /  FrameWork Development","textChars":28,"textLines":1,"bbox":[86.4,51.09,1742.4,46.78]}
+{"kind":"shape","id":"sh/ml07i9sv","slide":6,"name":"Freeform 6","bbox":[86.4,118.08,1742.4,116.59]}
+{"kind":"textbox","id":"sh/7m98ru9g","slide":6,"name":"TextBox 7","text":"GPU-Based AutoML 오픈소스 프레임워크 개발","textPreview":"GPU-Based AutoML 오픈소스 프레임워크 개발","textChars":30,"textLines":1,"bbox":[86.4,115.08,1742.4,119.59]}
+{"kind":"shape","id":"sh/pc76hkr2","slide":6,"name":"Freeform 9","bbox":[89.28,201.6,1728,55.56]}
+{"kind":"textbox","id":"sh/h4bupgn6","slide":6,"name":"TextBox 10","text":"Only GPU 를 지향하는 AutoML 프레임워크","textPreview":"Only GPU 를 지향하는 AutoML 프레임워크","textChars":28,"textLines":1,"bbox":[89.28,200.85,1728,56.31]}
+{"kind":"shape","id":"sh/w32twb6l","slide":6,"name":"AutoShape 11","bbox":[570.88,630.22,658.24,0]}
+{"kind":"shape","id":"sh/u1kbu1ov","slide":6,"name":"Freeform 13","bbox":[953.28,257.16,875.52,80.78]}
+{"kind":"textbox","id":"sh/5svutgni","slide":6,"name":"TextBox 14","text":"프레임워크 개발","textPreview":"프레임워크 개발","textChars":8,"textLines":1,"bbox":[953.28,254.91,875.52,83.03]}
+{"kind":"shape","id":"sh/47mt0b6x","slide":6,"name":"AutoShape 15","bbox":[85.7,1019.02,1748.12,0]}
+{"kind":"shape","id":"sh/twfux0ne","slide":6,"name":"Freeform 18","bbox":[92.16,249.52,758.88,80.78]}
+{"kind":"textbox","id":"sh/svmt4v6t","slide":6,"name":"TextBox 19","text":"스터디","textPreview":"스터디","textChars":3,"textLines":1,"bbox":[92.16,247.27,758.88,83.03]}
+{"kind":"shape","id":"sh/cbe5g3ih","slide":6,"name":"Freeform 20","bbox":[92.16,329.21,686.52,180.14]}
+{"kind":"shape","id":"sh/dcnm98zm","slide":6,"name":"Freeform 21","bbox":[92.16,432.65,686.52,193.13]}
+{"kind":"shape","id":"sh/qpwnet0b","slide":6,"name":"Freeform 22","bbox":[85.7,541.27,692.98,204.28]}
+{"kind":"shape","id":"sh/bq547yhw","slide":6,"name":"Freeform 23","bbox":[92.16,651.63,686.52,187.15]}
+{"kind":"textbox","id":"sh/0fy5k3id","slide":6,"name":"TextBox 24","text":"엔비디아 수료증 4종 취득\nAI / ML / DL 관련 수료증","textPreview":"엔비디아 수료증 4종 취득 | AI / ML / DL 관련 수료증","textChars":34,"textLines":2,"bbox":[228.23,846.79,480.28,123.93]}
+{"kind":"textbox","id":"sh/lg76d8zy","slide":6,"name":"GUAM_PR213_lead","text":"기술 문서 정합성 감사 및 최신화","textPreview":"기술 문서 정합성 감사 및 최신화","textChars":18,"textLines":1,"bbox":[985,351,830,62]}
+{"kind":"textbox","id":"sh/ydgnit07","slide":6,"name":"GUAM_PR213_scope","text":"README · API 명세 · 아키텍처 · 코드 주석\n총 31개 파일을 코드·테스트·이슈 상태와 대조해 정비","textPreview":"README · API 명세 · 아키텍처 · 코드 주석 | 총 31개 파일을 코드·테스트·이슈 상태와 대조해 정비","textChars":61,"textLines":2,"bbox":[985,421,830,90]}
+{"kind":"textbox","id":"sh/zep4byhs","slide":6,"name":"GUAM_PR213_work1","text":"기본 OOF·블렌딩과 멀티레벨 스태킹 구분","textPreview":"기본 OOF·블렌딩과 멀티레벨 스태킹 구분","textChars":23,"textLines":1,"bbox":[985,544,830,49]}
+{"kind":"textbox","id":"sh/gju58ji9","slide":6,"name":"GUAM_PR213_detail1","text":"기본 프리셋의 동작과 고급 API의 조립 경로 명확화","textPreview":"기본 프리셋의 동작과 고급 API의 조립 경로 명확화","textChars":29,"textLines":1,"bbox":[985,596,830,46]}
+{"kind":"textbox","id":"sh/1k3mhozu","slide":6,"name":"GUAM_PR213_work2","text":"구현 상태와 지원 범위 정정","textPreview":"구현 상태와 지원 범위 정정","textChars":15,"textLines":1,"bbox":[985,660,830,49]}
+{"kind":"textbox","id":"sh/jet8nm1c","slide":6,"name":"GUAM_PR213_detail2","text":"오래된 stub 표기 수정 · 분산 기능의 제약 문서화\nCode ID·파일·Linear 연결 보완","textPreview":"오래된 stub 표기 수정 · 분산 기능의 제약 문서화 | Code ID·파일·Linear 연결 보완","textChars":54,"textLines":2,"bbox":[985,712,830,89]}
+{"kind":"textbox","id":"sh/idk7ehkr","slide":6,"name":"GUAM_PR213_result","text":"PR #213 병합 완료","textPreview":"PR #213 병합 완료","textChars":13,"textLines":1,"bbox":[985,832,830,60]}
+{"kind":"textbox","id":"sh/50bqpcj2","slide":6,"name":"GUAM_PR213_evidence","text":"2026.09.01 병합 · +380 / −143줄\nPR 검증 기록: 비GPU 테스트 1,595개 통과","textPreview":"2026.09.01 병합 · +380 / −143줄 | PR 검증 기록: 비GPU 테스트 1,595개 통과","textChars":57,"textLines":2,"bbox":[985,891,830,90]}
+{"kind":"notes","id":"nt/x8f69ofe","slide":6,"text":"수치 출처: 전공소개서 원본 5p의 1차·재설계·2차 실험 기록. 1차는 DiverseVul 기반 평가, 2차는 NIST SARD/Juliet 기반 C/C++ 함수 및 지정 CWE 평가. 평가 데이터셋이 달라 직접적인 향상률 비교가 아님. 재설계 화면의 모델은 Qwen3-Coder-Next 80B, B200 2장. 원본의 진행 상태 문구는 데이터셋 구축 후 실증 테스트 예정으로 기재되어 있음.\n5"}

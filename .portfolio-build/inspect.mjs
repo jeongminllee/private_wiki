@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import {FileBlob, PresentationFile} from '@oai/artifact-tool';
+const p = await PresentationFile.importPptx(await FileBlob.load('D:/wiki/raw/portfolio/이정민_포트폴리오.pptx'));
+const sn = await p.inspect({kind:'slide,textbox,shape,image,layout',maxChars:60000});
+await fs.writeFile('D:/wiki/.portfolio-build/inspect.ndjson',sn.ndjson);
+const s=p.slides.getItem(5);
+const png=await s.export({format:'png',scale:1.5});
+await fs.writeFile('D:/wiki/.portfolio-build/before.png',new Uint8Array(await png.arrayBuffer()));
+const lay=await s.export({format:'layout'});
+await fs.writeFile('D:/wiki/.portfolio-build/layout.json',await lay.text());
+console.log(sn.ndjson.split('\n').filter(x=>x.includes('"slide":6')).join('\n'));

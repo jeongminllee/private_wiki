@@ -1,5 +1,60 @@
 # Change Log
 
+## 2026-09-21
+
+- **Update**: [포트폴리오 실제 변경 사례 버전](assets/portfolio/이정민_포트폴리오_GUAM실제변경사례.pptx)의 6페이지를 PR #213의 API 사용 안내·RandomForestGPU 상태 변경 전후 원문 발췌 중심으로 개정함. 문서 산출물을 편집 가능한 텍스트로 표시하고, 원문 출처와 서식 조정 범위를 발표자 노트에 기록함.
+
+- **Update**: [포트폴리오 수정본](assets/portfolio/이정민_포트폴리오_GUAM기여추가.pptx)의 6페이지에 GUAM PR #213 문서 정합성 감사 기여와 병합 결과를 추가함. 원본 보존, 1–5페이지 변경 없음. PR의 과거 테스트 기록과 출처를 발표자 노트에 명시함.
+
+- **Prepare**: 사용자 직접 실행용 GPT-OSS 판정·근거 각100step 실행기·설정을 B200에 준비함. 제한·shell 문법 검증 완료, GPU 학습 미실행.
+
+
+- **Result**: [GPT-OSS Qwen 계약 스모크](wiki/projects/Fine_Tuned/repos/AegisLM/docs/GPT_OSS_QWEN_SMOKE_20260921.md)에서 판정·근거 각각5step·저장·fresh reload 완료(총413.87초). 기술 PASS/품질 FAIL: 판정 P.5811/R.86/FPR.62, 근거 F1.5469/schema.93/renderer.93. 원시 출력4개 재채점 일치, GPU 반환 확인, 본 학습 미실행.
+
+- **Experiment**: 사용자 요청에 따라 기존 Q1R10/Q1R11 데이터·평가를 사용한 GPT-OSS20B 각 5-step 스모크를 준비함. CPU prepare·pytest5·독립 리뷰 통과. 첫 기준선 실행의 미등록 EOS 오류를 수정하고 학습 전 실패 기록001을 보존한 뒤 실행002를 시작함.
+
+- **Correction**: Q1R10/Q1R11 데이터·학습 설정·two-stage 평가 코드가 B200에 존재함을 확인함. GPT-OSS에서 별도 r4 review100 파일럿으로 분기한 기준선 선택 오류를 기록하고, 후속 비교 기준을 기존 판정·근거 줄 선택 성공 경로로 복구함. GPU 실행 없음.
+
+- **Clarification**: Qwen Q1R4/Q1R7도 full-report 평가에는 실패했고, Q1R10/Q1R11의 판정·근거 선택 분리 후 통과했음을 서버 기록으로 확인함. GPT-OSS 학습 실행·생성 평가·r4 데이터 검사 실패를 구분하고 데이터 오라벨을 모델별 JSON 실패의 확정 원인으로 해석하지 않도록 실패 분석에 비교표를 추가함.
+
+- **Root-cause trace**: r4 반례 4건을 원본 Juliet ZIP과 hash 대조함. raw에 원인·bad/good 수정 코드가 있음을 확인하고, 원본 CWE metadata 충돌·일반 FLAW 주석 누락·helper/전역 정의 손실·bad/good의 scoped 정답 자동 변환을 사전 검사 문서에 구분 기록함.
+
+- **Audit**: 사용자 승인에 따라 B200의 최신 r4 6,840행을 CPU 사전 검사함. 기존 CWE 정답 오류 2건 잔존과 이전 파일럿 train80의 추가 2건을 확인함. 패턴 검토 후보 160행·placeholder 후보 40행·부모 평가 split 부재를 기록하고 테스트 FAIL로 새 학습에 진입하지 않음.
+- **Correction**: 기존 AI review100 PASS의 품질 해석을 철회함. 09-18 학습·저장·reload와 기존 gold 대비 20/20은 보존하고 검증된 보안 정확도와 구분함.
+- **Update**: [r4 사전 검사 보고서](wiki/projects/Fine_Tuned/repos/AegisLM/docs/DATASET_PREFLIGHT_20260921.md), 프로젝트·wiki index와 관련 문서를 연결함. 원 데이터·기존 실험 산출물 변경 없음.
+
+## 2026-09-19
+
+- **Decision**: 사용자 요청으로 장문맥 연구에서 실행파일 확장을 제외하고 C/C++ 소스에 집중함.
+- **Audit**: B200 source-v5-r1의 파일과 실패 train1000/validation40 선택 해시를 재현함. source hash·scope·span 검사와 split 정확 중복을 확인하고, CWE gold 반례 2건과 검토 후보 128행을 분리 보존함. 평가기의 조건부 EOS/padding 문제와 protocol/JSON 지표 혼합을 독립 코드 감사로 확인함. 원 데이터 변경·GPU 실행 없음.
+- **Update**: [실패 원인 분석과 데이터 준비 기준](wiki/projects/Fine_Tuned/repos/AegisLM/docs/SOURCE_DATASET_FAILURE_ANALYSIS_20260919.md)을 작성하고 연구 계획·index를 갱신함.
+
+
+## 2026-09-18
+
+- **Research**: [장문맥 C/C++ 프로젝트 분석 계획](wiki/projects/Fine_Tuned/repos/AegisLM/docs/LONG_CONTEXT_PROJECT_RESEARCH_PLAN_20260918.md)을 작성함. 실제 프로젝트의 다중 파일 의존성, project-disjoint split, 8K/16K/32K 실험과 EXE/APK 확장을 설계함. 원격 문서 갱신으로 A6000 48GB 실패 보고서를 확인해 이전 미확인 상태를 정정함. 하네스 목표 변경과 새 GPU 실행은 없음.
+
+- **Update**: 하네스 V3.1.1-MD에서 개별 작업 목표·모델·단계·실행 횟수를 제거하고 운영 방법과 작업 기록을 분리함. 프로젝트 진입 문서와 AGENTS의 고정 목표도 제거함.
+
+- **Update**: 사용자 요청으로 이정민 하네스를 V3.1-MD로 올리고 배포 직전 가정을 제거함. 실행 프로젝트를 AegisLM으로 확정하고 로컬·B200에 프로젝트별 snapshot과 운영 문서를 연결함.
+- **Decision**: GPT-OSS-20B 공식 revision을 고정·다운로드하여 첫 파일럿 1회만 승인된 범위에서 실행. 부모 r4 데이터의 전체 학습 차단과 NuriLab 배포 보류는 유지함.
+- **Update**: [학습 테이블](wiki/projects/Fine_Tuned/repos/AegisLM/docs/GPT_OSS_PILOT_20260918.md)에 train80/validation20, 32-step LoRA, 16.36초 학습, adapter 저장·새 process reload 결과를 기록함.
+- **Update**: Harmony constrain JSON 메타데이터를 놓친 평가기 결함을 수정하고 저장된 동일 출력을 CPU 재채점함. 초기 80%→100% 주장을 정정해 base·adapter 모두 20/20으로 기록하고, 추가 학습 없이 원 결과·실행 코드·정정 결과를 분리 보존함.
+
+## 2026-09-16
+
+- **Daily Routine Checklist Synchronization (2026-09-02 ~ 2026-09-09)**: 2026-09-02부터 2026-09-09까지 8일간 이미 작성 완료되어 있던 루틴 문서(AI 브리핑, 미국 경제, 영어 학습, LLM/ML 채용 공고)의 실제 상태에 맞추어 체크리스트(`wiki/routine/checklist/`)의 체크박스를 전수 검증 및 동기화 완료함. (주말 영어 휴식 2일 및 9/3 채용 공고 미발생 1일은 규정에 따라 미체크 유지)
+- **Routine Backlog Diagnostic**: 2026-09-10부터 2026-09-16(오늘)까지 누락된 7일분의 루틴 현황을 점검하고, 원본 데이터 인입 및 템플릿 생성 대기 상태임을 식별함.
+
+## 2026-09-09
+
+- **Daily Routine Backlog Ingestion (2026-09-02 ~ 2026-09-09)**: `raw/journal`에 누적된 8일분의 루틴 원본 자료(`AI_엔지니어_데일리_브리핑`, `us_economy_briefing`, `weekday_english_practice`, `LLM_NLP_ML_Infra_job_alerts`)를 날짜별로 정확히 분할 및 정제하여 `wiki/routine` 하위 4개 과목(`ai_paper`, `economy`, `Eng`, `Job_LLM_ML`)과 `checklist` 총 40개 마크다운 문서 생성을 완료함.
+  - **AI Paper & Tech 브리핑**: 8일분(9/2~9/9) 전체 분할 및 `wiki/routine/ai_paper/{date}/{date}.md` 생성 완료.
+  - **미국 경제 아침 브리핑**: 8일분(9/2~9/9) 전체 분할 및 `wiki/routine/economy/{date}/{date}.md` 생성 완료.
+  - **영어 학습 (Weekday English Practice)**: 평일 6일분(Day 28~33) 및 주말 2일(9/5, 9/6 휴식/복습 안내)을 포함한 8일분 `wiki/routine/Eng/{date}/{date}.md` 생성 완료.
+  - **LLM/ML 채용 공고 점검**: 신규 공고 발생 7일분 및 공고 미발생 1일(9/3 안내 포함) 전체 8일분 `wiki/routine/Job_LLM_ML/{date}/{date}.md` 생성 완료.
+  - **체크리스트**: 8일분 일자별 `wiki/routine/checklist/{date}.md` 생성 및 과목 링크 정상 연결 완료.
+
 ## 2026-09-03
 
 - **Big Data Analysis 12th Written Exam Comprehensive Scorecard & Gap Analysis Report Created**: 수험자의 실제 채점 데이터(49/80, 61.25점)를 기반으로 과목별 정밀 진단, 세부 영역별 취약점 역공학 해부 및 합격 안정권(+6문제) 달성 로드맵을 수록한 [제12회 기출 성적 진단 및 취약점 역공학 보고서](wiki/ml/bigdata_analysis/past-exam-12-analysis.md)를 생성하고 인덱스에 연결했다.

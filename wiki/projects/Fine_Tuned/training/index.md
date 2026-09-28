@@ -1,5 +1,13 @@
 # Training Runtime
 
+- [GPT-OSS Q1R10·Q1R11 스모크](../repos/AegisLM/docs/GPT_OSS_QWEN_SMOKE_20260921.md) - 기존 계약·독립 base-start 5-step·dev100
+
+- [r4 데이터 사전 검사 FAIL](../repos/AegisLM/docs/DATASET_PREFLIGHT_20260921.md) - 최신 후보 검사와 기존 파일럿의 데이터 품질 판정 정정
+
+- [C/C++ source-v5-r1 실패 감사](../repos/AegisLM/docs/SOURCE_DATASET_FAILURE_ANALYSIS_20260919.md) - CPU 전체 감사와 데이터 재사용·검토 기준
+
+- [AegisLM 장문맥 프로젝트 연구 계획](../repos/AegisLM/docs/LONG_CONTEXT_PROJECT_RESEARCH_PLAN_20260918.md) - 함수에서 다중 파일·저장소 분석까지의 C/C++ 연구 설계
+
 - [Mistral F5-X 첫 파인튜닝 실습 워크북](mistral_f5x_first_finetuning_workbook_20260809.md) - B200 2장 환경에서 runtime 호환성 검사부터 QLoRA·BF16 LoRA 1-step 실행, 모니터링과 증거 판정까지 직접 배우는 입문용 워크북
 - [Mistral Small 4 119B G3 Blind 500 Source Decision PASS](mistral_small_4_119b_g3_blind500_decision_20260820.md) - BF16 LoRA FSDP2 100-step adapter의 fresh blind decision 500건 전 gate PASS와 적용 범위
 - [LLaMA-Factory + W&B Fine-Tuning Integration](llamafactory_wandb_finetuning.md) - B200 서버에서 LLaMA-Factory, DeepSpeed, W&B로 Qwen3-Coder SFT를 실행하는 가이드

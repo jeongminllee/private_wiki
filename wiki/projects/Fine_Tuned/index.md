@@ -13,6 +13,17 @@ B200 서버 기반 LLM fine-tuning, 보안 데이터셋, AegisLM/LLaMA-Factory �
 
 ## High-Signal Docs
 
+- [GPT-OSS Qwen 계약 5-step 스모크](repos/AegisLM/docs/GPT_OSS_QWEN_SMOKE_20260921.md) - 기존 데이터·평가 유지, 각 5 optimizer steps
+
+- [r4 데이터 사전 검사 FAIL](repos/AegisLM/docs/DATASET_PREFLIGHT_20260921.md) - 정답 오류 4건·기존 파일럿 검토 정정·새 학습 미실행
+
+- [C/C++ 데이터 실패 원인 분석](repos/AegisLM/docs/SOURCE_DATASET_FAILURE_ANALYSIS_20260919.md) - source-v5-r1/canary 동일성·CWE 근거 오류·평가기 결함
+
+- [장문맥 C/C++ 프로젝트 분석 연구 계획](repos/AegisLM/docs/LONG_CONTEXT_PROJECT_RESEARCH_PLAN_20260918.md) - 프로젝트 단위 분할·8K/16K/32K 대조 실험·C/C++ 소스 분석
+
+- [GPT-OSS-20B 첫 파일럿·학습 테이블](repos/AegisLM/docs/GPT_OSS_PILOT_20260918.md) - AegisLM에서 단일 32-step 학습·reload 완료, Harmony 평가기 정정 후 base·adapter 모두 20/20
+- [AegisLM V3.1.1-MD 하네스](repos/AegisLM/docs/HARNESS_V3_1.md) - 프로젝트별 역할·작업 배분·인수인계·검증 방법
+
 - [Mistral Source Decision 데이터셋 언어 분포](data/mistral_source_decision_language_distribution_20260825.md) - C 약 78%·C++ 약 22%, unknown·manifest join 누락 0인 provenance 감사
 - [Mistral Small 4 119B B200 소스 보존 및 GitHub 동기화](b200/mistral_standalone_source_sync_20260825.md) - B200 standalone 소스와 로컬의 SHA-256 일치, portable 보완, private GitHub 보존 완료 기록
 - [Mistral Small 4 B200 vLLM 0.26 서빙 트러블슈팅](../../errors/mistral-small4-b200-vllm-serving-troubleshooting-20260820.md) - native/HF checkpoint 경계와 B200 kernel·cache·IPC 문제를 해결해 official native FP8 base startup까지 통과한 기록

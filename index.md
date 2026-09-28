@@ -21,6 +21,13 @@
 - [Algorithms](wiki/algorithms/index.md) - Data Structure & Algorithm study dashboard
 - [Projects](wiki/projects/index.md) - Side projects and active project notes
   - [Fine-Tuned Project](wiki/projects/Fine_Tuned/index.md) - B200 서버 기반 LLM 서빙, 보안 데이터셋, AegisLM 파인튜닝 실행 기록
+    - [GPT-OSS Qwen 계약 5-step 스모크](wiki/projects/Fine_Tuned/repos/AegisLM/docs/GPT_OSS_QWEN_SMOKE_20260921.md) - Q1R10 판정·Q1R11 근거 선택의 독립 학습과 개발 평가
+
+    - [r4 데이터 사전 검사 FAIL](wiki/projects/Fine_Tuned/repos/AegisLM/docs/DATASET_PREFLIGHT_20260921.md) - 정답 오류 4건·기존 파일럿 검토 정정·새 학습 미실행
+
+    - [C/C++ 데이터 실패 분석](wiki/projects/Fine_Tuned/repos/AegisLM/docs/SOURCE_DATASET_FAILURE_ANALYSIS_20260919.md) - 실패 canary 재현·CWE gold 반례·평가 프로토콜 감사
+    - [장문맥 C/C++ 프로젝트 연구 계획](wiki/projects/Fine_Tuned/repos/AegisLM/docs/LONG_CONTEXT_PROJECT_RESEARCH_PLAN_20260918.md) - 다중 파일 근거 연결·8K/16K/32K 비교·C/C++ 소스 분석
+    - [GPT-OSS-20B 첫 파일럿](wiki/projects/Fine_Tuned/repos/AegisLM/docs/GPT_OSS_PILOT_20260918.md) - AegisLM V3.1 하네스와 단일 32-step 학습·reload, Harmony 평가 정정 및 후속 학습 테이블
     - [AegisLM Phase F](wiki/projects/Fine_Tuned/training/aegislm_phase_f_experiment_plan_20260728.md) - F0–F9 데이터 감사, Qwen 80B 신규 학습, binary/NuriLab 실험 연구 기록
     - [AegisLM Q1R10 Blind 평가 결정](wiki/projects/Fine_Tuned/training/aegislm_q1r10_blind_evaluation_decision_20260730.md) - Decision PASS, evidence FAIL과 새 blind·Q1R11 결정 기록
     - [AegisLM Q1R11 신규 Blind 500 PASS](wiki/projects/Fine_Tuned/training/aegislm_q1r11_fresh_blind_pass_decision_20260730.md) - source two-stage·F5-M1 PASS와 F6 binary 최초 판정 기록
