@@ -25,28 +25,42 @@ LLM agent는 단순히 원본 자료를 요약하는 것이 아니라 다음 작
 
 기본 구조는 다음을 따른다.
 
-knowledge/
+private_wiki/
 ├── AGENTS.md
+├── CLAUDE.md              # Claude Code 진입점 (AGENTS.md를 import)
+├── README.md
 ├── index.md
 ├── log.md
 ├── references/
 │   ├── llm-wiki.md
-│   └── okf-spec.md
+│   ├── okf-spec.md
+│   ├── *-prompt.md        # 강사·ML 엔지니어·리서처 페르소나 프롬프트
+│   └── 이정민/            # 이정민 하네스 (roles, skills, playbooks, templates)
 ├── raw/
 │   ├── articles/
 │   ├── papers/
 │   ├── error-logs/
 │   ├── transcripts/
-│   └── notes/
+│   ├── notes/
+│   ├── journal/           # 데일리 루틴 원본 브리핑
+│   ├── notion/            # Notion 자료실 export JSON
+│   └── portfolio/         # 포트폴리오 원본
 ├── wiki/
 │   ├── ml/
 │   ├── infra/
 │   ├── errors/
 │   ├── cs/
+│   ├── cv/
 │   ├── algorithms/
 │   ├── projects/
-│   └── papers/
+│   ├── papers/
+│   ├── reading/
+│   ├── routine/
+│   └── _maintenance/
+├── scripts/
 └── assets/
+
+새로운 최상위 디렉터리나 `wiki/` 하위 카테고리를 만들면 이 구조와 3장 역할 설명을 함께 갱신한다.
 
 ---
 
@@ -64,6 +78,9 @@ knowledge/
 이 파일들은 운영 철학과 문서 포맷을 이해하기 위한 reference이다.
 일반적인 지식 정리 과정에서 원문을 직접 수정하지 않는다.
 
+* `*-prompt.md`: 정보처리기사·빅데이터 강사, ML 엔지니어, ML 리서처 페르소나 프롬프트
+* `이정민/`: 프로젝트 작업용 이정민 하네스. `START_HERE.md`에서 시작한다.
+
 ## raw/
 
 원본 자료를 보관한다.
@@ -76,9 +93,13 @@ knowledge/
 * 강의 노트 원본
 * ChatGPT 대화 복사본
 * 실험 로그
+* 데일리 루틴 원본 브리핑 (`raw/journal/`)
+* Notion 자료실 export (`raw/notion/`)
+* 포트폴리오 원본 (`raw/portfolio/`)
 
 `raw/` 안의 자료는 source of truth로 간주한다.
 LLM agent는 이 파일을 읽을 수 있지만, 사용자가 명시적으로 요청하지 않는 한 수정하지 않는다.
+`raw/`는 개인정보 보호를 위해 `.gitignore`로 Git 추적에서 제외한다.
 
 ## wiki/
 
@@ -86,9 +107,31 @@ LLM agent가 정리하고 유지보수하는 지식 문서를 보관한다.
 
 `wiki/` 안의 모든 일반 Markdown 문서는 OKF 스타일을 따른다.
 
+주제 카테고리:
+
+* `ml/`, `infra/`, `errors/`, `cs/`, `algorithms/`, `projects/`, `papers/`: 분야별 지식 문서
+* `cv/`: 컴퓨터 비전 교재 기반 챕터별 Concept 문서
+* 각 카테고리 아래 `chatgpt/`: ChatGPT 대화 export에서 세분화해 가져온 지식 노트
+
+특수 카테고리:
+
+* `reading/`: Notion에 저장한 글·논문·영상·도구 링크를 로컬에서 읽고 분류하는 자료실
+* `routine/`: 데일리 루틴 기록. 과목별 날짜 폴더(`ai_paper/`, `economy/`, `Eng/`, `Job_LLM_ML/`)와 일자별 `checklist/`로 구성한다. 노트는 `routine/days.py`(또는 `run_today.bat`)로 생성하며, 기존 파일은 덮어쓰지 않는다. 본문 작성과 체크리스트 완료 표시는 구분한다. 과목 노트는 scheduled 루틴 결과를 그대로 붙여넣는 기록이므로 frontmatter를 요구하지 않는다. 체크리스트와 `routine/index.md`는 OKF 규칙을 따른다.
+* `_maintenance/`: Lint·점검 결과 기록
+* `projects/Fine_Tuned/repos/`: 외부 코드 저장소 사본. `.gitignore`로 제외하며, 이 wiki의 OKF 규칙 적용 대상이 아니다.
+
+## scripts/
+
+wiki 유지보수용 Python 스크립트를 보관한다. 예: `audit_routine.py`(루틴 점검·index 재생성), ChatGPT·Notion import 스크립트.
+스크립트는 기본적으로 읽기 전용으로 실행하고, 쓰기 옵션(`--write-index` 등)은 목적에 맞을 때만 사용한다.
+
 ## assets/
 
-이미지, 첨부파일, 다이어그램, 캡처 등을 보관한다.
+이미지, 첨부파일, 다이어그램, 캡처 등을 보관한다. 예: `assets/portfolio/`의 포트폴리오 산출물.
+
+## 작업용 임시 디렉터리
+
+`.tmp/`, `tmp/`, `.codex-tmp/`, `.portfolio-build/`, `backups/` 등은 작업 중 생긴 임시 산출물이며 지식 문서가 아니다. index에 연결하지 않고, 사용자 확인 없이 삭제하지 않는다.
 
 ---
 

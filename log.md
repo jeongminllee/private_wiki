@@ -1,5 +1,22 @@
 # Change Log
 
+## 2026-10-23
+
+- **Decision**: Claude Code 진입점으로 `CLAUDE.md`를 만들고 `@AGENTS.md` import 한 줄만 둠. 운영 규칙의 원본은 AGENTS.md 하나로 유지함.
+- **Update**: AGENTS.md 2장 구조를 실제 저장소에 맞춤. 루트 이름을 `private_wiki/`로 바꾸고 `wiki/cv`, `reading`, `routine`, `_maintenance`, `raw/journal`, `notion`, `portfolio`, `scripts/`, `references/이정민/`을 추가함. 3장에 각 디렉터리 역할, routine 생성 규칙, `repos/` OKF 적용 제외, 임시 디렉터리 취급 원칙을 추가하고, 구조가 바뀌면 2·3장을 함께 갱신하는 규칙을 넣음.
+- **Lint**: 8/24 log에는 연결했다고 되어 있지만 루트 index·README에서 빠져 있던 [CV 대시보드](wiki/cv/index.md)를 다시 연결함. README 구조도에 `cv/`, `_maintenance/`, `scripts/`, `assets/`, `CLAUDE.md`를 추가함.
+- **Decision**: 루틴 과목 노트는 scheduled 결과를 통째로 붙여넣는 기록이라 frontmatter를 요구하지 않기로 하고 AGENTS.md 3장에 예외를 명시함. 체크리스트와 루틴 index는 OKF 규칙을 유지함. 하루마다 바뀌는 description·keywords를 scheduled 프롬프트에 넣는 방식은 후속 후보로 남김.
+- **Update**: `wiki/routine/days.py` 체크리스트 템플릿이 중첩 함수 안의 들여쓰기를 그대로 출력하던 버그를 고침(템플릿 줄만 0칸으로 정렬, 날짜 범위 등 나머지 코드는 유지). 임시 폴더 실행 결과가 복구한 체크리스트와 동일함을 확인함.
+- **Update**: 이 버그로 깨진 10/14~10/23 체크리스트 10개의 앞 공백만 제거함. 10개 모두 YAML 파싱·체크 항목 4개를 확인했고 체크 값·링크는 유지함.
+
+## 2026-10-13
+
+- **Lint**: [루틴 점검](wiki/_maintenance/routine-audit-2026-10-13.md)에서 7/27~10/13의 79일·395개 파일을 확인함. 날짜별 파일 누락 없음, 과목 316개 frontmatter 누락, AI 8/28·8/29 중복/본문 날짜 충돌, 세션 인용 잔여와 채용 빈 틀·미체크 검토 후보를 기록함.
+- **Update**: [루틴 index](wiki/routine/index.md)를 생성해 전체 395개 문서를 월별로 연결하고, 루트 index·README 진입점과 생성/점검 사용법을 갱신함. 기존 과목 원문과 완료 표시는 보존함.
+- **Update**: 10/7~10/13 체크리스트 7개의 frontmatter·제목·체크 항목 들여쓰기만 복구함. 문구·체크 값·링크는 유지함.
+- **Decision**: 생성기 동시 편집을 확인하고 사용자의 현재 편집 유지 선택에 따라 `days.py` 추가 수정을 중단함. 배치 실행기의 이번 변경도 원래 상태로 되돌림. 메타데이터·기간 CLI·중복 대기 개선은 후속 후보로 기록함.
+- **Lint**: `scripts/audit_routine.py`에 읽기 전용 집계와 루틴 index 재생성을 추가함. 체크리스트 79개 YAML 파싱·4개 체크 항목과 전체 395개 파일의 index 연결 및 로컬 링크를 확인함. Git add/commit은 수행하지 않음.
+
 ## 2026-09-21
 
 - **Update**: [포트폴리오 실제 변경 사례 버전](assets/portfolio/이정민_포트폴리오_GUAM실제변경사례.pptx)의 6페이지를 PR #213의 API 사용 안내·RandomForestGPU 상태 변경 전후 원문 발췌 중심으로 개정함. 문서 산출물을 편집 가능한 텍스트로 표시하고, 원문 출처와 서식 조정 범위를 발표자 노트에 기록함.

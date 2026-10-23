@@ -9,7 +9,7 @@
 ## 📅 실시간 대시보드 & 데일리 루틴
 
 * 📑 **[전체 지식베이스 인덱스 (index.md)](index.md)**: 지식베이스 전체 카테고리 진입점
-* 🔄 **[데일리 루틴 대시보드 (wiki/routine)](wiki/routine/)**: 매일 수행하는 AI Paper, 경제, 영어, 공채 트래킹 및 체크리스트
+* 🔄 **[데일리 루틴 대시보드](wiki/routine/index.md)**: 월별 AI Paper, 경제, 영어, 채용 기록 및 체크리스트 현황
 * 📑 **[정보처리기사 실기 대시보드](wiki/cs/engineer_info_processing/index.md)**: 기사 실기 전 과목 핵심 요약 및 기출 분석 대시보드
 * 📚 **[Reading Library 대시보드](wiki/reading/index.md)**: Notion 스크랩 글, 논문, 영상 로컬 분류 아카이브
 
@@ -25,7 +25,22 @@
   3. 🔤 **English**: 재사용 가능한 실무/회화 영어 말하기 템플릿 학습
   4. 💼 **Job Info**: LLM / ML / AI 엔지니어 고적합 채용 공고 분석
 * **자동 생성 스크립트**:
-  * [wiki/routine/days.py](wiki/routine/days.py) 또는 `run_today.bat` 클릭 한 번으로 당일 과목별 노트 및 통합 [checklist](wiki/routine/checklist/) 자동 작성.
+  * [wiki/routine/days.py](wiki/routine/days.py) 또는 [run_today.bat](wiki/routine/run_today.bat) 실행으로 실행 환경의 당일 과목별 노트 및 통합 체크리스트를 생성합니다. 기존 파일은 덮어쓰지 않습니다.
+  * 현재 과목 노트는 제목만 있는 빈 틀로 생성되고, 체크리스트에만 frontmatter가 들어갑니다. 과목 노트의 OKF 메타데이터 보완은 후속 정리 항목입니다.
+  * 본문 입력과 실제 완료를 구분합니다. 주말 영어·신규 공고 없음 안내는 본문이 있어도 완료 체크를 자동으로 변경하지 않습니다.
+
+저장소 루트에서 실행합니다.
+
+```powershell
+# 실행 환경의 당일 (생성 후 Enter 대기)
+python wiki/routine/days.py
+# 파일·형식·로컬 링크 점검 (읽기 전용)
+python scripts/audit_routine.py
+# 날짜별 문서는 보존하고 루틴 index만 갱신
+python scripts/audit_routine.py --write-index
+```
+
+[최근 루틴 점검 기록](wiki/_maintenance/routine-audit-2026-10-13.md)에는 기존 문서의 형식·중복·출처·완료 표시 검토 후보를 정리했습니다.
 
 ---
 
@@ -45,21 +60,26 @@
 ```text
 private_wiki/
 ├── AGENTS.md                   # 개인 지식베이스 운영 규칙 및 Git Rules
+├── CLAUDE.md                   # Claude Code 진입점 (AGENTS.md import)
 ├── README.md                   # GitHub 대문 문서 (현재 파일)
 ├── index.md                    # 전체 지식베이스 대시보드 진입점
 ├── log.md                      # 전체 지식베이스 변경/Ingest 히스토리
 ├── references/                 # 시스템 운영 규칙 및 AI 프롬프트 명세
 ├── raw/                        # 원본 수집 자료 (보안 관리를 위해 .gitignore 적용)
+├── scripts/                    # 루틴 점검, ChatGPT·Notion import 등 유지보수 스크립트
+├── assets/                     # 이미지, 포트폴리오 등 첨부 산출물
 └── wiki/                       # 카테고리별 정제 마크다운 지식 문서
     ├── routine/                # 데일리 루틴 (AI Paper, Economy, Eng, Job_LLM_ML, Checklist)
     ├── cs/                     # 컴퓨터 과학 (Java, Python, 정보처리기사 등)
     ├── ml/                     # 머신러닝 이론, 수학 기초, 앙상블 기법
+    ├── cv/                     # 컴퓨터 비전 (Szeliski 교재 챕터별 정리)
     ├── papers/                 # 학술 논문 요약 및 체계적 문헌고찰(SLR)
     ├── projects/               # side project & Fine-Tuned (B200 / AegisLM 등)
     ├── reading/                # 외부 자료 로컬 읽기 라이브러리
     ├── infra/                  # 시스템 인프라, 셋업 가이드, 심볼릭 링크
     ├── errors/                 # 실무 에러 트러블슈팅 노트
-    └── algorithms/             # 알고리즘 & 자료구조 문제 풀이 대시보드
+    ├── algorithms/             # 알고리즘 & 자료구조 문제 풀이 대시보드
+    └── _maintenance/           # Lint·점검 결과 기록
 ```
 
 ---

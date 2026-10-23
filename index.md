@@ -8,6 +8,7 @@
   - [MML Study](wiki/ml/mml/index.md) - Mathematics for Machine Learning book study
   - [LLM Ensemble Methods](wiki/ml/llm-ensemble.md) - LLM에 앙상블 기법을 적용하는 아이디어 분석
   - [cuML Random Forest](wiki/ml/cuml-random-forest.md) - GPU 기반 랜덤 포레스트 가속 분석 및 학습 가이드
+- [CV](wiki/cv/index.md) - Szeliski 《Computer Vision》 기반 영상 형성, 3D 기하, SLAM, VLM, NeRF/3D-GS 챕터별 지식 대시보드
 - [Infra](wiki/infra/index.md) - Infrastructure, networks, and DevOps notes
   - [LLM 생명주기 환경 설계](wiki/infra/llm-lifecycle-environment-design.md) - 개발·학습·서빙·평가 환경의 통합과 분리 판단 기준
   - [Symlink](wiki/infra/symlink.md) - OS별 심볼릭 링크 생성 및 해제 방법
@@ -44,7 +45,8 @@
   - [Artificial Image Data for Visual Defect Detection SLR](wiki/papers/artificial-image-data-visual-defect-detection-slr.md) - 결함 검출용 합성·증강 이미지 연구의 방법, 성과와 한계를 분석한 2025년 체계적 문헌고찰
   - [AI 에이전트 & 하니스 링크 요약](wiki/papers/aifrenz-links-summary.md) - aifrenz 채널에서 수집된 AI 에이전트, 하니스 엔지니어링, 벤치마크 관련 링크 요약본
 - [Reading Library](wiki/reading/index.md) - Notion에 저장한 글, 논문, 영상과 도구 링크를 로컬에서 읽고 분류하는 자료실
-- [Routine](wiki/routine/) - 데일리 루틴 (AI Paper, Economy, Eng, Job_LLM_ML) 및 체크리스트
+- [Routine](wiki/routine/index.md) - 데일리 루틴 79일의 월별 탐색, 과목별 기록과 체크리스트 현황
+  - [루틴 점검 (2026-10-13)](wiki/_maintenance/routine-audit-2026-10-13.md) - 형식 복구 내역, 중복·출처·체크 상태 검토 후보
 
 
 
